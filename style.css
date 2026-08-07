@@ -10,6 +10,7 @@
   --surface-solid: #12151f;
   --surface-2: #161a27;
   --surface-3: #1e2335;
+  --surface-grad: rgba(22, 26, 39, 0.85);
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.16);
 
@@ -66,6 +67,7 @@
   --surface-solid: #ffffff;
   --surface-2: #f3f5fa;
   --surface-3: #e8ecf4;
+  --surface-grad: rgba(240, 244, 251, 0.9);
   --border: rgba(15, 23, 42, 0.09);
   --border-strong: rgba(15, 23, 42, 0.18);
 
@@ -78,6 +80,24 @@
   --primary-soft: rgba(79, 95, 240, 0.11);
   --accent: #7c3aed;
   --accent-soft: rgba(124, 58, 237, 0.11);
+  --sky: #0284c7;
+  --magenta: #c026d3;
+
+  --success: #059669;
+  --success-soft: rgba(5, 150, 105, 0.1);
+  --warning: #b45309;
+  --warning-soft: rgba(180, 83, 9, 0.1);
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.1);
+  --info: #2563eb;
+  --info-soft: rgba(37, 99, 235, 0.1);
+  --sky-soft: rgba(2, 132, 199, 0.1);
+  --purple: #7c3aed;
+  --purple-soft: rgba(124, 58, 237, 0.1);
+  --green: #16a34a;
+  --green-soft: rgba(22, 163, 74, 0.1);
+  --orange: #ea580c;
+  --orange-soft: rgba(234, 88, 12, 0.1);
 
   --shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.12);
   --shadow-lg: 0 24px 60px -20px rgba(15, 23, 42, 0.2);
@@ -700,7 +720,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   width: 100%;
   max-width: 380px;
   padding: 30px 28px 28px;
-  background: linear-gradient(160deg, var(--surface-solid), rgba(22, 26, 39, 0.9));
+  background: linear-gradient(160deg, var(--surface-solid), var(--surface-grad));
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -827,7 +847,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .stat-box {
   padding: 22px 16px;
-  background: linear-gradient(160deg, var(--surface), rgba(22, 26, 39, 0.7));
+  background: linear-gradient(160deg, var(--surface), var(--surface-grad));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   text-align: center;
@@ -950,7 +970,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .card {
   padding: 28px;
-  background: linear-gradient(165deg, var(--surface), rgba(22, 26, 39, 0.72));
+  background: linear-gradient(165deg, var(--surface), var(--surface-grad));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1051,7 +1071,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   flex-direction: column;
   gap: 14px;
   padding: 26px;
-  background: linear-gradient(165deg, var(--surface), rgba(22, 26, 39, 0.72));
+  background: linear-gradient(165deg, var(--surface), var(--surface-grad));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1413,7 +1433,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .skill-domain {
   padding: 24px;
-  background: linear-gradient(165deg, var(--surface), rgba(22, 26, 39, 0.72));
+  background: linear-gradient(165deg, var(--surface), var(--surface-grad));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1682,7 +1702,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .contact-form {
   padding: 34px;
-  background: linear-gradient(165deg, var(--surface-solid), rgba(22, 26, 39, 0.92));
+  background: linear-gradient(165deg, var(--surface-solid), var(--surface-grad));
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -1723,7 +1743,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .form-status {
   padding: 44px 32px;
-  background: linear-gradient(165deg, var(--surface-solid), rgba(22, 26, 39, 0.92));
+  background: linear-gradient(165deg, var(--surface-solid), var(--surface-grad));
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
