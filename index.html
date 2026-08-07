@@ -173,7 +173,10 @@
           <div class="tech-tags mt-4">
             <span>React</span><span>Next.js</span><span>Supabase</span><span>TailwindCSS</span>
           </div>
-          <a href="https://github.com/ieyrfan/niyyah" target="_blank" class="btn btn-outline btn-sm mt-4" style="width: fit-content; display: inline-flex;"><i class="fa-brands fa-github"></i> GitHub →</a>
+          <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+            <a href="https://niyyah-265487428650.asia-southeast1.run.app" target="_blank" class="btn btn-primary btn-sm" style="border: none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/ieyrfan/niyyah" target="_blank" class="btn btn-outline btn-sm" style="width: fit-content; display: inline-flex;"><i class="fa-brands fa-github"></i> GitHub →</a>
+          </div>
         </div>
 
         <!-- MindCare -->
@@ -351,6 +354,66 @@
           </div>
           <div style="display: flex; gap: 10px; margin-top: 15px;">
             <a href="https://github.com/ieyrfan/panweather" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i> Source</a>
+          </div>
+        </div>
+
+        <!-- FunTechPay -->
+        <div class="bento-card reveal-slide">
+          <div class="project-header">
+            <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2);"><i class="fa-solid fa-money-bill-transfer"></i></div>
+            <h3>FunTechPay</h3>
+          </div>
+          <p>Next-generation digital neo-banking POC with a 3D interactive dashboard, AI-driven spending insights, split-bill QR engine, and JWT + TAC-secured transactions.</p>
+          <div class="tech-tags mt-4">
+            <span>React</span><span>FastAPI</span><span>DynamoDB</span><span>Terraform</span><span>JWT</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <a href="https://github.com/ieyrfan/FunTechPay" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i> Source</a>
+          </div>
+        </div>
+
+        <!-- PanBiz POS -->
+        <div class="bento-card reveal-slide delay-1">
+          <div class="project-header">
+            <div class="card-icon" style="color: #22c55e; background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2);"><i class="fa-solid fa-cash-register"></i></div>
+            <h3>PanBiz POS</h3>
+          </div>
+          <p>Full-stack point-of-sale system for restaurants & food stalls: cart, inventory, kitchen display, CRM and reports, powered by 17 Fastify APIs with JWT + RBAC.</p>
+          <div class="tech-tags mt-4">
+            <span>Fastify</span><span>PostgreSQL</span><span>JWT</span><span>Zod</span><span>Vanilla JS</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <a href="https://github.com/ieyrfan/PanBiz" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i> Source</a>
+          </div>
+        </div>
+
+        <!-- Cloud Data Governance -->
+        <div class="bento-card reveal-slide delay-2">
+          <div class="project-header">
+            <div class="card-icon" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.2);"><i class="fa-solid fa-database"></i></div>
+            <h3>Cloud Data Governance</h3>
+          </div>
+          <p>Zero-trust data governance engine for AWS S3 data lakes: auto-classifies PII into security tiers, redacts sensitive data, deploys honeytokens, and quarantines compromised users.</p>
+          <div class="tech-tags mt-4">
+            <span>Python</span><span>Terraform</span><span>AWS</span><span>Next.js</span><span>cgctl</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <a href="https://github.com/ieyrfan/cloud-data-governance" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i> Source</a>
+          </div>
+        </div>
+
+        <!-- Cloud Security Posture Audit -->
+        <div class="bento-card reveal-slide">
+          <div class="project-header">
+            <div class="card-icon" style="color: #f97316; background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.2);"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3>Cloud Security Posture Audit</h3>
+          </div>
+          <p>Production-grade CSPM framework: Prowler + custom CIS checker with Terraform-hardened infrastructure and auto-remediation that lifted compliance from 42% to 87%.</p>
+          <div class="tech-tags mt-4">
+            <span>Terraform</span><span>Prowler</span><span>Python</span><span>CIS</span><span>GitHub Actions</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <a href="https://github.com/ieyrfan/Cloud-Security-Posture-Audit" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i> Source</a>
           </div>
         </div>
 
@@ -846,6 +909,7 @@
           <div class="hacker-loader"></div>
           <p class="status-text" id="encryptionStatusText">Encrypting payload...</p>
           <div class="hash-display" id="hashDisplay"></div>
+          <button type="button" id="retrySecureBtn" class="btn btn-outline" style="display: none; margin-top: 1rem; justify-content: center;"><i class="fa-solid fa-rotate-left"></i> Try Again</button>
         </div>
         
       </div>

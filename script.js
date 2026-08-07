@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   
   // --- 0. Custom Cyber Cursor ---
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.body.classList.add('custom-cursor-active');
+  }
+
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorOutline = document.querySelector('.cursor-outline');
   let cursorX = window.innerWidth / 2;
@@ -39,17 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   addHoverEffects();
 
 
-  // --- 0.5 Vanilla Tilt 3D Effect ---
-  if (typeof VanillaTilt !== 'undefined') {
-    VanillaTilt.init(document.querySelectorAll(".bento-card"), {
-      max: 5,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.1,
-      scale: 1.01
-    });
-  }
-
   // --- 1. Theme Toggle ---
   const themeToggle = document.getElementById('themeToggle');
   const htmlTag = document.documentElement;
@@ -76,29 +69,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- 3. GSAP Animations (Premium Smooth Reveals) ---
-  gsap.registerPlugin(ScrollTrigger);
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
 
-  // Fade Up
-  gsap.utils.toArray('.reveal-fade').forEach(element => {
-    gsap.fromTo(element, 
-      { opacity: 0, y: 30 },
-      {
-        scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
-        opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
-      }
-    );
-  });
+    // Fade Up
+    gsap.utils.toArray('.reveal-fade').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, y: 30 },
+        {
+          scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
+          opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+        }
+      );
+    });
 
-  // Slide Up
-  gsap.utils.toArray('.reveal-slide').forEach(element => {
-    gsap.fromTo(element, 
-      { opacity: 0, y: 50 },
-      {
-        scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
-        opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
-      }
-    );
-  });
+    // Slide Up
+    gsap.utils.toArray('.reveal-slide').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
+          opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+        }
+      );
+    });
+  } else {
+    // GSAP CDN unavailable — make sure nothing stays invisible
+    document.querySelectorAll('.reveal-fade, .reveal-slide').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
 
   // --- 4. Premium Card Glow Effect & 3D Tilt ---
   document.querySelectorAll('.bento-card').forEach(card => {
@@ -201,8 +202,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const encStatus = document.getElementById('encryptionStatus');
   const hashDisplay = document.getElementById('hashDisplay');
   const statusText = document.getElementById('encryptionStatusText');
+  const retryBtn = document.getElementById('retrySecureBtn');
+  let interval;
 
   if(secureForm) {
+    const showFailure = (message) => {
+      clearInterval(interval);
+      statusText.innerText = message;
+      statusText.style.color = "#ef4444";
+      document.querySelector('.hacker-loader').style.display = 'none';
+      hashDisplay.innerText = "ERROR ENCOUNTERED.";
+      if (retryBtn) retryBtn.style.display = 'inline-flex';
+    };
+
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        encStatus.classList.add('hidden');
+        secureForm.style.display = '';
+        document.querySelector('.hacker-loader').style.display = '';
+        hashDisplay.innerText = '';
+        statusText.innerText = 'Encrypting payload...';
+        statusText.style.color = '';
+      });
+    }
+
     secureForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
@@ -211,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       secureForm.style.display = 'none';
       encStatus.classList.remove('hidden');
       
-      let interval = setInterval(() => {
+      interval = setInterval(() => {
         const hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         hashDisplay.innerText = hash.toUpperCase();
       }, 50);
@@ -231,30 +254,16 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.hacker-loader').style.display = 'none';
             hashDisplay.innerText = "CONNECTION SECURED & TERMINATED.";
           } else {
-            statusText.innerText = "Transmission Failed: " + (json.message || "Unknown error");
-            statusText.style.color = "#ef4444";
-            document.querySelector('.hacker-loader').style.display = 'none';
-            hashDisplay.innerText = "ERROR ENCOUNTERED.";
+            showFailure("Transmission Failed: " + (json.message || "Unknown error"));
           }
         }, 2500);
       })
       .catch(error => {
         setTimeout(() => {
-          clearInterval(interval);
-          statusText.innerText = "Transmission Intercepted (Network Error).";
-          statusText.style.color = "#ef4444";
-          document.querySelector('.hacker-loader').style.display = 'none';
-          hashDisplay.innerText = "ERROR ENCOUNTERED.";
+          showFailure("Transmission Intercepted (Network Error).");
         }, 2500);
       });
     });
-  }
-
-  // --- Initialize GPA Calculator ---
-  const subjectList = document.getElementById('subjectList');
-  if(subjectList && subjectList.children.length === 0) {
-    addSubject();
-    addSubject();
   }
 });
 
