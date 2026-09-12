@@ -8,336 +8,429 @@
   const touchMode = window.matchMedia("(hover: none), (pointer: coarse)");
 
   const projectData = {
-    funcloudsoc: {
-      order: "01", name: "FunCloudSOC", subtitle: "Autonomous Cloud Security Response Architecture",
-      tags: ["AWS", "Terraform", "CloudFormation", "Docker", "Flask", "Python", "CloudWatch", "AWS Config"],
-      source: "https://github.com/ieyrfan",
+    "threat-nexus": {
+      order: "01 / FINAL YEAR PROJECT",
+      name: "THREAT NEXUS XDR",
+      subtitle: "Cloud-Native Autonomous Security Response",
+      tags: ["AWS EC2", "Lambda", "DynamoDB", "EventBridge", "Flask", "Chart.js"],
+      source: "https://github.com/ieyrfan/Threat-Nexus-XDR-Enterprise-Cloud-Cybersecurity-Platform",
+      architecture: ["ATTACKER", "COWRIE HONEYPOT", "LOG / EVENT", "DETECTION ENGINE", "ATTACK RULE", "EVENTBRIDGE", "IP BLOCKED", "SNS / TELEGRAM ALERT"],
       sections: [
-        ["01", "The problem", "Cloud security signals are useful only when they lead to a traceable decision, a controlled action and verified recovery. Detection alone does not close an incident."],
-        ["02", "The objective", "Design a cloud-native security response architecture that connects monitoring, incident state, policy-bounded automation and preserved evidence."],
-        ["03", "The solution", "A design-complete, evaluation-ready PSM I prototype that models the full detect, decide, act and verify loop without presenting planned PSM II measurements as achieved results."],
-        ["04", "Architecture", "Internet traffic reaches the protected web workload. Cloud telemetry feeds detection and incident tracking. Approved automation can invoke containment or recovery, followed by an independent probe."],
-        ["05", "Technology", "AWS services, Terraform and CloudFormation for infrastructure; Python and Flask for orchestration; Docker for repeatable packaging; CloudWatch, CloudTrail and AWS Config for signals and configuration evidence."],
-        ["06", "Security considerations", "Least privilege, bounded actions, explicit trust boundaries, audit preservation and independent recovery verification shape the response path."],
-        ["07", "Challenges", "The main engineering challenge is preventing an automated response from becoming another source of risk while keeping the full incident trail explainable."],
-        ["08", "Implementation", "The current implementation connects health and scan flows to incident and recovery concepts. Evaluation targets and measured evidence remain part of the next project phase."],
-        ["09", "What I learned", "A successful automation call is not the same as a recovered service. Verification must come from state, probes and clean follow-up evidence."],
-        ["10", "Results", "PSM I status: architecture and prototype design are complete and ready for structured evaluation. No unverified production or performance claim is presented."],
-        ["11", "Source code", "Repository access is shared through Muhammad Irfan’s GitHub profile where available."],
-        ["12", "Related systems", "The same interests continue through AEGIS, multi-cloud disaster recovery and cloud data-governance work."]
+        ["OVERVIEW", "A cloud-native XDR platform combining decoy infrastructure, event-driven detection and automated response."],
+        ["PROBLEM", "Security teams need a clear path from suspicious activity to evidence, classification, response and notification."],
+        ["OBJECTIVE", "Create an understandable cloud response loop that can observe attacks and trigger bounded automated action."],
+        ["KEY FEATURES", "Cowrie SSH honeypot, ten attack rules, automated IP blocking, Telegram alerts, SNS notifications, a Flask dashboard and Chart.js visualisation."],
+        ["SECURITY", "The system separates observation, detection, response and notification so each decision remains visible."],
+        ["IMPLEMENTATION", "Kali Linux generates controlled attack traffic. Cowrie records activity, the detection engine evaluates rules and EventBridge coordinates the response path."],
+        ["CHALLENGES", "Automation must react quickly while keeping decisions explainable and preventing uncontrolled response behaviour."],
+        ["RESULT", "The project demonstrates an end-to-end autonomous security response flow with real-time alerting."],
+        ["WHAT I LEARNED", "Detection becomes useful when it connects to a controlled action, visible evidence and a clear final state."]
       ]
     },
     pantalk: {
-      order: "02", name: "PANTALK", subtitle: "Privacy-First Communication Platform",
-      tags: ["Authentication", "Privacy architecture", "Messaging", "Access control"], source: "https://github.com/ieyrfan",
+      order: "02 / CURRENT",
+      name: "PANTALK",
+      subtitle: "Privacy-First Messaging Platform",
+      tags: ["React", "Node.js", "Socket.IO", "PostgreSQL", "AWS"],
+      source: "https://github.com/ieyrfan/PanTalk",
+      architecture: ["USER A", "TEMPORARY IDENTITY", "SOCKET.IO", "MESSAGE SERVICE", "POSTGRESQL", "USER B"],
       sections: [
-        ["01", "The problem", "Communication systems must deliver useful conversations while protecting identity, access and message boundaries."],
-        ["02", "The objective", "Explore a private communication experience with controlled trust and clear authentication boundaries."],
-        ["03", "The solution", "A structured messaging platform concept that places identity, encrypted transport and access decisions in the architecture."],
-        ["04", "Architecture", "User A authenticates, a protected transport carries the request through the message service, and User B receives only authorized communication."],
-        ["05", "Technology", "Application, identity, messaging and data layers are separated so each responsibility can be examined and improved."],
-        ["06", "Security considerations", "Authentication, authorization, session handling, privacy and controlled service trust are first-class concerns."],
-        ["07", "Challenges", "The interface must stay simple while the underlying trust and message flows remain explicit."],
-        ["08", "Implementation", "The project is presented as an architecture-led communication system. Public source is linked only when an exact repository is available."],
-        ["09", "What I learned", "Privacy comes from system boundaries and data decisions, not from a lock icon added to an interface."],
-        ["10", "Results", "The project documents a defensible communication flow and the controls needed around it."],
-        ["11", "Source code", "No exact public repository URL is claimed in this portfolio."],
-        ["12", "Related systems", "Security ideas connect to FunCloudSOC and identity-policy experiments in the cloud lab."]
+        ["OVERVIEW", "A messaging platform designed around private interaction, temporary identities and intentional connection controls."],
+        ["PROBLEM", "Messaging products often make identity and content persist longer than the conversation needs."],
+        ["OBJECTIVE", "Explore a communication model that gives users clearer control over identity, connection and message lifetime."],
+        ["KEY FEATURES", "Private messaging, temporary identities, QR-based connections, disappearing messages, group collaboration, media sharing and privacy controls."],
+        ["SECURITY", "The portfolio describes the implemented identity and privacy controls without claiming unsupported encryption properties."],
+        ["IMPLEMENTATION", "React provides the interface, Node.js and Socket.IO manage real-time communication, and PostgreSQL supports structured persistence."],
+        ["CHALLENGES", "The experience must keep connection controls understandable while supporting real-time collaboration."],
+        ["RESULT", "PanTalk demonstrates full-stack real-time application design with privacy as a product requirement."],
+        ["WHAT I LEARNED", "Privacy depends on data lifetime, identity design and clear user control."]
       ]
     },
-    neuronote: {
-      order: "03", name: "NeuroNote", subtitle: "Student Wellness & Productivity Tracking System",
-      tags: ["C++", "MySQL", "Mood tracking", "Reports", "User management"], source: "https://github.com/ieyrfan/neuronote",
+    omniverse: {
+      order: "03 / RELIABILITY",
+      name: "OMNIVERSE",
+      subtitle: "Multi-Cloud Disaster Recovery / SRE Showcase",
+      tags: ["Terraform", "AWS EKS", "GCP GKE", "Python", "Boto3", "React"],
+      source: "https://github.com/ieyrfan/omniverse-cloud-dr",
+      architecture: ["AWS EKS", "HEALTH ISSUE", "SNS ALERT", "PYTHON DR AGENT", "TRAFFIC REROUTE", "GCP GKE", "AUDIT TRAIL"],
       sections: [
-        ["01", "The problem", "Students need a lightweight way to connect mood, energy and focus patterns without losing control of their own records."],
-        ["02", "The objective", "Build a structured tracking system with clear user workflows, useful reports and reliable persistence."],
-        ["03", "The solution", "A C++ application backed by relational data structures for daily logging and report generation."],
-        ["04", "Architecture", "User actions pass through application logic into validated MySQL records, then return as summaries and reports."],
-        ["05", "Technology", "C++ handles application logic and MySQL provides persistent relational data."],
-        ["06", "Security considerations", "User separation, input validation, credential handling and minimum database privileges are core design considerations."],
-        ["07", "Challenges", "Turning subjective wellness information into a consistent data model while keeping the interaction understandable."],
-        ["08", "Implementation", "The application covers logging, account management, database integration and report-oriented views."],
-        ["09", "What I learned", "A useful system needs a strong relationship between the data model and the questions its users want to answer."],
-        ["10", "Results", "The project demonstrates applied programming and database integration through a focused student use case."],
-        ["11", "Source code", "The public repository is available on GitHub."],
-        ["12", "Related systems", "The project complements cloud work by grounding system design in application and database fundamentals."]
+        ["OVERVIEW", "A multi-cloud disaster recovery showcase focused on service health, failover and operational visibility."],
+        ["PROBLEM", "A workload tied to one environment needs a planned response when its primary platform becomes unhealthy."],
+        ["OBJECTIVE", "Demonstrate a traceable recovery flow between AWS and GCP using infrastructure as code and automation."],
+        ["KEY FEATURES", "Health monitoring, SNS alerts, a Python DR agent, traffic rerouting, chaos engineering and an immutable audit trail."],
+        ["SECURITY", "Recovery actions remain bounded to defined infrastructure and the Web3 component stays secondary to reliability."],
+        ["IMPLEMENTATION", "Terraform represents the environments, EKS and GKE host the workloads, and Python with Boto3 coordinates recovery logic."],
+        ["CHALLENGES", "Multi-cloud recovery must handle different platforms while maintaining a clear source of operational truth."],
+        ["RESULT", "The project presents a complete SRE story from health degradation to cross-cloud traffic recovery."],
+        ["WHAT I LEARNED", "Resilience comes from rehearsed failure paths, automation and independent health signals."]
+      ]
+    },
+    cspm: {
+      order: "04 / CLOUD POSTURE",
+      name: "CLOUD SECURITY POSTURE AUDIT",
+      subtitle: "Production-Grade CSPM Framework",
+      tags: ["Terraform", "Prowler", "Python", "CIS Benchmarks", "GitHub Actions"],
+      source: "https://github.com/ieyrfan/Cloud-Security-Posture-Audit",
+      architecture: ["AWS ACCOUNT", "PROWLER SCAN", "FINDINGS", "CUSTOM CHECKS", "TERRAFORM HARDENING", "CI/CD REMEDIATION", "87% COMPLIANCE"],
+      sections: [
+        ["OVERVIEW", "A cloud posture framework that converts AWS configuration findings into prioritised hardening work."],
+        ["PROBLEM", "Cloud misconfigurations are difficult to manage when scanning, remediation and validation live in separate workflows."],
+        ["OBJECTIVE", "Build a repeatable path from posture assessment to infrastructure hardening and CI/CD checks."],
+        ["KEY FEATURES", "Prowler scanning, custom compliance checks, Terraform hardening, GitHub Actions and remediation tracking."],
+        ["SECURITY", "CIS Benchmarks and cloud configuration checks provide the control baseline."],
+        ["IMPLEMENTATION", "Python processes findings, Terraform applies hardening changes and GitHub Actions keeps checks in the delivery workflow."],
+        ["CHALLENGES", "Findings need context and prioritisation so compliance work produces meaningful security improvements."],
+        ["RESULT", "Measured compliance improved from 42% to 87%."],
+        ["WHAT I LEARNED", "A posture score is useful when it connects to specific controls, code changes and repeatable validation."]
+      ]
+    },
+    "data-governance": {
+      order: "05 / ZERO TRUST",
+      name: "CLOUD DATA GOVERNANCE",
+      subtitle: "Zero-Trust Engine for AWS S3 Data Lakes",
+      tags: ["Python", "Terraform", "AWS", "Next.js"],
+      source: "https://github.com/ieyrfan/cloud-data-governance",
+      architecture: ["S3 DATA", "CLASSIFICATION", "PII DETECTION", "SECURITY TIER", "REDACTION", "QUARANTINE", "GOVERNANCE"],
+      sections: [
+        ["OVERVIEW", "A data-governance engine for classifying and protecting information stored in AWS S3 data lakes."],
+        ["PROBLEM", "Data lakes can accumulate sensitive data without consistent classification, handling or compromised-account response."],
+        ["OBJECTIVE", "Apply zero-trust decisions to data based on content, identity context and security tier."],
+        ["KEY FEATURES", "PII detection, classification, security tiers, redaction, honeytokens, quarantine and compromised-account response."],
+        ["SECURITY", "Every data action is treated as a policy decision rather than assuming storage location equals trust."],
+        ["IMPLEMENTATION", "Python handles classification logic, Terraform defines AWS resources and Next.js provides the operational interface."],
+        ["CHALLENGES", "Controls must protect sensitive content while preserving useful, traceable data workflows."],
+        ["RESULT", "The project demonstrates policy-based governance from ingestion to redaction and quarantine."],
+        ["WHAT I LEARNED", "Data security requires classification and response paths before an incident occurs."]
+      ]
+    },
+    aegis: {
+      order: "06 / SECURITY OPERATIONS",
+      name: "AEGIS",
+      subtitle: "Cloud-Native SOC Dashboard",
+      tags: ["React", "Three.js", "AWS Amplify", "Python", "Boto3"],
+      source: "https://github.com/ieyrfan/aegis-cyber-dashboard",
+      architecture: ["AWS SIGNALS", "PYTHON / BOTO3", "AMPLIFY", "SOC DASHBOARD", "THREAT VISUAL"],
+      sections: [
+        ["OVERVIEW", "A cloud-native security operations dashboard with focused visualisation of threat activity."],
+        ["PROBLEM", "Security signals need an interface that helps an operator see priority and context."],
+        ["OBJECTIVE", "Combine cloud telemetry with an accessible operational dashboard."],
+        ["KEY FEATURES", "Cloud data integration, SOC views and a contained Three.js threat visualisation."],
+        ["SECURITY", "The visual layer supports analysis and remains inside the project context."],
+        ["IMPLEMENTATION", "React provides the dashboard, AWS Amplify hosts the application and Python with Boto3 connects cloud data."],
+        ["CHALLENGES", "Visual depth must support understanding without distracting from security information."],
+        ["RESULT", "AEGIS demonstrates frontend, cloud and security-data integration."],
+        ["WHAT I LEARNED", "A security interface must prioritise legibility before visual novelty."]
+      ]
+    },
+    niyyah: {
+      order: "07 / COMMUNITY",
+      name: "NIYYAH",
+      subtitle: "Islamic Super App for Muslim Malaysians",
+      tags: ["React", "Next.js", "Supabase", "TailwindCSS"],
+      source: "https://github.com/ieyrfan/niyyah",
+      architecture: ["USER", "ACCESSIBLE WEB APP", "QURAN / PRAYER / ZAKAT", "SUPABASE", "COMMUNITY SERVICES"],
+      sections: [
+        ["OVERVIEW", "A full-stack Islamic application designed for Malaysian users, including converts and older adults."],
+        ["PROBLEM", "Religious tools are often fragmented and can be difficult for less technical users to navigate."],
+        ["OBJECTIVE", "Bring essential services into one accessible, community-oriented experience."],
+        ["KEY FEATURES", "Al-Quran with audio, JAKIM prayer times, Muallaf Hub and a Zakat Calculator."],
+        ["SECURITY", "Account and data flows use the access controls available through the application and Supabase."],
+        ["IMPLEMENTATION", "React and Next.js power the interface, with Supabase for backend services."],
+        ["CHALLENGES", "The interface must serve users with different levels of digital confidence."],
+        ["RESULT", "Niyyah demonstrates accessible full-stack product development for a specific community."],
+        ["WHAT I LEARNED", "Good technical work begins with the people and context the system serves."]
+      ]
+    },
+    smartchef: {
+      order: "08 / SERVERLESS",
+      name: "SMARTCHEF",
+      subtitle: "Serverless Recipe Recommendation Engine",
+      tags: ["AWS Lambda", "API Gateway", "DynamoDB", "Python", "Next.js"],
+      source: "https://github.com/ieyrfan/smartchef-pro",
+      architecture: ["USER", "NEXT.JS", "API GATEWAY", "LAMBDA", "RECOMMENDATION", "DYNAMODB", "RESULT"],
+      sections: [
+        ["OVERVIEW", "A serverless application that connects ingredient context to practical recipe recommendations."],
+        ["PROBLEM", "Meal planning needs useful recommendations while accounting for cost and nutrition."],
+        ["OBJECTIVE", "Build a scalable recommendation flow without managing long-running application servers."],
+        ["KEY FEATURES", "Recipe recommendations, market cost prediction and nutrition information."],
+        ["SECURITY", "API boundaries and data access remain separated through managed AWS services."],
+        ["IMPLEMENTATION", "Next.js handles the interface, API Gateway exposes the service, Lambda runs Python logic and DynamoDB stores application data."],
+        ["CHALLENGES", "Recommendations must combine multiple inputs while keeping response flow simple."],
+        ["RESULT", "SmartChef demonstrates a complete serverless application architecture."],
+        ["WHAT I LEARNED", "Managed services reduce infrastructure work only when interfaces and data models are designed clearly."]
+      ]
+    },
+    funtechpay: {
+      order: "09 / FINTECH PROTOTYPE",
+      name: "FUNTECHPAY",
+      subtitle: "Neo-Banking Proof of Concept",
+      tags: ["React", "FastAPI", "DynamoDB", "Terraform", "JWT"],
+      source: "https://github.com/ieyrfan/FunTechPay",
+      architecture: ["USER", "REACT DASHBOARD", "JWT AUTH", "FASTAPI", "DYNAMODB", "TAC FLOW", "TRANSACTION"],
+      sections: [
+        ["OVERVIEW", "A neo-banking proof of concept combining account views, spending insight and controlled transaction flows."],
+        ["PROBLEM", "Financial interfaces need clear information while protecting sensitive user actions."],
+        ["OBJECTIVE", "Explore a modern banking experience with explicit authentication and transaction controls."],
+        ["KEY FEATURES", "Banking dashboard, spending insights, QR split bill, JWT authentication and TAC-secured transactions."],
+        ["SECURITY", "JWT protects sessions and TAC adds a confirmation step to transaction flow."],
+        ["IMPLEMENTATION", "React provides the interface, FastAPI handles application logic, DynamoDB stores data and Terraform defines infrastructure."],
+        ["CHALLENGES", "The proof of concept must make account state and transaction confirmation easy to understand."],
+        ["RESULT", "FunTechPay demonstrates full-stack cloud application and infrastructure integration."],
+        ["WHAT I LEARNED", "Sensitive workflows require visible state, validation and deliberate confirmation points."]
       ]
     }
   };
 
+  const routeMap = {
+    "/": ["landing", "OPEN SKY", "Muhammad Irfan Bin Rizal | Cloud Computing & Cloud Security", "Portfolio of Muhammad Irfan bin Rizal, a Cloud Computing & Application student focused on AWS, cloud security, infrastructure, DevOps and automation."],
+    "/cloud": ["cloud", "IRFAN CLOUD HUB", "Cloud Hub | Muhammad Irfan Bin Rizal", "Explore Muhammad Irfan's projects, experience, technology, certifications and cloud security focus."],
+    "/about": ["about", "ABOUT", "About Muhammad Irfan Bin Rizal | Cloud Computing", "About Muhammad Irfan bin Rizal, a Cloud Computing & Application student at UTeM."],
+    "/experience": ["experience", "EXPERIENCE", "Professional Experience | Muhammad Irfan Bin Rizal", "Professional IT experience at FTMK UTeM and Port Klang Cruise Terminal."],
+    "/projects": ["projects", "PROJECTS", "Engineering Projects | Muhammad Irfan Bin Rizal", "Cloud, security and application projects designed and built by Muhammad Irfan bin Rizal."],
+    "/stack": ["stack", "STACK", "Technology Stack | Muhammad Irfan Bin Rizal", "Cloud, security, networking, programming and operations technologies used by Muhammad Irfan."],
+    "/security": ["security", "CLOUD SECURITY", "Cloud Security | Muhammad Irfan Bin Rizal", "Cloud security focus across identity, visibility, detection, posture management and automated response."],
+    "/journey": ["journey", "JOURNEY", "Education Journey | Muhammad Irfan Bin Rizal", "Education and progression from network services to cloud computing and cloud security."],
+    "/certifications": ["certifications", "CERTIFICATIONS", "Certifications | Muhammad Irfan Bin Rizal", "AWS, Oracle, Red Hat, Cisco and other technical credentials completed by Muhammad Irfan."],
+    "/lab": ["lab", "CLOUD LAB", "Cloud Lab | Muhammad Irfan Bin Rizal", "Documented AWS, security, networking, automation and server experiments."],
+    "/contact": ["contact", "CONTACT", "Contact Muhammad Irfan Bin Rizal", "Contact Muhammad Irfan bin Rizal about cloud engineering, security, infrastructure, DevOps and automation opportunities."]
+  };
+  Object.values(projectData).forEach(data => {
+    const slug = Object.keys(projectData).find(key => projectData[key] === data);
+    routeMap[`/projects/${slug}`] = [`project-${slug}`, data.name, `${data.name} | Muhammad Irfan Bin Rizal`, `${data.subtitle}, an engineering project by Muhammad Irfan bin Rizal.`];
+  });
+
   const stackData = {
-    cloud: ["LAYER 01 / CLOUD", "Cloud platform fundamentals", "Compute, storage and managed services connected through explicit identity and network boundaries.", ["AWS", "EC2", "Lambda", "S3", "CloudFront", "OpenStack"]],
-    security: ["LAYER 02 / SECURITY", "Identity, visibility and response", "Cloud controls for access, auditability, threat detection, configuration monitoring and safe response.", ["IAM", "GuardDuty", "Security Hub", "AWS Config", "CloudTrail"]],
-    network: ["LAYER 03 / NETWORK", "Traffic needs an intentional path", "Addressing, segmentation, name resolution and edge delivery determine how services communicate.", ["VPC", "Route 53", "CloudFront", "DNS", "LAN/WAN"]],
-    automation: ["LAYER 04 / AUTOMATION", "Repeatable infrastructure", "Infrastructure and operational tasks represented as code, scripts and controlled workflows.", ["Terraform", "CloudFormation", "Python", "Boto3", "Docker"]],
-    systems: ["LAYER 05 / SYSTEMS", "The operating layer", "Practical work across operating systems, server services, containers and troubleshooting.", ["Linux", "Windows Server", "Docker", "Active Directory", "OpenStack"]],
-    development: ["LAYER 06 / DEVELOPMENT", "Software connects the layers", "Languages and data tools used to build interfaces, automation and system logic.", ["Python", "C++", "JavaScript", "HTML/CSS", "SQL", "MySQL"]]
+    cloud: [
+      ["AWS", "Cloud platform used to build infrastructure, security and serverless systems.", "EC2 · Lambda · S3 · EKS · EventBridge", "Threat Nexus · SmartChef · CSPM · Data Governance"],
+      ["AWS Lambda", "Serverless compute used to run code without managing servers.", "API Gateway · DynamoDB · EventBridge", "Threat Nexus · SmartChef"],
+      ["Amazon EKS", "Managed Kubernetes used for container orchestration on AWS.", "Terraform · Docker · SNS", "Omniverse"],
+      ["GCP GKE", "Managed Kubernetes target used in a multi-cloud recovery path.", "Terraform · Kubernetes · traffic routing", "Omniverse"],
+      ["OpenStack", "Private cloud platform used to understand compute and tenant networking.", "Linux · Neutron · virtualization", "OpenStack Networking Lab"],
+      ["Terraform", "Infrastructure as Code used to review and repeat cloud deployments.", "AWS · GCP · EKS · VPC", "Omniverse · CSPM · Data Governance · FunTechPay"],
+      ["Docker", "Packages applications and dependencies into repeatable runtime boundaries.", "Linux · Kubernetes · application services", "Omniverse · Cloud Lab"]
+    ],
+    security: [
+      ["XDR", "Connects security telemetry, detection rules, response and alerting.", "Cowrie · Lambda · EventBridge", "Threat Nexus XDR"],
+      ["Prowler", "Scans cloud configuration against security and compliance checks.", "AWS · CIS Benchmarks · Python", "Cloud Security Posture Audit"],
+      ["CIS Benchmarks", "Provides a recognised baseline for secure configuration checks.", "Prowler · Terraform · CI/CD", "Cloud Security Posture Audit"],
+      ["IAM", "Controls which identities can perform actions on cloud resources.", "AWS · least privilege · CloudTrail", "Threat Nexus · CSPM · Data Governance"],
+      ["GuardDuty", "Managed threat-detection service used to understand cloud findings.", "CloudTrail · EventBridge · Security Hub", "Cloud Security practice"],
+      ["Zero Trust", "Treats access and data actions as explicit policy decisions.", "Identity · classification · quarantine", "Cloud Data Governance"],
+      ["Network Defense", "Applies monitoring and protective controls to network paths.", "Firewall · VPN · intrusion prevention", "Cisco training · infrastructure work"]
+    ],
+    networking: [
+      ["LAN / WAN", "Connects local and wide-area systems through planned network paths.", "Switches · routing · addressing", "Port Klang Cruise Terminal"],
+      ["PoE Switching", "Carries network traffic and power for devices such as cameras.", "LAN · CCTV · device maintenance", "Port Klang Cruise Terminal"],
+      ["Load Balancing", "Distributes traffic across healthy application targets.", "Cloud infrastructure · health checks", "Architecture practice"],
+      ["VPN", "Creates protected connectivity across network boundaries.", "Firewall · identity · remote access", "Network defence practice"],
+      ["Firewall", "Applies traffic rules at defined network boundaries.", "Routing · VPN · intrusion prevention", "Security and networking practice"],
+      ["CCNA", "Networking foundation covering addressing, switching and routing.", "LAN · WAN · network services", "Cisco training"]
+    ],
+    programming: [
+      ["Python", "Builds automation, cloud integrations, APIs and detection logic.", "Flask · FastAPI · Boto3", "Threat Nexus · Omniverse · CSPM · SmartChef"],
+      ["React", "Builds interactive application interfaces from reusable components.", "JavaScript · TypeScript · Next.js", "PanTalk · AEGIS · Niyyah · FunTechPay"],
+      ["Next.js", "Provides application routing and full-stack React capabilities.", "React · APIs · Supabase", "Niyyah · SmartChef · Data Governance"],
+      ["FastAPI", "Python framework used to expose typed application APIs.", "Python · JWT · DynamoDB", "FunTechPay"],
+      ["Flask", "Python web framework used for dashboards and orchestration interfaces.", "Python · Chart.js · AWS", "Threat Nexus"],
+      ["SQL", "Queries and structures relational application data.", "PostgreSQL · MySQL", "PanTalk · application projects"],
+      ["C++", "Builds foundational application logic and structured programs.", "Data structures · MySQL", "Programming foundations"]
+    ],
+    operations: [
+      ["Linux", "Operating environment for servers, cloud workloads and technical troubleshooting.", "Docker · networking · CLI", "Cloud Lab · OpenStack · project infrastructure"],
+      ["Windows", "Supports enterprise desktops, labs and Windows-based operations.", "Hardware · software · network services", "FTMK UTeM · Port Klang Cruise Terminal"],
+      ["GitHub Actions", "Automates checks and delivery workflows inside a repository.", "Git · Terraform · security checks", "Cloud Security Posture Audit"],
+      ["CCTV Systems", "Combines networked cameras, PoE infrastructure and maintenance.", "PoE switches · LAN · asset records", "Port Klang Cruise Terminal"],
+      ["AV Systems", "Supports projectors, sound, streaming and hybrid events.", "Live streaming · media production", "FTMK UTeM"],
+      ["IT Asset Auditing", "Records and verifies technology assets for operational control.", "Workstations · CCTV · documentation", "Port Klang Cruise Terminal"],
+      ["Supabase", "Managed backend used for database, authentication and application services.", "Next.js · React", "Niyyah"]
+    ]
   };
 
-  const commands = [
-    ["Cloud Hub", "Irfan Cloud service directory", "/cloud/"], ["About", "The human behind the infrastructure", "/about/"], ["Projects", "Selected deployment environments", "/projects/"],
-    ["FunCloudSOC", "Autonomous cloud security response", "/projects/funcloudsoc/"], ["PANTALK", "Privacy-first communication platform", "/projects/pantalk/"], ["NeuroNote", "Wellness and productivity system", "/projects/neuronote/"],
-    ["Skills", "Interactive infrastructure map", "/stack/"], ["AWS", "Cloud tools and laboratory", "/stack/"],
-    ["Experience", "Altitude-based learning journey", "/journey/"], ["Certifications", "Completed learning credentials", "/journey/"],
-    ["Resume", "Download PDF résumé", "asset/Muhammad_Irfan_Resume.pdf"], ["GitHub", "Open ieyrfan on GitHub", "https://github.com/ieyrfan"],
-    ["LinkedIn", "Open Muhammad Irfan on LinkedIn", "https://www.linkedin.com/in/irfanrizal2004"], ["Contact", "Establish a connection", "/contact/"]
+  const securityData = {
+    identity: ["IDENTITY / IAM", "Access starts with identity.", "Define who or what can access a resource, then grant only the permissions required for the task."],
+    visibility: ["VISIBILITY / CLOUDTRAIL + CLOUDWATCH", "Security needs observable state.", "Logs and operational signals create the evidence required to understand what happened and where to investigate."],
+    detection: ["DETECTION / GUARDDUTY + XDR", "Signals become actionable findings.", "Managed detection and project-specific rules identify suspicious behaviour and attach context to the event."],
+    posture: ["POSTURE / PROWLER + CIS + CONFIG", "Configuration is part of security.", "Posture checks compare cloud resources with defined controls, then connect findings to hardening work."],
+    response: ["RESPONSE / LAMBDA + EVENTBRIDGE", "Automation needs clear boundaries.", "Event-driven workflows can contain or recover resources when the action is approved, traceable and followed by verification."]
+  };
+
+  const labDetails = [
+    ["AWS VPC Architecture", "Design public and private network boundaries with controlled routing.", ["OBJECTIVE", "Separate reachable workloads from protected services."], ["SETUP", "AWS VPC with public and private subnet planning."], ["ARCHITECTURE", "Internet gateway → public subnet → controlled private subnet"], ["PROCESS", "Define addressing, routes, security groups and egress."], ["RESULT", "A traceable network path with explicit ingress and egress."], ["LESSON", "Subnet labels do not create security; routes and controls do."]],
+    ["IAM Policy Testing", "Test how identity-policy decisions affect access.", ["OBJECTIVE", "Reduce permissions to the actions a workload actually needs."], ["SETUP", "IAM principal, policies and AWS policy evaluation."], ["ARCHITECTURE", "Principal → policy evaluation → resource"], ["PROCESS", "Compare allowed, implicitly denied and explicitly denied requests."], ["RESULT", "Permissions examined through clear policy outcomes."], ["LESSON", "Least privilege is an iterative engineering process."]],
+    ["Terraform Deployment", "Represent infrastructure as reviewed, repeatable configuration.", ["OBJECTIVE", "Create consistent cloud resources without manual drift."], ["SETUP", "Terraform configuration and state for AWS resources."], ["ARCHITECTURE", "Configuration → plan → apply → observed state"], ["PROCESS", "Review the change plan before applying infrastructure."], ["RESULT", "A repeatable deployment path with visible changes."], ["LESSON", "State and review matter as much as resource syntax."]],
+    ["Security Automation", "Connect findings to a controlled response workflow.", ["OBJECTIVE", "Reduce repetitive response work while preserving control."], ["SETUP", "Python, event inputs and cloud APIs."], ["ARCHITECTURE", "Finding → policy → action → verification"], ["PROCESS", "Evaluate the event, select a bounded action and verify state."], ["RESULT", "A clear incident-response design."], ["LESSON", "Automation must verify outcomes independently."]],
+    ["OpenStack Networking", "Trace connectivity inside a private cloud.", ["OBJECTIVE", "Understand tenant routing and external reachability."], ["SETUP", "OpenStack CLI, Neutron and Linux networking."], ["ARCHITECTURE", "Instance → tenant network → router → floating IP"], ["PROCESS", "Inspect ports, routes, addresses and reachability."], ["RESULT", "Connectivity explained through explicit network state."], ["LESSON", "CLI evidence makes invisible network state understandable."]],
+    ["Docker Application", "Package an application with its runtime boundary.", ["OBJECTIVE", "Make execution repeatable across systems."], ["SETUP", "Dockerfile, application dependencies and published ports."], ["ARCHITECTURE", "Source → image → container → published service"], ["PROCESS", "Build, run and verify the containerised service."], ["RESULT", "A consistent deployable application environment."], ["LESSON", "A small image starts with clear dependency choices."]]
   ];
 
-  const routeMap = {
-    "/": ["landing", "sky", "PUBLIC SKY"], "/cloud": ["cloud", "cloud-hub", "IRFAN CLOUD HUB"], "/about": ["about", "identity", "IDENTITY"],
-    "/stack": ["stack", "stack", "INFRASTRUCTURE"], "/projects": ["projects", "deployments", "DEPLOYMENTS"],
-    "/projects/funcloudsoc": ["project-funcloudsoc", "deployments", "FUNCLOUDSOC"], "/projects/pantalk": ["project-pantalk", "deployments", "PANTALK"], "/projects/neuronote": ["project-neuronote", "deployments", "NEURONOTE"],
-    "/journey": ["journey", "journey", "ALTITUDE JOURNEY"], "/lab": ["lab", "lab", "CLOUD LAB"], "/contact": ["contact", "contact", "CONNECTION"]
-  };
   const normalizePath = path => path.replace(/\/+$/, "") || "/";
-  const autoAtmosphere = () => { const h = new Date().getHours(); return h < 6 || h >= 20 ? "night" : h < 11 ? "morning" : h < 18 ? "day" : "sunset"; };
+  const getAtmosphere = () => { const hour = new Date().getHours(); return hour < 6 || hour >= 19.5 ? "night" : hour < 11 ? "morning" : hour < 18 ? "day" : "sunset"; };
+  const atmosphereCopy = {
+    morning: ["GOOD MORNING.", "MORNING OPERATIONS"],
+    day: ["GOOD AFTERNOON.", "DAYLIGHT OPERATIONS"],
+    sunset: ["GOOD EVENING.", "GOLDEN HOUR"],
+    night: ["GOOD EVENING.", "LATE SESSION ACTIVE"]
+  };
+
   function setThemeMode(mode, persist = true) {
+    const atmosphere = mode === "auto" ? getAtmosphere() : mode;
     root.dataset.mode = mode;
-    root.dataset.theme = mode === "auto" ? autoAtmosphere() : mode;
-    $$('[data-theme-mode]').forEach(button => { button.classList.toggle("active", button.dataset.themeMode === mode); button.setAttribute("aria-pressed", String(button.dataset.themeMode === mode)); });
-    $('meta[name="theme-color"]')?.setAttribute("content", root.dataset.theme === "night" ? "#020617" : "#dbefff");
+    root.dataset.theme = atmosphere;
+    $$('[data-theme-mode]').forEach(button => { const active = button.dataset.themeMode === mode; button.classList.toggle("active", active); button.setAttribute("aria-pressed", String(active)); });
+    const copy = atmosphereCopy[atmosphere] || atmosphereCopy.day;
+    if ($("#greeting")) $("#greeting").textContent = copy[0];
+    if ($("#environmentLabel")) $("#environmentLabel").textContent = copy[1];
+    $('meta[name="theme-color"]')?.setAttribute("content", atmosphere === "night" ? "#07111f" : atmosphere === "sunset" ? "#425979" : "#dbefff");
     if (persist) try { localStorage.setItem("cloudspace-theme-mode", mode); } catch {}
   }
   setThemeMode(root.dataset.mode || "auto", false);
   $$('[data-theme-mode]').forEach(button => button.addEventListener("click", () => setThemeMode(button.dataset.themeMode)));
   window.setInterval(() => { if (root.dataset.mode === "auto") setThemeMode("auto", false); }, 60000);
 
-  const sessionId = `IRF-${Math.random().toString(16).slice(2, 7).toUpperCase()}`;
-  $("#sessionId").textContent = sessionId; $("#hubSession").textContent = sessionId;
-  function logEvent(message) { const log = $("#sessionLog"); if (!log) return; const item = document.createElement("li"); item.textContent = `[INFO] ${message}`; log.prepend(item); while (log.children.length > 4) log.lastElementChild.remove(); }
   const stars = $("#stars");
-  if (stars) for (let i = 0; i < 26; i += 1) { const star = document.createElement("i"); star.style.left = `${4 + Math.random() * 92}%`; star.style.top = `${3 + Math.random() * 70}%`; star.style.setProperty("--twinkle", `${12 + Math.random() * 20}s`); star.style.setProperty("--delay", `${-Math.random() * 18}s`); star.style.opacity = String(.18 + Math.random() * .45); stars.appendChild(star); }
+  if (stars) for (let index = 0; index < 22; index += 1) { const star = document.createElement("i"); star.style.left = `${4 + Math.random() * 92}%`; star.style.top = `${3 + Math.random() * 68}%`; star.style.setProperty("--twinkle", `${16 + Math.random() * 28}s`); star.style.setProperty("--delay", `${-Math.random() * 20}s`); star.style.opacity = String(.14 + Math.random() * .4); stars.appendChild(star); }
   requestAnimationFrame(() => document.body.classList.add("scene-ready"));
 
   const nav = $("#navbar"), navMenu = $("#navLinks"), menuToggle = $("#menuToggle");
   function toggleMenu(open) { navMenu?.classList.toggle("open", open); menuToggle?.setAttribute("aria-expanded", String(open)); menuToggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu"); }
   menuToggle?.addEventListener("click", () => toggleMenu(!navMenu.classList.contains("open")));
-  $$("a", navMenu).forEach(a => a.addEventListener("click", () => toggleMenu(false)));
 
-  const transition = $("#routeTransition"); let routeTimer = 0;
   function syncNavIndicator(page) {
     const group = page.startsWith("project-") ? "projects" : page;
     const link = $(`[data-page-link="${group}"]`), indicator = $("#navIndicator");
-    $$("[data-page-link]").forEach(item => item.classList.toggle("active", item === link));
-    if (!link || !indicator || innerWidth <= 820) { if (indicator) indicator.style.width = "0"; return; }
-    const navRect = navMenu.getBoundingClientRect(), rect = link.getBoundingClientRect(); indicator.style.width = `${rect.width}px`; indicator.style.transform = `translateX(${rect.left - navRect.left}px)`;
+    $$('[data-page-link]').forEach(item => item.classList.toggle("active", item === link));
+    if (!link || !indicator || innerWidth <= 1080) { if (indicator) indicator.style.width = "0"; return; }
+    const navRect = navMenu.getBoundingClientRect(), rect = link.getBoundingClientRect();
+    indicator.style.width = `${rect.width}px`; indicator.style.transform = `translateX(${rect.left - navRect.left}px)`;
+  }
+
+  const transition = $("#routeTransition");
+  let routeTimer = 0;
+  function updateMetadata(route, path) {
+    document.title = route[2];
+    $('meta[name="description"]')?.setAttribute("content", route[3]);
+    $('meta[property="og:title"]')?.setAttribute("content", route[2]);
+    $('meta[property="og:description"]')?.setAttribute("content", route[3]);
+    const url = `https://ieyrfan.github.io${path === "/" ? "/" : `${path}/`}`;
+    $('link[rel="canonical"]')?.setAttribute("href", url);
+    $('meta[property="og:url"]')?.setAttribute("content", url);
   }
   function applyRoute(path, scroll = true) {
     const normalized = normalizePath(path), route = routeMap[normalized] || routeMap["/"];
-    root.dataset.page = route[0]; $("#regionReadout").textContent = `REGION / ${route[2]}`; syncNavIndicator(route[0]);
-    document.title = normalized === "/" ? "Muhammad Irfan | Cloud Computing & Cloud Security Portfolio" : `${route[2]} | IRFAN CLOUDSPACE`;
+    root.dataset.page = route[0];
+    $("#regionReadout").textContent = `PAGE / ${route[1]}`;
+    syncNavIndicator(route[0]); updateMetadata(route, normalized);
     if (scroll) window.scrollTo({ top: 0, behavior: "auto" });
-    logEvent(`${route[2]} service requested`);
     if (route[0].startsWith("project-")) openProject(route[0].replace("project-", ""), false);
+    else if (caseStudy?.open) closeProject(false);
   }
-  function routeTo(path, label = "CONNECTING TO SERVICE") {
-    const normalized = normalizePath(path); if (!routeMap[normalized]) return;
-    window.clearTimeout(routeTimer); transition.dataset.target = routeMap[normalized][0]; $("#routeTransitionLabel").textContent = label; transition.classList.remove("reveal"); transition.classList.add("active");
-    routeTimer = window.setTimeout(() => { history.pushState({}, "", `${normalized === "/" ? "/" : `${normalized}/`}`); if (caseStudy?.open) caseStudy.close(); document.body.classList.remove("modal-open"); applyRoute(normalized); transition.classList.add("reveal"); routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal"), reducedMotion.matches ? 20 : 520); }, reducedMotion.matches ? 20 : 470);
+  function routeTo(path, customLabel = "") {
+    const normalized = normalizePath(path), route = routeMap[normalized];
+    if (!route) return;
+    const signature = root.dataset.page === "landing" && route[0] === "cloud";
+    window.clearTimeout(routeTimer);
+    transition.dataset.target = route[0];
+    transition.classList.toggle("signature", signature);
+    $("#routeTransitionLabel").textContent = customLabel || (signature ? "ENTERING IRFAN CLOUD" : `OPENING ${route[1]}`);
+    document.body.classList.add("route-leaving"); transition.classList.remove("reveal"); transition.classList.add("active");
+    const coverDelay = reducedMotion.matches ? 20 : signature ? 1250 : 460;
+    routeTimer = window.setTimeout(() => {
+      history.pushState({}, "", normalized === "/" ? "/" : `${normalized}/`);
+      applyRoute(normalized);
+      transition.classList.add("reveal"); document.body.classList.remove("route-leaving");
+      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 520);
+    }, coverDelay);
   }
-  document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey) return; event.preventDefault(); routeTo(link.pathname, `CONNECTING / ${link.textContent.trim().slice(0, 28)}`); });
+  document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return; event.preventDefault(); toggleMenu(false); routeTo(link.pathname); });
   window.addEventListener("popstate", () => applyRoute(location.pathname));
   window.addEventListener("resize", () => syncNavIndicator(root.dataset.page));
 
   const revealItems = $$(".reveal");
-  if (reducedMotion.matches || !("IntersectionObserver" in window)) revealItems.forEach(el => el.classList.add("visible"));
-  else {
-    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); } }), { threshold: .11, rootMargin: "0px 0px -6%" });
-    revealItems.forEach(el => revealObserver.observe(el));
-  }
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) revealItems.forEach(item => item.classList.add("visible"));
+  else { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .08, rootMargin: "0px 0px -5%" }); revealItems.forEach(item => observer.observe(item)); }
 
   const regionSections = $$('[data-region]');
-  const navLinks = $$('[data-page-link]');
-  if ("IntersectionObserver" in window) {
-    const regionObserver = new IntersectionObserver(entries => {
-      const active = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!active) return;
-      const region = active.target.dataset.region || "CLOUD";
-      $("#regionReadout").textContent = `REGION / ${region}`;
-      syncNavIndicator(root.dataset.page);
-      nav?.classList.toggle("over-dark", !["SKY", "ENTER CLOUD", "EXIT CLOUD"].includes(region));
-    }, { rootMargin: "-28% 0px -57%", threshold: [0, .05, .3] });
-    regionSections.forEach(section => regionObserver.observe(section));
-  }
-
   let scrollTick = false;
-  function updateScrollEffects() {
-    const y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
-    $("#scrollMeter").style.width = `${max > 0 ? y / max * 100 : 0}%`;
-    nav?.classList.toggle("scrolled", y > 40);
-    const marker = innerHeight * .34;
-    const currentRegion = regionSections.filter(section => { const rect = section.getBoundingClientRect(); return rect.top <= marker && rect.bottom > marker; }).pop();
-    if (currentRegion) {
-      const region = currentRegion.dataset.region || "CLOUD";
-      $("#regionReadout").textContent = `REGION / ${region}`;
-      syncNavIndicator(root.dataset.page);
-      nav?.classList.toggle("over-dark", !["SKY", "ENTER CLOUD", "EXIT CLOUD"].includes(region));
-    }
-    const hero = $("#sky"), heroSky = $("#heroSky"), heroContent = $("#heroContent");
-    if (hero && y < hero.offsetHeight * 1.3 && !reducedMotion.matches) {
-      const p = Math.min(1, y / hero.offsetHeight);
-      heroSky.style.transform = `scale(${1.06 + p * .18}) translateY(${p * 2.5}%)`;
-      heroContent.style.opacity = String(1 - p * .88);
-      heroContent.style.transform = `translateY(${p * -45}px)`;
-    }
+  function updateScroll() {
+    const scroll = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    if ($("#scrollMeter")) $("#scrollMeter").style.width = `${max > 0 ? scroll / max * 100 : 0}%`;
+    nav?.classList.toggle("scrolled", scroll > 36);
+    const marker = innerHeight * .32;
+    const active = regionSections.filter(section => { const rect = section.getBoundingClientRect(); return rect.top <= marker && rect.bottom > marker && getComputedStyle(section).display !== "none"; }).pop();
+    if (active) { $("#regionReadout").textContent = `PAGE / ${active.dataset.region}`; nav?.classList.toggle("over-dark", !["OPEN SKY", "CONTACT"].includes(active.dataset.region)); }
     const entry = $("#cloud-entry");
-    if (entry) {
-      const start = entry.offsetTop, range = Math.max(1, entry.offsetHeight - innerHeight), p = Math.max(0, Math.min(1, (y - start) / range));
-      $(".entry-cloud-a").style.transform = `scale(${1.2 + p * .9}) translate(${p * -4}%,${p * 3}%)`;
-      $(".entry-cloud-b").style.transform = `scale(${1.65 + p * .65}) rotate(180deg) translate(${p * 5}%,${p * -3}%)`;
-      $("#entryBoot")?.classList.toggle("visible", p > .42);
-    }
-    const journey = $("#journey"), altitude = $("#altitudeProgress"), altitudeCounter = $("#altitudeCounter");
-    if (journey && altitude && getComputedStyle(journey).display !== "none") { const p = Math.max(0, Math.min(1, (innerHeight * .72 - journey.getBoundingClientRect().top) / (journey.offsetHeight * .72))); altitude.style.height = `${p * 100}%`; if (altitudeCounter) altitudeCounter.textContent = `${Math.round(p * 40000 / 1000) * 1000} FT`; const nodes = $$(".journey-node"); nodes.forEach((node, index) => node.classList.toggle("active", index <= Math.round(p * (nodes.length - 1)))); }
+    if (entry && root.dataset.page === "landing") { const rect = entry.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight))); $(".entry-cloud-a").style.transform = `scale(${1.18 + progress * .52}) translate3d(${progress * 5}%,0,0)`; $(".entry-cloud-b").style.transform = `scale(${1.65 + progress * .58}) rotate(180deg) translate3d(${-progress * 4}%,0,0)`; $("#entryBoot").classList.toggle("visible", progress > .34); }
     scrollTick = false;
   }
-  addEventListener("scroll", () => { if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
-  updateScrollEffects();
+  addEventListener("scroll", () => { if (!scrollTick) { requestAnimationFrame(updateScroll); scrollTick = true; } }, { passive: true });
+  updateScroll();
 
   if (!touchMode.matches && !reducedMotion.matches) {
-    const heroSky = $("#heroSky"), far = $(".cloud-far"), mid = $(".cloud-mid"), near = $(".cloud-near"), content = $("#heroContent");
-    $("#sky")?.addEventListener("pointermove", event => { const x = event.clientX / innerWidth - .5, y = event.clientY / innerHeight - .5; heroSky.style.translate = `${x * 5}px ${y * 3}px`; if (far) far.style.translate = `${x * 7}px ${y * 4}px`; if (mid) mid.style.translate = `${x * -13}px ${y * -8}px`; if (near) near.style.translate = `${x * 19}px ${y * 11}px`; if (content) content.style.translate = `${x * -2}px ${y * -2}px`; });
+    const hero = $(".hero"), layers = [$("#heroSky"), $(".cloud-far"), $(".cloud-mid"), $(".cloud-near"), $("#heroContent")], strengths = [2, 5, 10, 16, 2];
+    hero?.addEventListener("pointermove", event => { const x = event.clientX / innerWidth - .5, y = event.clientY / innerHeight - .5; layers.forEach((layer, index) => { if (layer) { layer.style.setProperty("--parallax-x", `${x * strengths[index]}px`); layer.style.setProperty("--parallax-y", `${y * strengths[index] * .6}px`); } }); });
+    hero?.addEventListener("pointerleave", () => layers.forEach(layer => { if (layer) { layer.style.setProperty("--parallax-x", "0px"); layer.style.setProperty("--parallax-y", "0px"); } }));
+    const cursor = $("#cursor"), ring = $("#cursorRing"); let targetX = -100, targetY = -100, ringX = -100, ringY = -100;
+    addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); });
+    const animateCursor = () => { ringX += (targetX - ringX) * .16; ringY += (targetY - ringY) * .16; ring.style.transform = `translate3d(${ringX}px,${ringY}px,0)`; requestAnimationFrame(animateCursor); }; animateCursor();
+    document.addEventListener("pointerover", event => document.body.classList.toggle("cursor-link", Boolean(event.target.closest("a,button,[role=button]"))));
   }
 
-  const cursor = $("#cursor"), cursorRing = $("#cursorRing");
-  if (cursor && !touchMode.matches) {
-    let rx = 0, ry = 0, tx = 0, ty = 0; const follow = () => { rx += (tx - rx) * .16; ry += (ty - ry) * .16; if (cursorRing) { cursorRing.style.left = `${rx}px`; cursorRing.style.top = `${ry}px`; } requestAnimationFrame(follow); }; follow();
-    addEventListener("pointermove", e => { tx = e.clientX; ty = e.clientY; cursor.style.left = `${e.clientX}px`; cursor.style.top = `${e.clientY}px`; });
-    document.addEventListener("pointerover", e => { const target = e.target.closest("a,button,[data-cursor]"); cursor.classList.toggle("interactive", Boolean(target)); cursorRing?.classList.toggle("interactive", Boolean(target)); $("span", cursor).textContent = target?.dataset.cursor || (target?.matches("button") ? "SELECT" : "OPEN"); });
+  let stackCategory = "cloud";
+  function renderStack(category) {
+    stackCategory = category;
+    const items = stackData[category];
+    $$('[data-stack]').forEach(button => button.classList.toggle("active", button.dataset.stack === category));
+    $("#stackNodes").innerHTML = items.map((item, index) => `<button type="button" class="stack-tech ${index === 0 ? "active" : ""}" data-tech-index="${index}"><b>${item[0]}</b><span>${item[1]}</span></button>`).join("");
+    showTechnology(items[0]);
   }
+  function showTechnology(item) { const panel = $("#stackContext"); panel.innerHTML = `<span>TECHNOLOGY / RELATIONSHIP</span><h3>${item[0]}</h3><p>${item[1]}</p><dl class="tech-detail"><div><dt>USED WITH</dt><dd>${item[2]}</dd></div><div><dt>PROJECTS / EXPERIENCE</dt><dd>${item[3]}</dd></div></dl>`; panel.classList.remove("updated"); requestAnimationFrame(() => panel.classList.add("updated")); }
+  $$('[data-stack]').forEach(button => button.addEventListener("click", () => renderStack(button.dataset.stack)));
+  $("#stackNodes")?.addEventListener("click", event => { const button = event.target.closest("button[data-tech-index]"); if (!button) return; $$(".stack-tech", $("#stackNodes")).forEach(node => node.classList.toggle("active", node === button)); showTechnology(stackData[stackCategory][Number(button.dataset.techIndex)]); });
+  renderStack("cloud");
 
-  $$(".stack-categories button").forEach(button => button.addEventListener("click", () => {
-    const key = button.dataset.stack, data = stackData[key];
-    $$(".stack-categories button").forEach(b => b.classList.toggle("active", b === button));
-    $$(".tech-node").forEach(node => { const active = (node.dataset.groups || "").split(" ").includes(key); node.classList.toggle("dim", !active); node.classList.toggle("active", active); });
-    const context = $("#stackContext");
-    context.innerHTML = `<span>${data[0]}</span><h3>${data[1]}</h3><p>${data[2]}</p><ul>${data[3].map(item => `<li>${item}</li>`).join("")}</ul>`;
-  }));
-  $$(".tech-node").forEach(node => node.addEventListener("click", () => {
-    const name = $("b", node)?.textContent || "Technology", groups = (node.dataset.groups || "cloud").split(" "), related = groups.flatMap(group => stackData[group]?.[3] || []).filter((item, index, all) => all.indexOf(item) === index).slice(0, 6);
-    $$(".tech-node").forEach(item => item.classList.toggle("active", item === node));
-    const context = $("#stackContext"); context.classList.remove("updated"); context.innerHTML = `<span>TECHNOLOGY NODE / SELECTED</span><h3>${name}</h3><dl class="tech-detail"><div><dt>PURPOSE</dt><dd>Supports ${groups.join(", ")} responsibilities inside the environment.</dd></div><div><dt>USED WITH</dt><dd>${related.slice(0, 3).join(" · ")}</dd></div><div><dt>PROJECT USAGE</dt><dd>Practiced through cloud labs and selected deployment architecture.</dd></div><div><dt>RELATED SERVICES</dt><dd>${related.slice(3).join(" · ") || "AWS · Linux · Python"}</dd></div></dl>`; requestAnimationFrame(() => context.classList.add("updated"));
-    logEvent(`${name} technology node inspected`);
-  }));
+  $$("#securityPath button").forEach(button => button.addEventListener("mouseenter", () => showSecurity(button)));
+  $$("#securityPath button").forEach(button => button.addEventListener("focus", () => showSecurity(button)));
+  $$("#securityPath button").forEach(button => button.addEventListener("click", () => showSecurity(button)));
+  function showSecurity(button) { $$("#securityPath button").forEach(item => item.classList.toggle("active", item === button)); const data = securityData[button.dataset.security]; $("#securityCode").textContent = data[0]; $("#securityHeading").textContent = data[1]; $("#securityText").textContent = data[2]; }
 
-  $$(".lab-toolbar button").forEach(button => button.addEventListener("click", () => {
-    const tag = button.dataset.lab;
-    $$(".lab-toolbar button").forEach(b => b.classList.toggle("active", b === button));
-    $$("#labGrid article").forEach(card => { card.hidden = tag !== "all" && !(card.dataset.tags || "").split(" ").includes(tag); });
-  }));
-  const labDetails = [
-    ["AWS VPC Architecture", "Design public and private network boundaries with controlled routing.", ["OBJECTIVE", "Separate reachable workloads from protected services."], ["TOOLS", "AWS VPC · route tables · security groups"], ["ARCHITECTURE", "Internet gateway → public subnet → controlled private subnet"], ["RESULT", "A traceable network path with explicit ingress and egress."], ["WHAT I LEARNED", "Subnet labels do not create security; routes and controls do."]],
-    ["IAM Policy Testing", "Test how identity policy decisions affect access.", ["OBJECTIVE", "Reduce permissions to the actions a workload actually needs."], ["TOOLS", "IAM · policy simulator · CloudTrail"], ["ARCHITECTURE", "Principal → policy evaluation → resource"], ["RESULT", "Permissions examined through allow and deny outcomes."], ["WHAT I LEARNED", "Least privilege is an iterative engineering process."]],
-    ["Terraform Deployment", "Represent infrastructure as reviewed, repeatable configuration.", ["OBJECTIVE", "Create consistent cloud resources without manual drift."], ["TOOLS", "Terraform · state · AWS"], ["ARCHITECTURE", "Configuration → plan → apply → observed state"], ["RESULT", "A repeatable deployment path with visible change plans."], ["WHAT I LEARNED", "State and review matter as much as resource syntax."]],
-    ["Security Automation", "Connect findings to a controlled response workflow.", ["OBJECTIVE", "Reduce repetitive response work while preserving control."], ["TOOLS", "Python · events · cloud APIs"], ["ARCHITECTURE", "Finding → policy → action → verification"], ["RESULT", "A bounded incident-response design."], ["WHAT I LEARNED", "Automation must verify outcomes independently."]],
-    ["OpenStack Networking", "Trace connectivity inside a private cloud.", ["OBJECTIVE", "Understand tenant routing and external reachability."], ["TOOLS", "Neutron · Linux · OpenStack CLI"], ["ARCHITECTURE", "Instance → tenant network → router → floating IP"], ["RESULT", "Reachability proven through explicit network state."], ["WHAT I LEARNED", "CLI evidence makes invisible network state explainable."]],
-    ["Docker Application", "Package an application with its runtime boundary.", ["OBJECTIVE", "Make application execution repeatable across systems."], ["TOOLS", "Docker · Linux · application runtime"], ["ARCHITECTURE", "Source → image → container → published service"], ["RESULT", "A consistent deployable application environment."], ["WHAT I LEARNED", "A small image starts with clear dependency choices."]]
-  ];
+  $$(".lab-toolbar button").forEach(button => button.addEventListener("click", () => { const tag = button.dataset.lab; $$(".lab-toolbar button").forEach(item => item.classList.toggle("active", item === button)); $$("#labGrid article").forEach(card => { card.hidden = tag !== "all" && !(card.dataset.tags || "").split(" ").includes(tag); }); }));
   const labPanel = $("#labPanel");
-  $$("#labGrid article").forEach((card, index) => { card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", `Open ${labDetails[index][0]} experiment`); const open = () => { const data = labDetails[index]; $("#labPanelCode").textContent = `LAB / ${String(index + 1).padStart(3, "0")}`; $("#labPanelTitle").textContent = data[0]; $("#labPanelSummary").textContent = data[1]; $("#labDetailGrid").innerHTML = data.slice(2).map(item => `<article><span>${item[0]}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join(""); labPanel.showModal(); document.body.classList.add("modal-open"); logEvent(`${data[0]} lab opened`); }; card.addEventListener("click", open); card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } }); });
+  $$("#labGrid article").forEach((card, index) => { card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", `Open ${labDetails[index][0]} lab record`); const open = () => { const data = labDetails[index]; $("#labPanelCode").textContent = `LAB / ${String(index + 1).padStart(3, "0")}`; $("#labPanelTitle").textContent = data[0]; $("#labPanelSummary").textContent = data[1]; $("#labDetailGrid").innerHTML = data.slice(2).map(item => `<article><span>${item[0]}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join(""); labPanel.showModal(); document.body.classList.add("modal-open"); }; card.addEventListener("click", open); card.addEventListener("keydown", event => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); open(); } }); });
   $("#labClose")?.addEventListener("click", () => { labPanel.close(); document.body.classList.remove("modal-open"); });
   labPanel?.addEventListener("click", event => { if (event.target === labPanel) { labPanel.close(); document.body.classList.remove("modal-open"); } });
 
-  const simulationModes = {
-    request: { title: "REQUEST LIFECYCLE", button: "SEND REQUEST", stages: ["USER", "DNS", "CDN", "LOAD BALANCER", "APPLICATION", "DATABASE", "RESPONSE"], desc: ["A visitor starts a request from a client device.", "DNS resolves a human-readable domain to its target.", "The edge serves cached content close to the user.", "Traffic is distributed across healthy targets.", "Application logic processes the request.", "Persistent data is read or updated through controlled access.", "A response returns through the delivery path."] },
-    security: { title: "SECURITY EVENT", button: "SIMULATE EVENT", stages: ["SUSPICIOUS TRAFFIC", "MONITORING", "DETECTION", "ALERT", "AUTOMATED RESPONSE", "CONTAINMENT", "BLOCKED"], desc: ["An unusual request enters the environment.", "Telemetry records the behaviour and context.", "A rule or service identifies a suspicious pattern.", "The finding becomes a visible security event.", "A bounded workflow evaluates the approved action.", "Access or infrastructure is isolated to limit impact.", "A final control blocks the path and preserves evidence."] }
-  };
-  let simMode = "request", simTimer = 0;
-  function renderSimulation(mode) {
-    simMode = mode; clearTimeout(simTimer);
-    const data = simulationModes[mode]; $("#simulator h3").textContent = data.title; $("#runSimulation").innerHTML = `${data.button} <span>→</span>`;
-    const list = $("#simStages"); list.innerHTML = data.stages.map((stage, i) => `<li data-desc="${data.desc[i]}"><i></i><b>${stage}</b></li>`).join("");
-    $("#simStep").textContent = "READY / WAITING"; $("#simDescription").textContent = "Run the simulation to inspect each stage.";
-  }
-  $$("[data-sim-mode]").forEach(button => button.addEventListener("click", () => { $$("[data-sim-mode]").forEach(b => b.classList.toggle("active", b === button)); renderSimulation(button.dataset.simMode); }));
-  $("#runSimulation")?.addEventListener("click", () => {
-    clearTimeout(simTimer); const stages = $$("#simStages li"); stages.forEach(s => s.className = ""); let index = 0;
-    const advance = () => { stages.forEach((stage, i) => { stage.classList.toggle("complete", i < index); stage.classList.toggle("active", i === index); }); const current = stages[index]; $("#simStep").textContent = `STAGE ${String(index + 1).padStart(2, "0")} / ${current.querySelector("b").textContent}`; $("#simDescription").textContent = current.dataset.desc; index += 1; if (index < stages.length) simTimer = setTimeout(advance, reducedMotion.matches ? 80 : 620); else simTimer = setTimeout(() => { stages.forEach(s => { s.classList.remove("active"); s.classList.add("complete"); }); $("#simStep").textContent = simMode === "request" ? "200 / RESPONSE DELIVERED" : "EVENT / CONTAINED"; }, reducedMotion.matches ? 80 : 620); };
-    advance();
-  });
-
-  const caseStudy = $("#caseStudy"); let currentProject = "funcloudsoc", incidentIndex = 0, incidentTimer = 0, incidentPaused = false;
-  const incidentEvents = ["00:00  Suspicious request received", "00:01  Traffic observed", "00:02  Security event generated", "00:03  Detection engine triggered", "00:04  Incident classified", "00:05  Automated response executed", "00:06  Threat contained"];
-  function resetIncident() { window.clearTimeout(incidentTimer); incidentIndex = 0; incidentPaused = false; $$("#incidentNodes li").forEach(node => node.className = ""); if ($("#incidentLog")) $("#incidentLog").textContent = "[READY] Waiting for manual replay."; }
-  function advanceIncident() { if (incidentPaused) return; const nodes = $$("#incidentNodes li"); if (incidentIndex >= nodes.length) { $("#incidentLog").textContent += "\n[SUCCESS] Response verified. Threat contained."; logEvent("FunCloudSOC replay completed"); return; } nodes.forEach((node, index) => { node.classList.toggle("done", index < incidentIndex); node.classList.toggle("active", index === incidentIndex); }); $("#incidentLog").textContent = incidentEvents.slice(0, incidentIndex + 1).join("\n"); incidentIndex += 1; incidentTimer = window.setTimeout(advanceIncident, reducedMotion.matches ? 80 : 760); }
-  function openProject(slug, updateRoute = true) {
-    const data = projectData[slug]; if (!data) return; currentProject = slug;
-    $("#caseEyebrow").textContent = `DEPLOYMENT / ${data.order}`; $("#caseTitle").textContent = data.name; $("#caseSubtitle").textContent = data.subtitle;
-    $("#caseTags").innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join("");
-    $("#caseGrid").innerHTML = data.sections.map(s => `<article><span>${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></article>`).join("");
-    $("#caseSource").href = data.source; $("#caseSource").textContent = slug === "pantalk" ? "OPEN GITHUB PROFILE ↗" : "VIEW AVAILABLE SOURCE ↗"; $("#incidentReplay").hidden = slug !== "funcloudsoc"; resetIncident();
-    if (!caseStudy.open) caseStudy.showModal(); document.body.classList.add("modal-open"); caseStudy.scrollTop = 0; logEvent(`${data.name} deployment console opened`);
-    if (updateRoute && normalizePath(location.pathname) !== `/projects/${slug}`) history.pushState({}, "", `/projects/${slug}/`);
-  }
-  function closeProject() { resetIncident(); caseStudy.close(); document.body.classList.remove("modal-open"); if (root.dataset.page.startsWith("project-")) { history.pushState({}, "", "/projects/"); applyRoute("/projects"); } }
-  $$(".case-trigger,.architecture-trigger").forEach(button => button.addEventListener("click", e => { e.stopPropagation(); routeTo(`/projects/${button.dataset.project}`, `DEPLOYING / ${button.dataset.project.toUpperCase()}`); }));
-  $$(".deployment").forEach(card => card.addEventListener("dblclick", () => routeTo(`/projects/${card.dataset.project}`, `DEPLOYING / ${card.dataset.project.toUpperCase()}`)));
-  $("#caseClose")?.addEventListener("click", closeProject);
-  caseStudy?.addEventListener("click", e => { if (e.target === caseStudy) closeProject(); });
-  $("#caseNext")?.addEventListener("click", () => { const keys = Object.keys(projectData), next = keys[(keys.indexOf(currentProject) + 1) % keys.length]; history.replaceState({}, "", `/projects/${next}/`); root.dataset.page = `project-${next}`; openProject(next, false); });
-  $("#incidentRun")?.addEventListener("click", () => { resetIncident(); advanceIncident(); logEvent("FunCloudSOC incident replay started"); });
+  const caseStudy = $("#caseStudy");
+  let currentProject = "threat-nexus", incidentIndex = 0, incidentTimer = 0, incidentPaused = false;
+  const incidentEvents = ["00:00  Suspicious login attempt", "00:01  Honeypot records activity", "00:02  Detection rule triggers", "00:03  Incident classified", "00:04  Response automation starts", "00:05  Source IP blocked", "00:06  Notification delivered", "[SUCCESS] THREAT CONTAINED"];
+  function resetIncident() { clearTimeout(incidentTimer); incidentIndex = 0; incidentPaused = false; if ($("#incidentPause")) $("#incidentPause").textContent = "PAUSE"; $$("#incidentNodes li").forEach(node => node.className = ""); if ($("#incidentLog")) $("#incidentLog").textContent = "[READY] Waiting for manual replay."; }
+  function advanceIncident() { if (incidentPaused) return; const nodes = $$("#incidentNodes li"); if (incidentIndex >= nodes.length) { $("#incidentLog").textContent = incidentEvents.join("\n"); return; } nodes.forEach((node, index) => { node.classList.toggle("done", index < incidentIndex); node.classList.toggle("active", index === incidentIndex); }); $("#incidentLog").textContent = incidentEvents.slice(0, incidentIndex + 1).join("\n"); incidentIndex += 1; incidentTimer = setTimeout(advanceIncident, reducedMotion.matches ? 80 : 720); }
+  function openProject(slug, updateRoute = true) { const data = projectData[slug]; if (!data) return; currentProject = slug; $("#caseEyebrow").textContent = data.order; $("#caseTitle").textContent = data.name; $("#caseSubtitle").textContent = data.subtitle; $("#caseTags").innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join(""); $("#architectureSteps").innerHTML = data.architecture.map(step => `<li>${step}</li>`).join(""); $("#caseGrid").innerHTML = data.sections.map((section, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${section[0]}</h3><p>${section[1]}</p></article>`).join(""); $("#caseSource").href = data.source; $("#incidentReplay").hidden = slug !== "threat-nexus"; resetIncident(); if (!caseStudy.open) caseStudy.showModal(); caseStudy.scrollTop = 0; document.body.classList.add("modal-open"); if (updateRoute && normalizePath(location.pathname) !== `/projects/${slug}`) { history.pushState({}, "", `/projects/${slug}/`); applyRoute(`/projects/${slug}`, false); } }
+  function closeProject(updateRoute = true) { resetIncident(); if (caseStudy.open) caseStudy.close(); document.body.classList.remove("modal-open"); if (updateRoute && root.dataset.page.startsWith("project-")) { history.pushState({}, "", "/projects/"); applyRoute("/projects"); } }
+  $("#caseClose")?.addEventListener("click", () => closeProject());
+  caseStudy?.addEventListener("click", event => { if (event.target === caseStudy) closeProject(); });
+  $("#caseNext")?.addEventListener("click", () => { const keys = Object.keys(projectData), next = keys[(keys.indexOf(currentProject) + 1) % keys.length]; history.replaceState({}, "", `/projects/${next}/`); root.dataset.page = `project-${next}`; updateMetadata(routeMap[`/projects/${next}`], `/projects/${next}`); openProject(next, false); });
+  $("#incidentRun")?.addEventListener("click", () => { resetIncident(); advanceIncident(); });
   $("#incidentPause")?.addEventListener("click", () => { incidentPaused = !incidentPaused; $("#incidentPause").textContent = incidentPaused ? "RESUME" : "PAUSE"; if (!incidentPaused) advanceIncident(); });
   $("#incidentReset")?.addEventListener("click", resetIncident);
 
-  const palette = $("#commandPalette"), search = $("#commandSearch"), commandList = $("#commandList"); let selectedCommand = 0, filteredCommands = commands;
-  function renderCommands(query = "") {
-    const term = query.trim().toLowerCase();
-    const rank = command => { const label = command[0].toLowerCase(), description = command[1].toLowerCase(); if (!term) return 0; if (label === term) return 0; if (label.startsWith(term)) return 1; if (label.includes(term)) return 2; return description.includes(term) ? 3 : 4; };
-    filteredCommands = commands.filter(command => `${command[0]} ${command[1]}`.toLowerCase().includes(term)).sort((a, b) => rank(a) - rank(b));
-    selectedCommand = 0; commandList.innerHTML = filteredCommands.map((c, i) => `<li><button type="button" data-command-index="${i}" class="${i === 0 ? "selected" : ""}"><b>${c[0]}</b><span>${c[1]}</span></button></li>`).join("");
-  }
+  const commands = [
+    ["Cloud Hub", "Portfolio directory", "/cloud/"], ["About", "About Muhammad Irfan", "/about/"], ["Experience", "Professional IT experience", "/experience/"], ["Projects", "Selected engineering projects", "/projects/"], ["Threat Nexus XDR", "Flagship cloud security project", "/projects/threat-nexus/"], ["PanTalk", "Privacy-first messaging", "/projects/pantalk/"], ["Stack", "Technology relationship explorer", "/stack/"], ["Security", "Cloud security specialization", "/security/"], ["Journey", "Education and progression", "/journey/"], ["Certifications", "Training and credentials", "/certifications/"], ["Lab", "Technical experiments", "/lab/"], ["Contact", "Connect with Muhammad Irfan", "/contact/"], ["Resume", "View PDF resume", "asset/Muhammad_Irfan_Resume.pdf"], ["GitHub", "Open GitHub profile", "https://github.com/ieyrfan"], ["LinkedIn", "Open LinkedIn profile", "https://www.linkedin.com/in/irfanrizal2004"]
+  ];
+  const palette = $("#commandPalette"), search = $("#commandSearch"), commandList = $("#commandList");
+  let filteredCommands = commands, selectedCommand = 0;
+  function renderCommands(query = "") { const term = query.trim().toLowerCase(); const score = command => { const label = command[0].toLowerCase(); return label === term ? 0 : label.startsWith(term) ? 1 : label.includes(term) ? 2 : 3; }; filteredCommands = commands.filter(command => `${command[0]} ${command[1]}`.toLowerCase().includes(term)).sort((a, b) => score(a) - score(b)); selectedCommand = 0; commandList.innerHTML = filteredCommands.map((command, index) => `<li><button type="button" data-command-index="${index}" class="${index === 0 ? "selected" : ""}"><b>${command[0]}</b><span>${command[1]}</span></button></li>`).join(""); }
   function openPalette() { renderCommands(); palette.showModal(); document.body.classList.add("modal-open"); setTimeout(() => search.focus(), 20); }
-  function closePalette() { palette.close(); document.body.classList.remove("modal-open"); }
-  function runCommand(command) { if (!command) return; closePalette(); const target = command[2]; if (target.startsWith("/")) routeTo(target, `COMMAND / ${command[0].toUpperCase()}`); else window.open(target, target.endsWith(".pdf") ? "_self" : "_blank", "noopener"); }
+  function closePalette() { if (palette.open) palette.close(); document.body.classList.remove("modal-open"); }
+  function runCommand(command) { if (!command) return; closePalette(); const target = command[2]; if (target.startsWith("/")) routeTo(target, `OPENING ${command[0].toUpperCase()}`); else window.open(target, target.endsWith(".pdf") ? "_self" : "_blank", "noopener"); }
   $("#commandTrigger")?.addEventListener("click", openPalette);
-  document.addEventListener("keydown", e => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); palette.open ? closePalette() : openPalette(); } });
+  document.addEventListener("keydown", event => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); palette.open ? closePalette() : openPalette(); } if (event.key === "Escape" && palette.open) closePalette(); });
   search?.addEventListener("input", () => renderCommands(search.value));
-  search?.addEventListener("keydown", e => { if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); selectedCommand = (selectedCommand + (e.key === "ArrowDown" ? 1 : -1) + filteredCommands.length) % filteredCommands.length; $$("button", commandList).forEach((b, i) => b.classList.toggle("selected", i === selectedCommand)); } if (e.key === "Enter") { e.preventDefault(); runCommand(filteredCommands[selectedCommand]); } });
-  commandList?.addEventListener("click", e => { const button = e.target.closest("button"); if (button) runCommand(filteredCommands[Number(button.dataset.commandIndex)]); });
-  palette?.addEventListener("click", e => { if (e.target === palette) closePalette(); });
+  search?.addEventListener("keydown", event => { if (["ArrowDown", "ArrowUp"].includes(event.key)) { event.preventDefault(); selectedCommand = (selectedCommand + (event.key === "ArrowDown" ? 1 : -1) + filteredCommands.length) % filteredCommands.length; $$("button", commandList).forEach((button, index) => button.classList.toggle("selected", index === selectedCommand)); } else if (event.key === "Enter") { event.preventDefault(); runCommand(filteredCommands[selectedCommand]); } });
+  commandList?.addEventListener("click", event => { const button = event.target.closest("button"); if (button) runCommand(filteredCommands[Number(button.dataset.commandIndex)]); });
+  palette?.addEventListener("click", event => { if (event.target === palette) closePalette(); });
 
-  const terminalInput = $("#terminalInput"), terminalOutput = $("#terminalOutput");
-  const writeTerminal = (html, cls = "") => { const p = document.createElement("p"); p.className = cls; p.innerHTML = html; terminalOutput.appendChild(p); terminalOutput.scrollTop = terminalOutput.scrollHeight; };
-  const terminalCommands = {
-    help: () => "Available commands:<br><span>whoami · skills · projects · security · journey · contact · github · linkedin · resume · clear</span><br>Optional: sudo hire irfan · coffee",
-    whoami: () => "Muhammad Irfan<br>Cloud Computing Student<br><br>Focus:<br><span>Cloud Infrastructure · Cloud Security · Automation · DevOps</span>",
-    skills: () => "Cloud: AWS, OpenStack<br>Automation: Terraform, CloudFormation, Python, Docker<br>Security: IAM, CloudTrail, GuardDuty, AWS Config<br>Systems: Linux, Windows Server, Networking",
-    projects: () => '<a href="#deployments" data-term-project="funcloudsoc">001 FunCloudSOC</a><br><a href="#deployments" data-term-project="pantalk">002 PANTALK</a><br><a href="#deployments" data-term-project="neuronote">003 NeuroNote</a>',
-    security: () => "Identity → Visibility → Detection → Compliance → Response<br><span>Policy controls the action. Verification closes the loop.</span>",
-    journey: () => "2024 Foundation → 2025 Systems → 2026 Cloud → NEXT Cloud Engineering",
-    contact: () => 'Connection available: <a href="mailto:Irfanizzani46@gmail.com">Irfanizzani46@gmail.com</a>',
-    github: () => { window.open("https://github.com/ieyrfan", "_blank", "noopener"); return "Opening GitHub profile…"; },
-    linkedin: () => { window.open("https://www.linkedin.com/in/irfanrizal2004", "_blank", "noopener"); return "Opening LinkedIn profile…"; },
-    resume: () => { window.open("asset/Muhammad_Irfan_Resume.pdf", "_blank"); return "Opening résumé…"; },
-    coffee: () => '<span class="error">ERROR:</span><br>Insufficient telemetry to calculate current consumption.',
-    "sudo hire irfan": () => { setTimeout(() => routeTo("/contact", "AUTHORIZATION / GRANTED"), 900); return '<span class="system-line">Permission granted.</span><br>Excellent infrastructure decision.<br>Opening contact channel…'; },
-    "rm -rf /": () => '<span class="error">Request blocked.</span><br>Security policy prevented this incident.'
-  };
-  terminalInput?.addEventListener("keydown", e => {
-    if (e.key !== "Enter") return; const raw = terminalInput.value.trim(), command = raw.toLowerCase(); terminalInput.value = ""; if (!raw) return;
-    writeTerminal(`irfan@cloud:~$ ${raw}`, "command-echo");
-    if (command === "clear") { terminalOutput.innerHTML = ""; return; }
-    writeTerminal(terminalCommands[command]?.() || `<span class="error">command not found:</span> ${raw}<br>Type <span>help</span> for available commands.`);
-  });
-  terminalOutput?.addEventListener("click", e => { const link = e.target.closest("[data-term-project]"); if (link) { e.preventDefault(); routeTo(`/projects/${link.dataset.termProject}`, `DEPLOYING / ${link.dataset.termProject.toUpperCase()}`); } });
-
-  async function loadTelemetry() {
-    try {
-      const [userResponse, repoResponse] = await Promise.all([fetch("https://api.github.com/users/ieyrfan", { headers: { Accept: "application/vnd.github+json" } }), fetch("https://api.github.com/users/ieyrfan/repos?sort=updated&per_page=100", { headers: { Accept: "application/vnd.github+json" } })]);
-      if (!userResponse.ok || !repoResponse.ok) throw new Error("GitHub unavailable");
-      const user = await userResponse.json(), repos = await repoResponse.json(); const recent = repos.filter(r => !r.fork).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-      $("#repoCount").textContent = String(user.public_repos); $("#latestRepo").textContent = recent[0]?.name || "—"; $("#latestRepoDate").textContent = recent[0] ? `UPDATED ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium" }).format(new Date(recent[0].updated_at))}` : "No recent data";
-      const languages = [...new Set(recent.map(r => r.language).filter(Boolean))]; $("#languageCount").textContent = String(languages.length); $("#languageList").textContent = languages.slice(0, 5).join(" · "); $("#telemetryUpdated").textContent = `LIVE DATA / ${new Intl.DateTimeFormat("en-MY", { dateStyle: "medium" }).format(new Date())}`;
-    } catch { $$('[data-telemetry]').forEach(item => item.hidden = true); $("#telemetryUpdated").textContent = "GITHUB DATA TEMPORARILY UNAVAILABLE"; }
-  }
-  loadTelemetry();
-
-  $("#contactForm")?.addEventListener("submit", e => {
-    e.preventDefault(); if (!e.currentTarget.reportValidity()) return; const data = new FormData(e.currentTarget); const subject = encodeURIComponent(data.get("subject")); const body = encodeURIComponent(`Hello Muhammad Irfan,\n\n${data.get("message")}\n\nFrom: ${data.get("name")} (${data.get("email")})`);
-    $("#connectionState").innerHTML = "<i></i> TRANSMISSION READY"; $("#formNote").innerHTML = `Your message is prepared. <a href="mailto:Irfanizzani46@gmail.com?subject=${subject}&body=${body}">Open your email app to send it →</a>`;
-  });
-
-  applyRoute(location.pathname, false);
+  document.addEventListener("visibilitychange", () => document.body.classList.toggle("animations-paused", document.hidden));
   const year = $("#year"); if (year) year.textContent = String(new Date().getFullYear());
+  applyRoute(location.pathname, false);
   reducedMotion.addEventListener?.("change", () => location.reload());
 })();

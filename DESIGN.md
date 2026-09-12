@@ -1,66 +1,59 @@
-# IRFAN // CLOUDSPACE 2.0
+# MUHAMMAD IRFAN / CLOUDSPACE 3
 
-## Position
+## Design position
 
-Cloudspace presents Muhammad Irfan as a Cloud Computing student focused on cloud infrastructure, cloud security, automation, DevOps and architecture. The experience behaves like a personal cloud environment: calm and atmospheric at entry, then operational and information-dense after the user enters the system.
+The portfolio presents Muhammad Irfan bin Rizal first and uses Irfan Cloud as the environment around his work. The visual language combines an open, realistic cloud entry with a dark engineering workspace. Large editorial typography establishes a clear personal identity; system diagrams and interaction panels explain the work without imitating a fictional monitoring dashboard.
 
-The visual direction avoids generic portfolio cards, decorative gradients and unsupported claims. Interfaces represent real concepts: services, trust boundaries, infrastructure nodes, incidents, telemetry, terminal commands and system state.
+The core message is: **Engineering what happens behind the cloud.** Supporting content stays grounded in education, professional experience, public project repositories and named credentials.
 
 ## Route architecture
 
-The site uses focused route scenes while preserving one coherent system:
+The site uses focused routes while preserving one coherent interface:
 
-- `/` → cinematic entry and cloud service overview
-- `/cloud/` → service hub
-- `/about/` → identity and engineering principles
-- `/stack/` → interactive technology topology
-- `/projects/` → deployment archive
-- `/projects/funcloudsoc/` → incident replay
-- `/projects/pantalk/` → secure communication path
-- `/projects/neuronote/` → student wellness system
-- `/journey/` → altitude timeline and credentials
-- `/lab/` → experiments, request simulator, CLI and telemetry
-- `/contact/` → connection channel and cloud exit
+- `/` — personal hero and cloud entry
+- `/cloud/` — asymmetric portfolio hub
+- `/about/` — profile, narrative, direction and engineering principles
+- `/experience/` — UTeM technical operations, Port Klang internship, achievement and leadership
+- `/projects/` — nine selected engineering projects
+- `/projects/threat-nexus/`, `/projects/pantalk/`, `/projects/omniverse/`, `/projects/cspm/`, `/projects/data-governance/`, `/projects/aegis/`, `/projects/niyyah/`, `/projects/smartchef/`, `/projects/funtechpay/` — direct project case studies
+- `/stack/` — technology-to-purpose relationship explorer
+- `/security/` — cloud security reasoning map
+- `/journey/` — education progression
+- `/certifications/` — grouped credentials and training
+- `/lab/` — filterable technical experiments
+- `/contact/` — direct contact and professional links
 
-GitHub Pages receives a physical `index.html` for every route. JavaScript then manages in-session navigation and contextual cloud transitions without a full page reload.
+GitHub Pages receives a physical `index.html` for every route. The History API then handles in-session navigation and cloud transitions without a full reload.
 
-## Environmental system
+## Visual system
 
-AUTO mode follows the visitor's local time: morning, day, sunset and night. DAY and NIGHT overrides persist in local storage. Each environment changes the sky, sun or moon, stars, cloud lighting and interface contrast. AUTO transitions use a long duration so the atmosphere changes gradually.
+- Open sky: pale blue cloud photography, dark navy type, generous space and a restrained green status accent.
+- Engineering environment: near-black navy, thin slate borders, cyan wayfinding and white editorial headings.
+- Typography: Space Grotesk for identity and hierarchy, Inter for reading, JetBrains Mono for labels and system notation.
+- Layout: a 12-column asymmetric hub on large screens, two columns on tablets and a clear single column on mobile.
+- Motion: three slow cloud-depth layers, small pointer parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition.
+- Time: AUTO uses local morning, day, sunset and night states; DAY and NIGHT overrides persist locally.
 
-The hero uses three cloud depth layers, subtle pointer parallax and a staged reveal. Route changes use the cloudscape as a transition surface. Each destination adjusts that transition: projects become more architectural, journey moves vertically, and contact opens into brighter cloud.
+## Project presentation
 
-## Interaction hierarchy
+Threat Nexus XDR is the flagship and includes an architecture flow plus a manual incident replay. The remaining projects use a consistent case-study structure: challenge, role, architecture, cloud or engineering approach, security, automation, observability, outcome and lessons. Source buttons point only to repositories confirmed on the public GitHub profile.
 
-- Ambient: cloud drift, stars, scan lines, packets and quiet status pulses.
-- Interaction: cursor response, hover focus, active nav movement and node detail.
-- Navigation: History API routes with browser back and forward support.
-- Story: cloud entry, altitude progression, incident replay and decompression at contact.
+## Interaction and accessibility
 
-The Cloud Hub is an irregular service topology. About shows an identity object; Stack uses an orbit; Projects displays deployment health; Journey tracks altitude; Lab behaves as a sandbox; Contact emits a signal.
-
-## Technical interactions
-
-- `Ctrl/Cmd + K` opens a searchable command palette.
-- Stack categories and nodes reveal purpose, combinations, project usage and related services.
-- FunCloudSOC runs a manual incident replay through request, observation, event, detection, classification, bounded response and containment.
-- Lab cards open structured experiment records. The request simulator and terminal perform visible state changes.
-- GitHub telemetry uses the public API and removes unavailable data instead of estimating it.
-- A visual-only random session ID and compact session log reinforce the system metaphor.
-
-## Performance and accessibility
-
-The production cloud asset is WebP, the interface uses semantic buttons and dialogs, focus states remain visible and direct routes work without JavaScript redirects. Mobile reduces cloud density, collapses service modules and simplifies cursor effects. `prefers-reduced-motion` disables cinematic movement while preserving every route and control.
-
-## Truth and scope
-
-FunCloudSOC is described as design-complete and evaluation-ready for PSM I. The site does not turn planned PSM II metrics into achieved results or present prototypes as production systems. External links are only used where a real public destination is available.
+- `Ctrl/Cmd + K` opens a searchable navigation palette.
+- Stack and Security controls explain relationships and reasoning on selection.
+- Lab filters and native dialogs provide structured experiment details.
+- Every route has a distinct title, description and canonical URL.
+- Focus styles, semantic controls, keyboard-compatible dialogs and a skip link remain available.
+- `prefers-reduced-motion` removes drift, parallax and transition delays while preserving content and interaction.
+- Mobile navigation, 320 px layouts and horizontal overflow are covered by browser QA.
 
 ## Source files
 
-- `index.html` — semantic content, route scenes, dialogs and controls
-- `style.css` — visual system, route states, environment and motion
-- `script.js` — navigation, simulations, command palette, telemetry and project state
-- `build-routes.ps1` — creates direct GitHub Pages route documents
-- `asset/cloudspace-hero-v1.webp` — optimized original cloudscape
+- `index.html` — semantic content, metadata, routes and dialogs
+- `style.css` — visual system, responsive layouts, atmosphere and motion
+- `script.js` — navigation, time themes, case studies and interactive explorers
+- `build-routes.ps1` — generates direct GitHub Pages route documents
+- `asset/cloudspace-hero-v1.webp` — optimized cloudscape
+- `asset/cloudspace-social-preview.png` — 1200 × 630 social preview
 - `404.html`, `robots.txt`, `sitemap.xml` — hosting and discovery support
