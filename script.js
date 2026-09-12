@@ -361,7 +361,19 @@
     const entry = $("#cloud-entry");
     if (entry && root.dataset.page === "landing") {
       if (touchMode.matches) {
+        const heroProgress = Math.max(0, Math.min(1, scroll / Math.max(1, innerHeight)));
         $("#entryBoot").classList.add("visible");
+        if (!reducedMotion.matches) {
+          const rect = entry.getBoundingClientRect(), travel = Math.max(1, rect.height - innerHeight), progress = Math.max(0, Math.min(1, -rect.top / travel));
+          const farCloud = $(".cloud-far"), midCloud = $(".cloud-mid"), nearCloud = $(".cloud-near"), entryA = $(".entry-cloud-a"), entryB = $(".entry-cloud-b"), boot = $("#entryBoot");
+          if ($("#heroSky")) $("#heroSky").style.setProperty("--parallax-y", `${heroProgress * -18}px`);
+          if (farCloud) farCloud.style.setProperty("--parallax-x", `${heroProgress * 10}px`);
+          if (midCloud) midCloud.style.setProperty("--parallax-x", `${heroProgress * -18}px`);
+          if (nearCloud) nearCloud.style.setProperty("--parallax-y", `${heroProgress * -24}px`);
+          if (entryA) { entryA.style.transform = `translate3d(${-10 + progress * 22}%,${progress * -6}%,0) scale(${1.12 + progress * .22})`; entryA.style.opacity = String(.4 - progress * .1); }
+          if (entryB) { entryB.style.transform = `translate3d(${12 - progress * 25}%,${4 - progress * 8}%,0) scale(${1.42 + progress * .18}) rotate(180deg)`; entryB.style.opacity = String(.24 + progress * .08); }
+          if (boot) { boot.style.transform = `translate3d(0,${progress * -22}px,0) scale(${1 - progress * .018})`; boot.style.opacity = String(1 - Math.max(0, progress - .72) * .28); }
+        }
       } else {
         const rect = entry.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
         $(".entry-cloud-a").style.transform = `scale(${1.18 + progress * .52}) translate3d(${progress * 5}%,0,0)`;

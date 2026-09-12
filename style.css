@@ -250,11 +250,13 @@ html[data-page=lab] .world-class #credentials{display:none}
   .world-class .scroll-cue i{height:22px;background:#061326}
   .world-class .hero-cloud.cloud-mid{opacity:.12}.world-class .hero-cloud.cloud-near{opacity:.16}
 
-  .world-class .cloud-entry{height:76svh;min-height:560px;background:#d9eef9;color:#061326}
-  .world-class .cloud-entry-sticky{position:relative;top:auto;height:100%;min-height:560px;padding:72px 0 104px;background:linear-gradient(180deg,#d8effb 0%,#edf8fd 42%,#c3e1f1 72%,#17334a 100%)}
+  .world-class .cloud-entry{height:118svh;min-height:820px;background:#d9eef9;color:#061326}
+  .world-class .cloud-entry-sticky{position:sticky;top:0;height:100svh;min-height:620px;padding:72px 0 104px;background:linear-gradient(180deg,#d8effb 0%,#edf8fd 42%,#c3e1f1 72%,#17334a 100%)}
   .world-class .cloud-entry-sticky:before{content:"";position:absolute;inset:0;background:url('asset/cloudspace-hero-v1.webp') center 74%/cover no-repeat;filter:brightness(1.2) saturate(.68);opacity:.55;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 72%,transparent 100%)}
   .world-class .cloud-entry-sticky:after{content:"";position:absolute;z-index:2;inset:auto 0 0;height:46%;background:linear-gradient(180deg,transparent,#071827 92%);pointer-events:none}
-  .world-class .entry-cloud{display:none}
+  .world-class .entry-cloud{display:block;z-index:1;inset:-14%;background-size:cover;will-change:transform,opacity;pointer-events:none}
+  .world-class .entry-cloud-a{background-position:18% 74%;filter:brightness(1.18) contrast(.78) blur(2px);opacity:.4;mix-blend-mode:screen;mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 76%,transparent 100%)}
+  .world-class .entry-cloud-b{background-position:82% 38%;filter:brightness(1.12) contrast(.82) blur(4px);opacity:.24;mix-blend-mode:screen;mask-image:linear-gradient(180deg,transparent 8%,#000 30%,#000 82%,transparent 100%)}
   .world-class .entry-boot{width:calc(100% - 34px);padding:24px 22px;background:rgba(241,249,253,.76);border-color:rgba(6,19,38,.15);box-shadow:0 24px 80px rgba(19,54,79,.17);backdrop-filter:blur(16px) saturate(1.08);opacity:1;transform:none}
   .world-class .entry-boot:before{content:"CLOUD GATE / 02";display:block;margin-bottom:22px;color:#317195;font:600 7px JetBrains Mono,monospace;letter-spacing:.12em}
   .world-class .entry-boot p{margin-bottom:16px;font-size:8px}
@@ -284,6 +286,8 @@ html[data-page=lab] .world-class #credentials{display:none}
   [data-theme=night] .world-class .cloud-entry-sticky{background:linear-gradient(180deg,#071321 0%,#0a1b2f 45%,#081726 72%,#020712 100%)}
   [data-theme=night] .world-class .cloud-entry-sticky:before{filter:brightness(.3) saturate(.68);opacity:.72}
   [data-theme=night] .world-class .cloud-entry-sticky:after{background:linear-gradient(180deg,transparent,#020712 92%)}
+  [data-theme=night] .world-class .entry-cloud-a{filter:brightness(.36) saturate(.72) blur(2px);mix-blend-mode:screen}
+  [data-theme=night] .world-class .entry-cloud-b{filter:brightness(.26) saturate(.82) blur(4px);mix-blend-mode:screen}
   [data-theme=night] .world-class .entry-boot{color:#f8fafc;background:rgba(4,17,32,.78);border-color:rgba(148,190,220,.2);box-shadow:0 24px 80px rgba(0,0,0,.28)}
   [data-theme=night] .world-class .entry-boot li{border-color:rgba(148,163,184,.2)}
   [data-theme=night] .world-class .scroll-cue{color:#f8fafc}

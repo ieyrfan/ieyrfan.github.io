@@ -31,10 +31,10 @@ GitHub Pages receives a physical `index.html` for every route. The History API t
 - Engineering environment: near-black navy, thin slate borders, cyan wayfinding and white editorial headings.
 - Typography: Space Grotesk for identity and hierarchy, Inter for reading, JetBrains Mono for labels and system notation.
 - Layout: a 12-column asymmetric hub on large screens, two columns on tablets and a clear single column on mobile.
-- Motion: three slow cloud-depth layers, small pointer parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition.
+- Motion: three slow cloud-depth layers, pointer and scroll parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition. Touch devices use scroll-linked depth instead of pointer-only movement.
 - Time: AUTO uses local morning, day, sunset and night states; DAY and NIGHT overrides persist locally.
 
-On mobile, the landing scene fits one dynamic viewport and keeps the full name on two intentional lines. Theme controls are removed from the fixed layer so they cannot collide with browser chrome. A visible Cloud Gate replaces the former long sticky gap, while its sky-to-navy gradient carries the user into a blue-toned hub. The navigation stays light over the daytime cloud scene and changes to navy only when the dark hub enters. Night mode uses a matching dark cloud gate.
+On mobile, the landing scene fits one dynamic viewport and keeps the full name on two intentional lines. Theme controls are removed from the fixed layer so they cannot collide with browser chrome. The Cloud Gate uses a 118 svh scroll track with a 100 svh sticky scene, keeping the message visible while two masked cloud layers travel in opposite directions and grow with swipe progress. The landing clouds also gain subtle depth during the first scroll. Its sky-to-navy gradient carries the user into a blue-toned hub, the navigation stays light over the daytime cloud scene and changes to navy only when the dark hub enters. Night mode uses a matching dark cloud gate. Reduced-motion preferences preserve the complete visual transition without scroll-linked transforms.
 
 ## Project presentation
 
