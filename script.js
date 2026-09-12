@@ -75,27 +75,69 @@
   };
 
   const commands = [
-    ["About", "The human behind the infrastructure", "#identity"], ["Projects", "Selected deployment environments", "#deployments"],
-    ["FunCloudSOC", "Autonomous cloud security response", "project:funcloudsoc"], ["PANTALK", "Privacy-first communication platform", "project:pantalk"],
-    ["Skills", "Interactive infrastructure map", "#stack"], ["AWS", "Cloud tools and laboratory", "#stack"], ["Security", "Identity, visibility, detection and response", "#security"],
-    ["Experience", "Altitude-based learning journey", "#journey"], ["Certifications", "Completed learning credentials", "#credentials"],
+    ["Cloud Hub", "Irfan Cloud service directory", "/cloud/"], ["About", "The human behind the infrastructure", "/about/"], ["Projects", "Selected deployment environments", "/projects/"],
+    ["FunCloudSOC", "Autonomous cloud security response", "/projects/funcloudsoc/"], ["PANTALK", "Privacy-first communication platform", "/projects/pantalk/"], ["NeuroNote", "Wellness and productivity system", "/projects/neuronote/"],
+    ["Skills", "Interactive infrastructure map", "/stack/"], ["AWS", "Cloud tools and laboratory", "/stack/"], ["Security", "Identity, visibility, detection and response", "/security/"],
+    ["Experience", "Altitude-based learning journey", "/journey/"], ["Certifications", "Completed learning credentials", "/journey/"],
     ["Resume", "Download PDF résumé", "asset/Muhammad_Irfan_Resume.pdf"], ["GitHub", "Open ieyrfan on GitHub", "https://github.com/ieyrfan"],
-    ["LinkedIn", "Open Muhammad Irfan on LinkedIn", "https://www.linkedin.com/in/irfanrizal2004"], ["Contact", "Establish a connection", "#contact"]
+    ["LinkedIn", "Open Muhammad Irfan on LinkedIn", "https://www.linkedin.com/in/irfanrizal2004"], ["Contact", "Establish a connection", "/contact/"]
   ];
 
-  function setTheme(theme, persist = true) {
-    root.dataset.theme = theme;
-    $("#themeToggle")?.setAttribute("aria-label", `Switch to ${theme === "day" ? "night" : "day"} mode`);
-    $('meta[name="theme-color"]')?.setAttribute("content", theme === "day" ? "#dbefff" : "#020617");
-    if (persist) try { localStorage.setItem("cloudspace-theme", theme); } catch {}
+  const routeMap = {
+    "/": ["landing", "sky", "PUBLIC SKY"], "/cloud": ["cloud", "control-plane", "IRFAN CLOUD HUB"], "/about": ["about", "identity", "IDENTITY"],
+    "/stack": ["stack", "stack", "INFRASTRUCTURE"], "/projects": ["projects", "deployments", "DEPLOYMENTS"],
+    "/projects/funcloudsoc": ["project-funcloudsoc", "deployments", "FUNCLOUDSOC"], "/projects/pantalk": ["project-pantalk", "deployments", "PANTALK"], "/projects/neuronote": ["project-neuronote", "deployments", "NEURONOTE"],
+    "/security": ["security", "security", "SECURITY LAYER"], "/journey": ["journey", "journey", "ALTITUDE JOURNEY"], "/lab": ["lab", "lab", "CLOUD LAB"], "/contact": ["contact", "contact", "CONNECTION"]
+  };
+  const normalizePath = path => path.replace(/\/+$/, "") || "/";
+  const autoAtmosphere = () => { const h = new Date().getHours(); return h < 6 || h >= 20 ? "night" : h < 11 ? "morning" : h < 18 ? "day" : "sunset"; };
+  function setThemeMode(mode, persist = true) {
+    root.dataset.mode = mode;
+    root.dataset.theme = mode === "auto" ? autoAtmosphere() : mode;
+    $$('[data-theme-mode]').forEach(button => { button.classList.toggle("active", button.dataset.themeMode === mode); button.setAttribute("aria-pressed", String(button.dataset.themeMode === mode)); });
+    $('meta[name="theme-color"]')?.setAttribute("content", root.dataset.theme === "night" ? "#020617" : "#dbefff");
+    if (persist) try { localStorage.setItem("cloudspace-theme-mode", mode); } catch {}
   }
-  setTheme(root.dataset.theme === "night" ? "night" : "day", false);
-  $("#themeToggle")?.addEventListener("click", () => setTheme(root.dataset.theme === "day" ? "night" : "day"));
+  setThemeMode(root.dataset.mode || "auto", false);
+  $$('[data-theme-mode]').forEach(button => button.addEventListener("click", () => setThemeMode(button.dataset.themeMode)));
+  window.setInterval(() => { if (root.dataset.mode === "auto") setThemeMode("auto", false); }, 60000);
+
+  const sessionId = `IRF-${Math.random().toString(16).slice(2, 7).toUpperCase()}`;
+  $("#sessionId").textContent = sessionId; $("#hubSession").textContent = sessionId;
+  function logEvent(message) { const log = $("#sessionLog"); if (!log) return; const item = document.createElement("li"); item.textContent = `[INFO] ${message}`; log.prepend(item); while (log.children.length > 4) log.lastElementChild.remove(); }
+  const stars = $("#stars");
+  if (stars) for (let i = 0; i < 26; i += 1) { const star = document.createElement("i"); star.style.left = `${4 + Math.random() * 92}%`; star.style.top = `${3 + Math.random() * 70}%`; star.style.setProperty("--twinkle", `${12 + Math.random() * 20}s`); star.style.setProperty("--delay", `${-Math.random() * 18}s`); star.style.opacity = String(.18 + Math.random() * .45); stars.appendChild(star); }
+  requestAnimationFrame(() => document.body.classList.add("scene-ready"));
 
   const nav = $("#navbar"), navMenu = $("#navLinks"), menuToggle = $("#menuToggle");
   function toggleMenu(open) { navMenu?.classList.toggle("open", open); menuToggle?.setAttribute("aria-expanded", String(open)); menuToggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu"); }
   menuToggle?.addEventListener("click", () => toggleMenu(!navMenu.classList.contains("open")));
   $$("a", navMenu).forEach(a => a.addEventListener("click", () => toggleMenu(false)));
+
+  const transition = $("#routeTransition"); let routeTimer = 0;
+  function syncNavIndicator(page) {
+    const group = page.startsWith("project-") ? "projects" : page;
+    const link = $(`[data-page-link="${group}"]`), indicator = $("#navIndicator");
+    $$("[data-page-link]").forEach(item => item.classList.toggle("active", item === link));
+    if (!link || !indicator || innerWidth <= 820) { if (indicator) indicator.style.width = "0"; return; }
+    const navRect = navMenu.getBoundingClientRect(), rect = link.getBoundingClientRect(); indicator.style.width = `${rect.width}px`; indicator.style.transform = `translateX(${rect.left - navRect.left}px)`;
+  }
+  function applyRoute(path, scroll = true) {
+    const normalized = normalizePath(path), route = routeMap[normalized] || routeMap["/"];
+    root.dataset.page = route[0]; $("#regionReadout").textContent = `REGION / ${route[2]}`; syncNavIndicator(route[0]);
+    document.title = normalized === "/" ? "Muhammad Irfan | Cloud Computing & Cloud Security Portfolio" : `${route[2]} | IRFAN CLOUDSPACE`;
+    if (scroll) window.scrollTo({ top: 0, behavior: "auto" });
+    logEvent(`${route[2]} service requested`);
+    if (route[0].startsWith("project-")) openProject(route[0].replace("project-", ""), false);
+  }
+  function routeTo(path, label = "CONNECTING TO SERVICE") {
+    const normalized = normalizePath(path); if (!routeMap[normalized]) return;
+    window.clearTimeout(routeTimer); transition.dataset.target = routeMap[normalized][0]; $("#routeTransitionLabel").textContent = label; transition.classList.remove("reveal"); transition.classList.add("active");
+    routeTimer = window.setTimeout(() => { history.pushState({}, "", `${normalized === "/" ? "/" : `${normalized}/`}`); if (caseStudy?.open) caseStudy.close(); document.body.classList.remove("modal-open"); applyRoute(normalized); transition.classList.add("reveal"); routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal"), reducedMotion.matches ? 20 : 520); }, reducedMotion.matches ? 20 : 470);
+  }
+  document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey) return; event.preventDefault(); routeTo(link.pathname, `CONNECTING / ${link.textContent.trim().slice(0, 28)}`); });
+  window.addEventListener("popstate", () => applyRoute(location.pathname));
+  window.addEventListener("resize", () => syncNavIndicator(root.dataset.page));
 
   const revealItems = $$(".reveal");
   if (reducedMotion.matches || !("IntersectionObserver" in window)) revealItems.forEach(el => el.classList.add("visible"));
@@ -105,14 +147,14 @@
   }
 
   const regionSections = $$('[data-region]');
-  const navLinks = $$('.nav-links a[href^="#"]');
+  const navLinks = $$('[data-page-link]');
   if ("IntersectionObserver" in window) {
     const regionObserver = new IntersectionObserver(entries => {
       const active = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!active) return;
       const region = active.target.dataset.region || "CLOUD";
       $("#regionReadout").textContent = `REGION / ${region}`;
-      navLinks.forEach(a => a.classList.toggle("active", a.hash === `#${active.target.id}`));
+      syncNavIndicator(root.dataset.page);
       nav?.classList.toggle("over-dark", !["SKY", "ENTER CLOUD", "EXIT CLOUD"].includes(region));
     }, { rootMargin: "-28% 0px -57%", threshold: [0, .05, .3] });
     regionSections.forEach(section => regionObserver.observe(section));
@@ -128,7 +170,7 @@
     if (currentRegion) {
       const region = currentRegion.dataset.region || "CLOUD";
       $("#regionReadout").textContent = `REGION / ${region}`;
-      navLinks.forEach(link => link.classList.toggle("active", link.hash === `#${currentRegion.id}`));
+      syncNavIndicator(root.dataset.page);
       nav?.classList.toggle("over-dark", !["SKY", "ENTER CLOUD", "EXIT CLOUD"].includes(region));
     }
     const hero = $("#sky"), heroSky = $("#heroSky"), heroContent = $("#heroContent");
@@ -145,22 +187,23 @@
       $(".entry-cloud-b").style.transform = `scale(${1.65 + p * .65}) rotate(180deg) translate(${p * 5}%,${p * -3}%)`;
       $("#entryBoot")?.classList.toggle("visible", p > .42);
     }
-    const journey = $("#journey"), altitude = $("#altitudeProgress");
-    if (journey && altitude) { const p = Math.max(0, Math.min(1, (innerHeight * .72 - journey.getBoundingClientRect().top) / (journey.offsetHeight * .72))); altitude.style.height = `${p * 100}%`; }
+    const journey = $("#journey"), altitude = $("#altitudeProgress"), altitudeCounter = $("#altitudeCounter");
+    if (journey && altitude && getComputedStyle(journey).display !== "none") { const p = Math.max(0, Math.min(1, (innerHeight * .72 - journey.getBoundingClientRect().top) / (journey.offsetHeight * .72))); altitude.style.height = `${p * 100}%`; if (altitudeCounter) altitudeCounter.textContent = `${Math.round(p * 40000 / 1000) * 1000} FT`; const nodes = $$(".journey-node"); nodes.forEach((node, index) => node.classList.toggle("active", index <= Math.round(p * (nodes.length - 1)))); }
     scrollTick = false;
   }
   addEventListener("scroll", () => { if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
   updateScrollEffects();
 
   if (!touchMode.matches && !reducedMotion.matches) {
-    const heroSky = $("#heroSky");
-    $("#sky")?.addEventListener("pointermove", event => { const x = (event.clientX / innerWidth - .5) * 10, y = (event.clientY / innerHeight - .5) * 7; heroSky.style.translate = `${x}px ${y}px`; });
+    const heroSky = $("#heroSky"), far = $(".cloud-far"), mid = $(".cloud-mid"), near = $(".cloud-near"), content = $("#heroContent");
+    $("#sky")?.addEventListener("pointermove", event => { const x = event.clientX / innerWidth - .5, y = event.clientY / innerHeight - .5; heroSky.style.translate = `${x * 5}px ${y * 3}px`; if (far) far.style.translate = `${x * 7}px ${y * 4}px`; if (mid) mid.style.translate = `${x * -13}px ${y * -8}px`; if (near) near.style.translate = `${x * 19}px ${y * 11}px`; if (content) content.style.translate = `${x * -2}px ${y * -2}px`; });
   }
 
-  const cursor = $("#cursor");
+  const cursor = $("#cursor"), cursorRing = $("#cursorRing");
   if (cursor && !touchMode.matches) {
-    addEventListener("pointermove", e => { cursor.style.left = `${e.clientX}px`; cursor.style.top = `${e.clientY}px`; });
-    document.addEventListener("pointerover", e => { const target = e.target.closest("a,button,[data-cursor]"); cursor.classList.toggle("interactive", Boolean(target)); $("span", cursor).textContent = target?.dataset.cursor || (target?.matches("button") ? "SELECT" : "OPEN"); });
+    let rx = 0, ry = 0, tx = 0, ty = 0; const follow = () => { rx += (tx - rx) * .16; ry += (ty - ry) * .16; if (cursorRing) { cursorRing.style.left = `${rx}px`; cursorRing.style.top = `${ry}px`; } requestAnimationFrame(follow); }; follow();
+    addEventListener("pointermove", e => { tx = e.clientX; ty = e.clientY; cursor.style.left = `${e.clientX}px`; cursor.style.top = `${e.clientY}px`; });
+    document.addEventListener("pointerover", e => { const target = e.target.closest("a,button,[data-cursor]"); cursor.classList.toggle("interactive", Boolean(target)); cursorRing?.classList.toggle("interactive", Boolean(target)); $("span", cursor).textContent = target?.dataset.cursor || (target?.matches("button") ? "SELECT" : "OPEN"); });
   }
 
   $$(".stack-categories button").forEach(button => button.addEventListener("click", () => {
@@ -170,16 +213,40 @@
     const context = $("#stackContext");
     context.innerHTML = `<span>${data[0]}</span><h3>${data[1]}</h3><p>${data[2]}</p><ul>${data[3].map(item => `<li>${item}</li>`).join("")}</ul>`;
   }));
-  $$(".tech-node").forEach(node => node.addEventListener("click", () => { node.classList.toggle("active"); }));
+  $$(".tech-node").forEach(node => node.addEventListener("click", () => {
+    const name = $("b", node)?.textContent || "Technology", groups = (node.dataset.groups || "cloud").split(" "), related = groups.flatMap(group => stackData[group]?.[3] || []).filter((item, index, all) => all.indexOf(item) === index).slice(0, 6);
+    $$(".tech-node").forEach(item => item.classList.toggle("active", item === node));
+    const context = $("#stackContext"); context.classList.remove("updated"); context.innerHTML = `<span>TECHNOLOGY NODE / SELECTED</span><h3>${name}</h3><dl class="tech-detail"><div><dt>PURPOSE</dt><dd>Supports ${groups.join(", ")} responsibilities inside the environment.</dd></div><div><dt>USED WITH</dt><dd>${related.slice(0, 3).join(" · ")}</dd></div><div><dt>PROJECT USAGE</dt><dd>Practiced through cloud labs and selected deployment architecture.</dd></div><div><dt>RELATED SERVICES</dt><dd>${related.slice(3).join(" · ") || "AWS · Linux · Python"}</dd></div></dl>`; requestAnimationFrame(() => context.classList.add("updated"));
+    logEvent(`${name} technology node inspected`);
+  }));
 
   $$(".security-layers button").forEach(button => button.addEventListener("mouseenter", () => { $$(".security-layers button").forEach(b => b.classList.toggle("active", b === button)); $(".security-radar")?.classList.add("active"); }));
   $(".security-layers")?.addEventListener("mouseleave", () => $(".security-radar")?.classList.remove("active"));
+  let securityTimer = 0;
+  $("#simulateIncident")?.addEventListener("click", () => {
+    window.clearTimeout(securityTimer); const buttons = $$(".security-layers button"), section = $("#security"), state = $(".security-state"), status = $("#securityStatus"); let step = 0;
+    section.classList.add("incident-active"); state.className = "security-state incident"; status.innerHTML = "<i></i> SECURITY EVENT"; logEvent("Security incident simulation started");
+    const advance = () => { buttons.forEach((button, index) => button.classList.toggle("active", index === step)); step += 1; if (step < buttons.length) securityTimer = window.setTimeout(advance, reducedMotion.matches ? 80 : 650); else securityTimer = window.setTimeout(() => { state.className = "security-state contained"; status.innerHTML = "<i></i> THREAT CONTAINED"; section.classList.remove("incident-active"); logEvent("Simulated threat contained"); securityTimer = window.setTimeout(() => { state.className = "security-state"; status.innerHTML = "<i></i> OPERATIONAL"; }, reducedMotion.matches ? 80 : 1800); }, reducedMotion.matches ? 80 : 650); };
+    advance();
+  });
 
   $$(".lab-toolbar button").forEach(button => button.addEventListener("click", () => {
     const tag = button.dataset.lab;
     $$(".lab-toolbar button").forEach(b => b.classList.toggle("active", b === button));
     $$("#labGrid article").forEach(card => { card.hidden = tag !== "all" && !(card.dataset.tags || "").split(" ").includes(tag); });
   }));
+  const labDetails = [
+    ["AWS VPC Architecture", "Design public and private network boundaries with controlled routing.", ["OBJECTIVE", "Separate reachable workloads from protected services."], ["TOOLS", "AWS VPC · route tables · security groups"], ["ARCHITECTURE", "Internet gateway → public subnet → controlled private subnet"], ["RESULT", "A traceable network path with explicit ingress and egress."], ["WHAT I LEARNED", "Subnet labels do not create security; routes and controls do."]],
+    ["IAM Policy Testing", "Test how identity policy decisions affect access.", ["OBJECTIVE", "Reduce permissions to the actions a workload actually needs."], ["TOOLS", "IAM · policy simulator · CloudTrail"], ["ARCHITECTURE", "Principal → policy evaluation → resource"], ["RESULT", "Permissions examined through allow and deny outcomes."], ["WHAT I LEARNED", "Least privilege is an iterative engineering process."]],
+    ["Terraform Deployment", "Represent infrastructure as reviewed, repeatable configuration.", ["OBJECTIVE", "Create consistent cloud resources without manual drift."], ["TOOLS", "Terraform · state · AWS"], ["ARCHITECTURE", "Configuration → plan → apply → observed state"], ["RESULT", "A repeatable deployment path with visible change plans."], ["WHAT I LEARNED", "State and review matter as much as resource syntax."]],
+    ["Security Automation", "Connect findings to a controlled response workflow.", ["OBJECTIVE", "Reduce repetitive response work while preserving control."], ["TOOLS", "Python · events · cloud APIs"], ["ARCHITECTURE", "Finding → policy → action → verification"], ["RESULT", "A bounded incident-response design."], ["WHAT I LEARNED", "Automation must verify outcomes independently."]],
+    ["OpenStack Networking", "Trace connectivity inside a private cloud.", ["OBJECTIVE", "Understand tenant routing and external reachability."], ["TOOLS", "Neutron · Linux · OpenStack CLI"], ["ARCHITECTURE", "Instance → tenant network → router → floating IP"], ["RESULT", "Reachability proven through explicit network state."], ["WHAT I LEARNED", "CLI evidence makes invisible network state explainable."]],
+    ["Docker Application", "Package an application with its runtime boundary.", ["OBJECTIVE", "Make application execution repeatable across systems."], ["TOOLS", "Docker · Linux · application runtime"], ["ARCHITECTURE", "Source → image → container → published service"], ["RESULT", "A consistent deployable application environment."], ["WHAT I LEARNED", "A small image starts with clear dependency choices."]]
+  ];
+  const labPanel = $("#labPanel");
+  $$("#labGrid article").forEach((card, index) => { card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", `Open ${labDetails[index][0]} experiment`); const open = () => { const data = labDetails[index]; $("#labPanelCode").textContent = `LAB / ${String(index + 1).padStart(3, "0")}`; $("#labPanelTitle").textContent = data[0]; $("#labPanelSummary").textContent = data[1]; $("#labDetailGrid").innerHTML = data.slice(2).map(item => `<article><span>${item[0]}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join(""); labPanel.showModal(); document.body.classList.add("modal-open"); logEvent(`${data[0]} lab opened`); }; card.addEventListener("click", open); card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } }); });
+  $("#labClose")?.addEventListener("click", () => { labPanel.close(); document.body.classList.remove("modal-open"); });
+  labPanel?.addEventListener("click", event => { if (event.target === labPanel) { labPanel.close(); document.body.classList.remove("modal-open"); } });
 
   const simulationModes = {
     request: { title: "REQUEST LIFECYCLE", button: "SEND REQUEST", stages: ["USER", "DNS", "CDN", "LOAD BALANCER", "APPLICATION", "DATABASE", "RESPONSE"], desc: ["A visitor starts a request from a client device.", "DNS resolves a human-readable domain to its target.", "The edge serves cached content close to the user.", "Traffic is distributed across healthy targets.", "Application logic processes the request.", "Persistent data is read or updated through controlled access.", "A response returns through the delivery path."] },
@@ -199,27 +266,39 @@
     advance();
   });
 
-  const caseStudy = $("#caseStudy"); let currentProject = "funcloudsoc";
-  function openProject(slug) {
+  const caseStudy = $("#caseStudy"); let currentProject = "funcloudsoc", incidentIndex = 0, incidentTimer = 0, incidentPaused = false;
+  const incidentEvents = ["00:00  Suspicious request received", "00:01  Traffic observed", "00:02  Security event generated", "00:03  Detection engine triggered", "00:04  Incident classified", "00:05  Automated response executed", "00:06  Threat contained"];
+  function resetIncident() { window.clearTimeout(incidentTimer); incidentIndex = 0; incidentPaused = false; $$("#incidentNodes li").forEach(node => node.className = ""); if ($("#incidentLog")) $("#incidentLog").textContent = "[READY] Waiting for manual replay."; }
+  function advanceIncident() { if (incidentPaused) return; const nodes = $$("#incidentNodes li"); if (incidentIndex >= nodes.length) { $("#incidentLog").textContent += "\n[SUCCESS] Response verified. Threat contained."; logEvent("FunCloudSOC replay completed"); return; } nodes.forEach((node, index) => { node.classList.toggle("done", index < incidentIndex); node.classList.toggle("active", index === incidentIndex); }); $("#incidentLog").textContent = incidentEvents.slice(0, incidentIndex + 1).join("\n"); incidentIndex += 1; incidentTimer = window.setTimeout(advanceIncident, reducedMotion.matches ? 80 : 760); }
+  function openProject(slug, updateRoute = true) {
     const data = projectData[slug]; if (!data) return; currentProject = slug;
     $("#caseEyebrow").textContent = `DEPLOYMENT / ${data.order}`; $("#caseTitle").textContent = data.name; $("#caseSubtitle").textContent = data.subtitle;
     $("#caseTags").innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join("");
     $("#caseGrid").innerHTML = data.sections.map(s => `<article><span>${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></article>`).join("");
-    $("#caseSource").href = data.source; $("#caseSource").textContent = slug === "pantalk" ? "OPEN GITHUB PROFILE ↗" : "VIEW AVAILABLE SOURCE ↗";
-    caseStudy.showModal(); document.body.classList.add("modal-open");
+    $("#caseSource").href = data.source; $("#caseSource").textContent = slug === "pantalk" ? "OPEN GITHUB PROFILE ↗" : "VIEW AVAILABLE SOURCE ↗"; $("#incidentReplay").hidden = slug !== "funcloudsoc"; resetIncident();
+    if (!caseStudy.open) caseStudy.showModal(); document.body.classList.add("modal-open"); caseStudy.scrollTop = 0; logEvent(`${data.name} deployment console opened`);
+    if (updateRoute && normalizePath(location.pathname) !== `/projects/${slug}`) history.pushState({}, "", `/projects/${slug}/`);
   }
-  function closeProject() { caseStudy.close(); document.body.classList.remove("modal-open"); }
-  $$(".case-trigger,.architecture-trigger").forEach(button => button.addEventListener("click", e => { e.stopPropagation(); openProject(button.dataset.project); }));
-  $$(".deployment").forEach(card => card.addEventListener("dblclick", () => openProject(card.dataset.project)));
+  function closeProject() { resetIncident(); caseStudy.close(); document.body.classList.remove("modal-open"); if (root.dataset.page.startsWith("project-")) { history.pushState({}, "", "/projects/"); applyRoute("/projects"); } }
+  $$(".case-trigger,.architecture-trigger").forEach(button => button.addEventListener("click", e => { e.stopPropagation(); routeTo(`/projects/${button.dataset.project}`, `DEPLOYING / ${button.dataset.project.toUpperCase()}`); }));
+  $$(".deployment").forEach(card => card.addEventListener("dblclick", () => routeTo(`/projects/${card.dataset.project}`, `DEPLOYING / ${card.dataset.project.toUpperCase()}`)));
   $("#caseClose")?.addEventListener("click", closeProject);
   caseStudy?.addEventListener("click", e => { if (e.target === caseStudy) closeProject(); });
-  $("#caseNext")?.addEventListener("click", () => { const keys = Object.keys(projectData), next = keys[(keys.indexOf(currentProject) + 1) % keys.length]; openProject(next); caseStudy.scrollTop = 0; });
+  $("#caseNext")?.addEventListener("click", () => { const keys = Object.keys(projectData), next = keys[(keys.indexOf(currentProject) + 1) % keys.length]; history.replaceState({}, "", `/projects/${next}/`); root.dataset.page = `project-${next}`; openProject(next, false); });
+  $("#incidentRun")?.addEventListener("click", () => { resetIncident(); advanceIncident(); logEvent("FunCloudSOC incident replay started"); });
+  $("#incidentPause")?.addEventListener("click", () => { incidentPaused = !incidentPaused; $("#incidentPause").textContent = incidentPaused ? "RESUME" : "PAUSE"; if (!incidentPaused) advanceIncident(); });
+  $("#incidentReset")?.addEventListener("click", resetIncident);
 
   const palette = $("#commandPalette"), search = $("#commandSearch"), commandList = $("#commandList"); let selectedCommand = 0, filteredCommands = commands;
-  function renderCommands(query = "") { filteredCommands = commands.filter(c => `${c[0]} ${c[1]}`.toLowerCase().includes(query.toLowerCase())); selectedCommand = 0; commandList.innerHTML = filteredCommands.map((c, i) => `<li><button type="button" data-command-index="${i}" class="${i === 0 ? "selected" : ""}"><b>${c[0]}</b><span>${c[1]}</span></button></li>`).join(""); }
+  function renderCommands(query = "") {
+    const term = query.trim().toLowerCase();
+    const rank = command => { const label = command[0].toLowerCase(), description = command[1].toLowerCase(); if (!term) return 0; if (label === term) return 0; if (label.startsWith(term)) return 1; if (label.includes(term)) return 2; return description.includes(term) ? 3 : 4; };
+    filteredCommands = commands.filter(command => `${command[0]} ${command[1]}`.toLowerCase().includes(term)).sort((a, b) => rank(a) - rank(b));
+    selectedCommand = 0; commandList.innerHTML = filteredCommands.map((c, i) => `<li><button type="button" data-command-index="${i}" class="${i === 0 ? "selected" : ""}"><b>${c[0]}</b><span>${c[1]}</span></button></li>`).join("");
+  }
   function openPalette() { renderCommands(); palette.showModal(); document.body.classList.add("modal-open"); setTimeout(() => search.focus(), 20); }
   function closePalette() { palette.close(); document.body.classList.remove("modal-open"); }
-  function runCommand(command) { if (!command) return; closePalette(); const target = command[2]; if (target.startsWith("project:")) openProject(target.split(":")[1]); else if (target.startsWith("#")) $(target)?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth" }); else window.open(target, target.endsWith(".pdf") ? "_self" : "_blank", "noopener"); }
+  function runCommand(command) { if (!command) return; closePalette(); const target = command[2]; if (target.startsWith("/")) routeTo(target, `COMMAND / ${command[0].toUpperCase()}`); else window.open(target, target.endsWith(".pdf") ? "_self" : "_blank", "noopener"); }
   $("#commandTrigger")?.addEventListener("click", openPalette);
   document.addEventListener("keydown", e => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); palette.open ? closePalette() : openPalette(); } });
   search?.addEventListener("input", () => renderCommands(search.value));
@@ -241,7 +320,7 @@
     linkedin: () => { window.open("https://www.linkedin.com/in/irfanrizal2004", "_blank", "noopener"); return "Opening LinkedIn profile…"; },
     resume: () => { window.open("asset/Muhammad_Irfan_Resume.pdf", "_blank"); return "Opening résumé…"; },
     coffee: () => '<span class="error">ERROR:</span><br>Insufficient telemetry to calculate current consumption.',
-    "sudo hire irfan": () => { setTimeout(() => $("#contact")?.scrollIntoView({ behavior: "smooth" }), 900); return '<span class="system-line">Permission granted.</span><br>Excellent infrastructure decision.<br>Opening contact channel…'; },
+    "sudo hire irfan": () => { setTimeout(() => routeTo("/contact", "AUTHORIZATION / GRANTED"), 900); return '<span class="system-line">Permission granted.</span><br>Excellent infrastructure decision.<br>Opening contact channel…'; },
     "rm -rf /": () => '<span class="error">Request blocked.</span><br>Security policy prevented this incident.'
   };
   terminalInput?.addEventListener("keydown", e => {
@@ -250,7 +329,7 @@
     if (command === "clear") { terminalOutput.innerHTML = ""; return; }
     writeTerminal(terminalCommands[command]?.() || `<span class="error">command not found:</span> ${raw}<br>Type <span>help</span> for available commands.`);
   });
-  terminalOutput?.addEventListener("click", e => { const link = e.target.closest("[data-term-project]"); if (link) { e.preventDefault(); openProject(link.dataset.termProject); } });
+  terminalOutput?.addEventListener("click", e => { const link = e.target.closest("[data-term-project]"); if (link) { e.preventDefault(); routeTo(`/projects/${link.dataset.termProject}`, `DEPLOYING / ${link.dataset.termProject.toUpperCase()}`); } });
 
   async function loadTelemetry() {
     try {
@@ -268,6 +347,7 @@
     $("#connectionState").innerHTML = "<i></i> TRANSMISSION READY"; $("#formNote").innerHTML = `Your message is prepared. <a href="mailto:Irfanizzani46@gmail.com?subject=${subject}&body=${body}">Open your email app to send it →</a>`;
   });
 
+  applyRoute(location.pathname, false);
   const year = $("#year"); if (year) year.textContent = String(new Date().getFullYear());
   reducedMotion.addEventListener?.("change", () => location.reload());
 })();

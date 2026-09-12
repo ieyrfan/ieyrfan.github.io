@@ -1,41 +1,68 @@
-# IRFAN // CLOUDSPACE
+# IRFAN // CLOUDSPACE 2.0
 
-## Product position
+## Position
 
-This portfolio presents Muhammad Irfan as a Cloud Computing student moving toward cloud infrastructure, cloud security, automation, DevOps and architecture. A recruiter should understand that direction within the first screen. Technical visitors can continue into the systems, trust boundaries and engineering decisions behind the work.
+Cloudspace presents Muhammad Irfan as a Cloud Computing student focused on cloud infrastructure, cloud security, automation, DevOps and architecture. The experience behaves like a personal cloud environment: calm and atmospheric at entry, then operational and information-dense after the user enters the system.
 
-## Experience narrative
+The visual direction avoids generic portfolio cards, decorative gradients and unsupported claims. Interfaces represent real concepts: services, trust boundaries, infrastructure nodes, incidents, telemetry, terminal commands and system state.
 
-The site is one continuous descent through a personal cloud environment:
+## Route architecture
 
-`SKY → ENTER CLOUD → CONTROL PLANE → IDENTITY → INFRASTRUCTURE → DEPLOYMENTS → SECURITY → JOURNEY → CREDENTIALS → LAB → CLI → TELEMETRY → PRINCIPLES → CONNECTION → EXIT CLOUD`
+The site uses focused route scenes while preserving one coherent system:
 
-The open sky is calm and editorial. The cloud-entry sequence creates depth and briefly introduces the environment. The dark control-plane surface then becomes increasingly technical through architecture paths, system labels and live interactions. The exit returns to the sky and closes the metaphor.
+- `/` → cinematic entry and control-plane overview
+- `/cloud/` → service hub
+- `/about/` → identity and engineering principles
+- `/stack/` → interactive technology topology
+- `/projects/` → deployment archive
+- `/projects/funcloudsoc/` → incident replay
+- `/projects/pantalk/` → secure communication path
+- `/projects/neuronote/` → student wellness system
+- `/security/` → layered incident simulation
+- `/journey/` → altitude timeline and credentials
+- `/lab/` → experiments, request simulator, CLI and telemetry
+- `/contact/` → connection channel and cloud exit
 
-## Visual system
+GitHub Pages receives a physical `index.html` for every route. JavaScript then manages in-session navigation and contextual cloud transitions without a full page reload.
 
-- Space Grotesk carries large statements; Inter supports reading; JetBrains Mono is reserved for system labels and metadata.
-- Dark surfaces use `#020617`, `#07111F` and `#0F172A`. White and slate support reading. Blue and cyan mark traffic, active paths and system state.
-- Containers represent real bounded objects such as an identity record, a deployment, a simulator or a terminal. The rest of the page uses lines, scale and space for hierarchy.
-- The generated cloudscape is an original atmospheric asset used at the entry and exit. It is delivered as WebP for the site while the source PNG remains available locally.
+## Environmental system
 
-## Interaction rules
+AUTO mode follows the visitor's local time: morning, day, sunset and night. DAY and NIGHT overrides persist in local storage. Each environment changes the sky, sun or moon, stars, cloud lighting and interface contrast. AUTO transitions use a long duration so the atmosphere changes gradually.
 
-- Native scrolling remains in control. Scroll effects add cloud depth, environment status and altitude progression.
-- `Ctrl/Cmd + K` opens a searchable keyboard command palette.
-- Technology categories change the infrastructure map and its context.
-- Each featured deployment opens an in-site case study before any external source link.
-- The request simulator and terminal perform real state changes. GitHub telemetry uses live public API data and hides unavailable metrics.
-- Day/night mode persists locally. Reduced-motion preferences disable cinematic movement. The custom cursor appears only on precise pointer devices.
+The hero uses three cloud depth layers, subtle pointer parallax and a staged reveal. Route changes use the cloudscape as a transition surface. Each destination adjusts that transition: security darkens, projects become more architectural, journey moves vertically, and contact opens into brighter cloud.
+
+## Interaction hierarchy
+
+- Ambient: cloud drift, stars, scan lines, packets and quiet status pulses.
+- Interaction: cursor response, hover focus, active nav movement and node detail.
+- Navigation: History API routes with browser back and forward support.
+- Story: cloud entry, altitude progression, incident replay and decompression at contact.
+
+The Cloud Hub is an irregular service topology. About shows an identity object; Stack uses an orbit; Projects displays deployment health; Security scans; Journey tracks altitude; Lab behaves as a sandbox; Contact emits a signal.
+
+## Technical interactions
+
+- `Ctrl/Cmd + K` opens a searchable command palette.
+- Stack categories and nodes reveal purpose, combinations, project usage and related services.
+- FunCloudSOC runs a manual incident replay through request, observation, event, detection, classification, bounded response and containment.
+- Security simulates an incident across identity, visibility, detection, compliance and response layers before returning to operational state.
+- Lab cards open structured experiment records. The request simulator and terminal perform visible state changes.
+- GitHub telemetry uses the public API and removes unavailable data instead of estimating it.
+- A visual-only random session ID and compact session log reinforce the system metaphor.
+
+## Performance and accessibility
+
+The production cloud asset is WebP, the interface uses semantic buttons and dialogs, focus states remain visible and direct routes work without JavaScript redirects. Mobile reduces cloud density, collapses service modules and simplifies cursor effects. `prefers-reduced-motion` disables cinematic movement while preserving every route and control.
 
 ## Truth and scope
 
-Project wording distinguishes learning work, prototypes, architectures and deployed products. FunCloudSOC is described as design-complete and evaluation-ready for PSM I. The page does not claim PSM II measurements, production reliability, unverified certification links or invented project URLs.
+FunCloudSOC is described as design-complete and evaluation-ready for PSM I. The site does not turn planned PSM II metrics into achieved results or present prototypes as production systems. External links are only used where a real public destination is available.
 
-## Files
+## Source files
 
-- `index.html`: semantic narrative, project surfaces, diagrams and accessible controls
-- `style.css`: responsive visual system, environment transitions and motion
-- `script.js`: navigation, palette, project case studies, maps, simulator, terminal, live telemetry and form preparation
-- `asset/cloudspace-hero-v1.webp`: optimized production cloudscape
-- `404.html`, `robots.txt`, `sitemap.xml`: static-hosting support and discovery
+- `index.html` — semantic content, route scenes, dialogs and controls
+- `style.css` — visual system, route states, environment and motion
+- `script.js` — navigation, simulations, command palette, telemetry and project state
+- `build-routes.ps1` — creates direct GitHub Pages route documents
+- `asset/cloudspace-hero-v1.webp` — optimized original cloudscape
+- `404.html`, `robots.txt`, `sitemap.xml` — hosting and discovery support
