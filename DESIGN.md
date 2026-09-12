@@ -34,6 +34,8 @@ GitHub Pages receives a physical `index.html` for every route. The History API t
 - Motion: three slow cloud-depth layers, small pointer parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition.
 - Time: AUTO uses local morning, day, sunset and night states; DAY and NIGHT overrides persist locally.
 
+On mobile, the landing scene fits one dynamic viewport and keeps the full name on two intentional lines. Theme controls are removed from the fixed layer so they cannot collide with browser chrome. A visible Cloud Gate replaces the former long sticky gap, while its sky-to-navy gradient carries the user into a blue-toned hub. The navigation stays light over the daytime cloud scene and changes to navy only when the dark hub enters. Night mode uses a matching dark cloud gate.
+
 ## Project presentation
 
 Threat Nexus XDR is the flagship and includes an architecture flow plus a manual incident replay. The remaining projects use a consistent case-study structure: challenge, role, architecture, cloud or engineering approach, security, automation, observability, outcome and lessons. Source buttons point only to repositories confirmed on the public GitHub profile.

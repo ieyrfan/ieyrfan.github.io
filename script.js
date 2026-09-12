@@ -357,9 +357,18 @@
     nav?.classList.toggle("scrolled", scroll > 36);
     const marker = innerHeight * .32;
     const active = regionSections.filter(section => { const rect = section.getBoundingClientRect(); return rect.top <= marker && rect.bottom > marker && getComputedStyle(section).display !== "none"; }).pop();
-    if (active) { $("#regionReadout").textContent = `PAGE / ${active.dataset.region}`; nav?.classList.toggle("over-dark", !["OPEN SKY", "CONTACT"].includes(active.dataset.region)); }
+    if (active) { $("#regionReadout").textContent = `PAGE / ${active.dataset.region}`; nav?.classList.toggle("over-dark", !["OPEN SKY", "ENTER CLOUD", "CONTACT"].includes(active.dataset.region)); }
     const entry = $("#cloud-entry");
-    if (entry && root.dataset.page === "landing") { const rect = entry.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight))); $(".entry-cloud-a").style.transform = `scale(${1.18 + progress * .52}) translate3d(${progress * 5}%,0,0)`; $(".entry-cloud-b").style.transform = `scale(${1.65 + progress * .58}) rotate(180deg) translate3d(${-progress * 4}%,0,0)`; $("#entryBoot").classList.toggle("visible", progress > .34); }
+    if (entry && root.dataset.page === "landing") {
+      if (touchMode.matches) {
+        $("#entryBoot").classList.add("visible");
+      } else {
+        const rect = entry.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
+        $(".entry-cloud-a").style.transform = `scale(${1.18 + progress * .52}) translate3d(${progress * 5}%,0,0)`;
+        $(".entry-cloud-b").style.transform = `scale(${1.65 + progress * .58}) rotate(180deg) translate3d(${-progress * 4}%,0,0)`;
+        $("#entryBoot").classList.toggle("visible", progress > .34);
+      }
+    }
     scrollTick = false;
   }
   addEventListener("scroll", () => { if (!scrollTick) { requestAnimationFrame(updateScroll); scrollTick = true; } }, { passive: true });
