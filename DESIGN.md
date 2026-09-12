@@ -10,7 +10,7 @@ The visual direction avoids generic portfolio cards, decorative gradients and un
 
 The site uses focused route scenes while preserving one coherent system:
 
-- `/` → cinematic entry and control-plane overview
+- `/` → cinematic entry and cloud service overview
 - `/cloud/` → service hub
 - `/about/` → identity and engineering principles
 - `/stack/` → interactive technology topology
@@ -18,7 +18,6 @@ The site uses focused route scenes while preserving one coherent system:
 - `/projects/funcloudsoc/` → incident replay
 - `/projects/pantalk/` → secure communication path
 - `/projects/neuronote/` → student wellness system
-- `/security/` → layered incident simulation
 - `/journey/` → altitude timeline and credentials
 - `/lab/` → experiments, request simulator, CLI and telemetry
 - `/contact/` → connection channel and cloud exit
@@ -29,7 +28,7 @@ GitHub Pages receives a physical `index.html` for every route. JavaScript then m
 
 AUTO mode follows the visitor's local time: morning, day, sunset and night. DAY and NIGHT overrides persist in local storage. Each environment changes the sky, sun or moon, stars, cloud lighting and interface contrast. AUTO transitions use a long duration so the atmosphere changes gradually.
 
-The hero uses three cloud depth layers, subtle pointer parallax and a staged reveal. Route changes use the cloudscape as a transition surface. Each destination adjusts that transition: security darkens, projects become more architectural, journey moves vertically, and contact opens into brighter cloud.
+The hero uses three cloud depth layers, subtle pointer parallax and a staged reveal. Route changes use the cloudscape as a transition surface. Each destination adjusts that transition: projects become more architectural, journey moves vertically, and contact opens into brighter cloud.
 
 ## Interaction hierarchy
 
@@ -38,14 +37,13 @@ The hero uses three cloud depth layers, subtle pointer parallax and a staged rev
 - Navigation: History API routes with browser back and forward support.
 - Story: cloud entry, altitude progression, incident replay and decompression at contact.
 
-The Cloud Hub is an irregular service topology. About shows an identity object; Stack uses an orbit; Projects displays deployment health; Security scans; Journey tracks altitude; Lab behaves as a sandbox; Contact emits a signal.
+The Cloud Hub is an irregular service topology. About shows an identity object; Stack uses an orbit; Projects displays deployment health; Journey tracks altitude; Lab behaves as a sandbox; Contact emits a signal.
 
 ## Technical interactions
 
 - `Ctrl/Cmd + K` opens a searchable command palette.
 - Stack categories and nodes reveal purpose, combinations, project usage and related services.
 - FunCloudSOC runs a manual incident replay through request, observation, event, detection, classification, bounded response and containment.
-- Security simulates an incident across identity, visibility, detection, compliance and response layers before returning to operational state.
 - Lab cards open structured experiment records. The request simulator and terminal perform visible state changes.
 - GitHub telemetry uses the public API and removes unavailable data instead of estimating it.
 - A visual-only random session ID and compact session log reinforce the system metaphor.

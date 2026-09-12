@@ -10,7 +10,6 @@ $routes = @(
   'projects/funcloudsoc',
   'projects/pantalk',
   'projects/neuronote',
-  'security',
   'journey',
   'lab',
   'contact'

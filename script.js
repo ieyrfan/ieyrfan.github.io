@@ -77,17 +77,17 @@
   const commands = [
     ["Cloud Hub", "Irfan Cloud service directory", "/cloud/"], ["About", "The human behind the infrastructure", "/about/"], ["Projects", "Selected deployment environments", "/projects/"],
     ["FunCloudSOC", "Autonomous cloud security response", "/projects/funcloudsoc/"], ["PANTALK", "Privacy-first communication platform", "/projects/pantalk/"], ["NeuroNote", "Wellness and productivity system", "/projects/neuronote/"],
-    ["Skills", "Interactive infrastructure map", "/stack/"], ["AWS", "Cloud tools and laboratory", "/stack/"], ["Security", "Identity, visibility, detection and response", "/security/"],
+    ["Skills", "Interactive infrastructure map", "/stack/"], ["AWS", "Cloud tools and laboratory", "/stack/"],
     ["Experience", "Altitude-based learning journey", "/journey/"], ["Certifications", "Completed learning credentials", "/journey/"],
     ["Resume", "Download PDF résumé", "asset/Muhammad_Irfan_Resume.pdf"], ["GitHub", "Open ieyrfan on GitHub", "https://github.com/ieyrfan"],
     ["LinkedIn", "Open Muhammad Irfan on LinkedIn", "https://www.linkedin.com/in/irfanrizal2004"], ["Contact", "Establish a connection", "/contact/"]
   ];
 
   const routeMap = {
-    "/": ["landing", "sky", "PUBLIC SKY"], "/cloud": ["cloud", "control-plane", "IRFAN CLOUD HUB"], "/about": ["about", "identity", "IDENTITY"],
+    "/": ["landing", "sky", "PUBLIC SKY"], "/cloud": ["cloud", "cloud-hub", "IRFAN CLOUD HUB"], "/about": ["about", "identity", "IDENTITY"],
     "/stack": ["stack", "stack", "INFRASTRUCTURE"], "/projects": ["projects", "deployments", "DEPLOYMENTS"],
     "/projects/funcloudsoc": ["project-funcloudsoc", "deployments", "FUNCLOUDSOC"], "/projects/pantalk": ["project-pantalk", "deployments", "PANTALK"], "/projects/neuronote": ["project-neuronote", "deployments", "NEURONOTE"],
-    "/security": ["security", "security", "SECURITY LAYER"], "/journey": ["journey", "journey", "ALTITUDE JOURNEY"], "/lab": ["lab", "lab", "CLOUD LAB"], "/contact": ["contact", "contact", "CONNECTION"]
+    "/journey": ["journey", "journey", "ALTITUDE JOURNEY"], "/lab": ["lab", "lab", "CLOUD LAB"], "/contact": ["contact", "contact", "CONNECTION"]
   };
   const normalizePath = path => path.replace(/\/+$/, "") || "/";
   const autoAtmosphere = () => { const h = new Date().getHours(); return h < 6 || h >= 20 ? "night" : h < 11 ? "morning" : h < 18 ? "day" : "sunset"; };
@@ -219,16 +219,6 @@
     const context = $("#stackContext"); context.classList.remove("updated"); context.innerHTML = `<span>TECHNOLOGY NODE / SELECTED</span><h3>${name}</h3><dl class="tech-detail"><div><dt>PURPOSE</dt><dd>Supports ${groups.join(", ")} responsibilities inside the environment.</dd></div><div><dt>USED WITH</dt><dd>${related.slice(0, 3).join(" · ")}</dd></div><div><dt>PROJECT USAGE</dt><dd>Practiced through cloud labs and selected deployment architecture.</dd></div><div><dt>RELATED SERVICES</dt><dd>${related.slice(3).join(" · ") || "AWS · Linux · Python"}</dd></div></dl>`; requestAnimationFrame(() => context.classList.add("updated"));
     logEvent(`${name} technology node inspected`);
   }));
-
-  $$(".security-layers button").forEach(button => button.addEventListener("mouseenter", () => { $$(".security-layers button").forEach(b => b.classList.toggle("active", b === button)); $(".security-radar")?.classList.add("active"); }));
-  $(".security-layers")?.addEventListener("mouseleave", () => $(".security-radar")?.classList.remove("active"));
-  let securityTimer = 0;
-  $("#simulateIncident")?.addEventListener("click", () => {
-    window.clearTimeout(securityTimer); const buttons = $$(".security-layers button"), section = $("#security"), state = $(".security-state"), status = $("#securityStatus"); let step = 0;
-    section.classList.add("incident-active"); state.className = "security-state incident"; status.innerHTML = "<i></i> SECURITY EVENT"; logEvent("Security incident simulation started");
-    const advance = () => { buttons.forEach((button, index) => button.classList.toggle("active", index === step)); step += 1; if (step < buttons.length) securityTimer = window.setTimeout(advance, reducedMotion.matches ? 80 : 650); else securityTimer = window.setTimeout(() => { state.className = "security-state contained"; status.innerHTML = "<i></i> THREAT CONTAINED"; section.classList.remove("incident-active"); logEvent("Simulated threat contained"); securityTimer = window.setTimeout(() => { state.className = "security-state"; status.innerHTML = "<i></i> OPERATIONAL"; }, reducedMotion.matches ? 80 : 1800); }, reducedMotion.matches ? 80 : 650); };
-    advance();
-  });
 
   $$(".lab-toolbar button").forEach(button => button.addEventListener("click", () => {
     const tag = button.dataset.lab;
