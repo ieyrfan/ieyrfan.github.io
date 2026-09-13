@@ -12,7 +12,7 @@ The site uses focused routes while preserving one coherent interface:
 
 - `/` — personal hero and cloud entry
 - `/cloud/` — asymmetric portfolio hub
-- `/about/` — profile, narrative, direction and engineering principles
+- `/about/` — text-led profile, narrative, direction and engineering principles
 - `/experience/` — UTeM technical operations, Port Klang internship, achievement and leadership
 - `/projects/` — nine selected engineering projects
 - `/projects/threat-nexus/`, `/projects/pantalk/`, `/projects/omniverse/`, `/projects/cspm/`, `/projects/data-governance/`, `/projects/aegis/`, `/projects/niyyah/`, `/projects/smartchef/`, `/projects/funtechpay/` — direct project case studies
