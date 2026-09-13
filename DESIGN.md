@@ -28,13 +28,14 @@ GitHub Pages receives a physical `index.html` for every route. The History API t
 ## Visual system
 
 - Open sky: pale blue cloud photography, dark navy type, generous space and a restrained green status accent.
-- Engineering environment: near-black navy, thin slate borders, cyan wayfinding and white editorial headings.
+- Portfolio hub: warm mineral white, graphite typography, pale steel surfaces and one restrained steel-blue project accent.
+- Engineering detail routes: near-black navy, thin slate borders, cyan wayfinding and white editorial headings.
 - Typography: Space Grotesk for identity and hierarchy, Inter for reading, JetBrains Mono for labels and system notation.
 - Layout: a 12-column asymmetric hub on large screens, two columns on tablets and a clear single column on mobile.
 - Motion: three slow cloud-depth layers, pointer and scroll parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition. Touch devices use scroll-linked depth instead of pointer-only movement.
 - Time: AUTO uses local morning, day, sunset and night states; DAY and NIGHT overrides persist locally.
 
-On mobile, the landing scene fits one dynamic viewport and keeps the full name on two intentional lines. Theme controls are removed from the fixed layer so they cannot collide with browser chrome. The Cloud Gate uses a 118 svh scroll track with a 100 svh sticky scene, keeping the message visible while two masked cloud layers travel in opposite directions and grow with swipe progress. The landing clouds also gain subtle depth during the first scroll. Its sky-to-navy gradient carries the user into a blue-toned hub, the navigation stays light over the daytime cloud scene and changes to navy only when the dark hub enters. Night mode uses a matching dark cloud gate. Reduced-motion preferences preserve the complete visual transition without scroll-linked transforms.
+On mobile, the landing scene fits one dynamic viewport and keeps the full name on two intentional lines. Theme controls are removed from the fixed layer so they cannot collide with browser chrome. The Cloud Gate uses a 205 svh scroll track with a 100 svh sticky scene. Two cloud fields accelerate toward the viewer and scale beyond the viewport, a bright fog wash peaks as the camera penetrates the cloud layer, and a pale steel aperture then reveals the mineral-white portfolio hub. The entry card dissolves before penetration so the atmosphere becomes the focal point. Navigation contrast follows the light exit surface. Night mode uses a cooler fog wash and matching dark cloud treatment. Reduced-motion preferences preserve the complete visual transition without scroll-linked transforms.
 
 ## Project presentation
 
