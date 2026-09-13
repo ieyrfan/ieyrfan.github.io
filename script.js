@@ -323,6 +323,7 @@
     if (scroll) window.scrollTo({ top: 0, behavior: "auto" });
     if (route[0].startsWith("project-")) openProject(route[0].replace("project-", ""), false);
     else if (caseStudy?.open) closeProject(false);
+    window.dispatchEvent(new CustomEvent("portfolio:route", { detail: { path: normalized, page: route[0], title: route[2] } }));
   }
   function routeTo(path, customLabel = "") {
     const normalized = normalizePath(path), route = routeMap[normalized];
