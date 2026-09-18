@@ -1,8 +1,8 @@
-# MUHAMMAD IRFAN / CLOUD ENGINEERING DOSSIER
+# MUHAMMAD IRFAN / STORM SIGNAL SYSTEM
 
 ## Design position
 
-The portfolio presents Muhammad Irfan bin Rizal first and uses Irfan Cloud as the environment around his work. The visual language combines an open, realistic cloud entry with a precise engineering dossier for the working pages. Restrained typography, structured records, diagrams and interaction panels explain the work without imitating a fictional monitoring dashboard.
+The portfolio presents Muhammad Irfan bin Rizal first and uses Irfan Cloud as the environment around his work. The visual language moves from an open, realistic cloud entry into a cinematic engineering system built from storm-black surfaces, warm bone typography and signal-orange wayfinding. Editorial compositions, diagrams and direct interaction explain the work without imitating a fictional monitoring dashboard.
 
 The core message is: **Engineering what happens behind the cloud.** Supporting content stays grounded in education, professional experience, public project repositories and named credentials.
 
@@ -28,9 +28,9 @@ GitHub Pages receives a physical `index.html` for every route. The History API t
 ## Visual system
 
 - Open sky: cloud photography, strong white type and a restrained status accent.
-- Portfolio hub: neutral white, graphite typography and one deep graphite project panel.
-- Engineering detail routes: white working surfaces, quiet rules, a single blue wayfinding accent and dark readable headings. Dark colour is reserved for diagrams, project architecture and focused contact areas.
-- Typography: Inter Tight for identity and hierarchy, Inter for reading, and IBM Plex Mono for labels and system notation.
+- Portfolio hub: warm bone canvas, storm-black project anchor and signal-orange interaction states.
+- Engineering detail routes: alternating bone and obsidian compositions, steel-blue technical detail and signal-orange wayfinding.
+- Typography: variable Archivo for identity, hierarchy and reading, with IBM Plex Mono for labels and system notation.
 - Layout: a compact editorial masthead, a structured three-column hub on large screens, two columns on tablets and a clear single column on phones.
 - Motion: three slow cloud-depth layers, pointer and scroll parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition. Touch devices use scroll-linked depth instead of pointer-only movement.
 - Time: AUTO uses local morning, day, sunset and night states; DAY and NIGHT overrides persist locally.

@@ -354,6 +354,7 @@
   let scrollTick = false;
   function updateScroll() {
     const scroll = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    root.style.setProperty("--site-scroll", String(max > 0 ? scroll / max : 0));
     if ($("#scrollMeter")) $("#scrollMeter").style.width = `${max > 0 ? scroll / max * 100 : 0}%`;
     nav?.classList.toggle("scrolled", scroll > 36);
     const marker = innerHeight * .32;
@@ -400,7 +401,7 @@
     hero?.addEventListener("pointermove", event => { const x = event.clientX / innerWidth - .5, y = event.clientY / innerHeight - .5; layers.forEach((layer, index) => { if (layer) { layer.style.setProperty("--parallax-x", `${x * strengths[index]}px`); layer.style.setProperty("--parallax-y", `${y * strengths[index] * .6}px`); } }); });
     hero?.addEventListener("pointerleave", () => layers.forEach(layer => { if (layer) { layer.style.setProperty("--parallax-x", "0px"); layer.style.setProperty("--parallax-y", "0px"); } }));
     const cursor = $("#cursor"), ring = $("#cursorRing"); let targetX = -100, targetY = -100, ringX = -100, ringY = -100;
-    addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); });
+    addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; root.style.setProperty("--pointer-x", `${targetX}px`); root.style.setProperty("--pointer-y", `${targetY}px`); cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); });
     const animateCursor = () => { ringX += (targetX - ringX) * .16; ringY += (targetY - ringY) * .16; ring.style.transform = `translate3d(${ringX}px,${ringY}px,0)`; requestAnimationFrame(animateCursor); }; animateCursor();
     document.addEventListener("pointerover", event => document.body.classList.toggle("cursor-link", Boolean(event.target.closest("a,button,[role=button]"))));
   }
