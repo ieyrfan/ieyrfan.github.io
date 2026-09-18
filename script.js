@@ -10,7 +10,7 @@
   const projectData = {
     "threat-nexus": {
       order: "01 / FINAL YEAR PROJECT",
-      name: "THREAT NEXUS XDR",
+      name: "Threat Nexus XDR",
       subtitle: "Cloud-Native Autonomous Security Response",
       tags: ["AWS EC2", "Lambda", "DynamoDB", "EventBridge", "Flask", "Chart.js"],
       source: "https://github.com/ieyrfan/Threat-Nexus-XDR-Enterprise-Cloud-Cybersecurity-Platform",
@@ -29,7 +29,7 @@
     },
     pantalk: {
       order: "02 / CURRENT",
-      name: "PANTALK",
+      name: "PanTalk",
       subtitle: "Privacy-First Messaging Platform",
       tags: ["React", "Node.js", "Socket.IO", "PostgreSQL", "AWS"],
       source: "https://github.com/ieyrfan/PanTalk",
@@ -48,7 +48,7 @@
     },
     omniverse: {
       order: "03 / RELIABILITY",
-      name: "OMNIVERSE",
+      name: "Omniverse",
       subtitle: "Multi-Cloud Disaster Recovery / SRE Showcase",
       tags: ["Terraform", "AWS EKS", "GCP GKE", "Python", "Boto3", "React"],
       source: "https://github.com/ieyrfan/omniverse-cloud-dr",
@@ -67,7 +67,7 @@
     },
     cspm: {
       order: "04 / CLOUD POSTURE",
-      name: "CLOUD SECURITY POSTURE AUDIT",
+      name: "Cloud security posture audit",
       subtitle: "Production-Grade CSPM Framework",
       tags: ["Terraform", "Prowler", "Python", "CIS Benchmarks", "GitHub Actions"],
       source: "https://github.com/ieyrfan/Cloud-Security-Posture-Audit",
@@ -86,7 +86,7 @@
     },
     "data-governance": {
       order: "05 / ZERO TRUST",
-      name: "CLOUD DATA GOVERNANCE",
+      name: "Cloud data governance",
       subtitle: "Zero-Trust Engine for AWS S3 Data Lakes",
       tags: ["Python", "Terraform", "AWS", "Next.js"],
       source: "https://github.com/ieyrfan/cloud-data-governance",
@@ -264,28 +264,13 @@
   ];
 
   const normalizePath = path => path.replace(/\/+$/, "") || "/";
-  const getAtmosphere = () => { const hour = new Date().getHours(); return hour < 6 || hour >= 19.5 ? "night" : hour < 11 ? "morning" : hour < 18 ? "day" : "sunset"; };
-  const atmosphereCopy = {
-    morning: ["GOOD MORNING.", "MORNING OPERATIONS"],
-    day: ["GOOD AFTERNOON.", "DAYLIGHT OPERATIONS"],
-    sunset: ["GOOD EVENING.", "GOLDEN HOUR"],
-    night: ["GOOD EVENING.", "LATE SESSION ACTIVE"]
-  };
-
-  function setThemeMode(mode, persist = true) {
-    const atmosphere = mode === "auto" ? getAtmosphere() : mode;
-    root.dataset.mode = mode;
-    root.dataset.theme = atmosphere;
-    $$('[data-theme-mode]').forEach(button => { const active = button.dataset.themeMode === mode; button.classList.toggle("active", active); button.setAttribute("aria-pressed", String(active)); });
-    const copy = atmosphereCopy[atmosphere] || atmosphereCopy.day;
-    if ($("#greeting")) $("#greeting").textContent = copy[0];
-    if ($("#environmentLabel")) $("#environmentLabel").textContent = copy[1];
-    $('meta[name="theme-color"]')?.setAttribute("content", atmosphere === "night" ? "#07111f" : atmosphere === "sunset" ? "#425979" : "#dbefff");
-    if (persist) try { localStorage.setItem("cloudspace-theme-mode", mode); } catch {}
+  function setPortfolioTheme() {
+    root.dataset.mode = "day";
+    root.dataset.theme = "day";
+    $$('[data-theme-mode]').forEach(button => button.setAttribute("aria-pressed", "false"));
+    $('meta[name="theme-color"]')?.setAttribute("content", "#0c1728");
   }
-  setThemeMode(root.dataset.mode || "auto", false);
-  $$('[data-theme-mode]').forEach(button => button.addEventListener("click", () => setThemeMode(button.dataset.themeMode)));
-  window.setInterval(() => { if (root.dataset.mode === "auto") setThemeMode("auto", false); }, 60000);
+  setPortfolioTheme();
 
   const stars = $("#stars");
   if (stars) for (let index = 0; index < 22; index += 1) { const star = document.createElement("i"); star.style.left = `${4 + Math.random() * 92}%`; star.style.top = `${3 + Math.random() * 68}%`; star.style.setProperty("--twinkle", `${16 + Math.random() * 28}s`); star.style.setProperty("--delay", `${-Math.random() * 20}s`); star.style.opacity = String(.14 + Math.random() * .4); stars.appendChild(star); }
@@ -334,12 +319,12 @@
     transition.classList.toggle("signature", signature);
     $("#routeTransitionLabel").textContent = customLabel || (signature ? "ENTERING IRFAN CLOUD" : `OPENING ${route[1]}`);
     document.body.classList.add("route-leaving"); transition.classList.remove("reveal"); transition.classList.add("active");
-    const coverDelay = reducedMotion.matches ? 20 : signature ? 1250 : 460;
+    const coverDelay = reducedMotion.matches ? 20 : signature ? 720 : 140;
     routeTimer = window.setTimeout(() => {
       history.pushState({}, "", normalized === "/" ? "/" : `${normalized}/`);
       applyRoute(normalized);
       transition.classList.add("reveal"); document.body.classList.remove("route-leaving");
-      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 520);
+      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 220);
     }, coverDelay);
   }
   document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return; event.preventDefault(); toggleMenu(false); routeTo(link.pathname); });
