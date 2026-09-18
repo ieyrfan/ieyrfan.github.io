@@ -1,8 +1,8 @@
-# MUHAMMAD IRFAN / FIELD NOTES SYSTEM
+# MUHAMMAD IRFAN / TECHNICAL MINIMAL SYSTEM
 
 ## Design position
 
-The portfolio presents Muhammad Irfan bin Rizal first and uses Irfan Cloud as the environment around his work. The visual language moves from an open, realistic cloud entry into a bright editorial engineering portfolio built from warm paper, soft stone, muted blue and burgundy wayfinding. Compact mastheads, readable project records and direct interaction explain the work without imitating a fictional monitoring dashboard.
+The portfolio presents Muhammad Irfan bin Rizal first and uses Irfan Cloud as the environment around his work. The visual language moves from an open, realistic cloud entry into a restrained technical portfolio built from neutral white surfaces, graphite typography, thin rules and one blue interaction colour. Compact headings, direct project records and quiet interaction explain the work without imitating a fictional monitoring dashboard.
 
 The core message is: **Engineering what happens behind the cloud.** Supporting content stays grounded in education, professional experience, public project repositories and named credentials.
 
@@ -28,8 +28,8 @@ GitHub Pages receives a physical `index.html` for every route. The History API t
 ## Visual system
 
 - Open sky: cloud photography, strong white type and a restrained status accent.
-- Portfolio hub: warm paper canvas, soft blue technical modules and burgundy interaction states.
-- Engineering detail routes: consistently light editorial compositions, graphite typography, muted-blue technical detail and burgundy wayfinding.
+- Portfolio hub: neutral canvas, white modules, graphite type and blue interaction states.
+- Engineering detail routes: minimal white compositions, thin grey rules, controlled type scales and a single blue wayfinding colour.
 - Typography: variable Archivo for identity, hierarchy and reading, with IBM Plex Mono for labels and system notation.
 - Layout: a compact editorial masthead, a structured three-column hub on large screens, two columns on tablets and a clear single column on phones.
 - Motion: three slow cloud-depth layers, pointer and scroll parallax, staged hero entry, 460 ms route transitions and a longer signature cloud-entry transition. Touch devices use scroll-linked depth instead of pointer-only movement.
