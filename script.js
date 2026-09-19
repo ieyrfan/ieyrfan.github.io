@@ -319,12 +319,12 @@
     transition.classList.toggle("signature", signature);
     $("#routeTransitionLabel").textContent = customLabel || (signature ? "ENTERING IRFAN CLOUD" : `OPENING ${route[1]}`);
     document.body.classList.add("route-leaving"); transition.classList.remove("reveal"); transition.classList.add("active");
-    const coverDelay = reducedMotion.matches ? 20 : signature ? 720 : 140;
+    const coverDelay = reducedMotion.matches ? 20 : signature ? 720 : 260;
     routeTimer = window.setTimeout(() => {
       history.pushState({}, "", normalized === "/" ? "/" : `${normalized}/`);
       applyRoute(normalized);
       transition.classList.add("reveal"); document.body.classList.remove("route-leaving");
-      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 220);
+      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 280);
     }, coverDelay);
   }
   document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return; event.preventDefault(); toggleMenu(false); routeTo(link.pathname); });
@@ -332,6 +332,7 @@
   window.addEventListener("resize", () => syncNavIndicator(root.dataset.page));
 
   const revealItems = $$(".reveal");
+  revealItems.forEach((item, index) => item.style.setProperty("--reveal-order", String(index % 5)));
   if (reducedMotion.matches || !("IntersectionObserver" in window)) revealItems.forEach(item => item.classList.add("visible"));
   else { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .08, rootMargin: "0px 0px -5%" }); revealItems.forEach(item => observer.observe(item)); }
 
