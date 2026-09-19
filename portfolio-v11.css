@@ -68,3 +68,82 @@ html[data-page=security] body.portfolio-v10 #security .page-heading h2{color:var
 .portfolio-v10 .hub-v3 .module-projects{grid-column:span 2;grid-row:span 2}
 .portfolio-v10 .hub-person{margin-bottom:0}.portfolio-v10 .hub-v3 .module-projects{grid-row:auto}
 .portfolio-v10 .service-grid.hub-v3{grid-auto-rows:minmax(210px,auto)}
+
+/* Keep the document tied to the layout viewport; the legacy layer used 100vw. */
+html{max-width:100%;overflow-x:clip}
+body.portfolio-v10{width:100%;max-width:100%;overflow-x:clip}
+
+/* Mobile hub hard reset: keep every portfolio module in one explicit column. */
+@media(max-width:760px){
+  .portfolio-v10 a,.portfolio-v10 button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .portfolio-v10 .cloud-hub{min-width:0}
+  .portfolio-v10 .service-grid.hub-v3{
+    width:100%;
+    min-width:0;
+    display:grid;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-auto-columns:minmax(0,1fr);
+    grid-auto-flow:row;
+    grid-auto-rows:auto;
+    gap:12px;
+  }
+  .portfolio-v10 .hub-v3 .service-module,
+  .portfolio-v10 .hub-v3 .module-projects,
+  .portfolio-v10 .hub-v3 .module-about,
+  .portfolio-v10 .hub-v3 .module-experience,
+  .portfolio-v10 .hub-v3 .module-stack,
+  .portfolio-v10 .hub-v3 .module-security,
+  .portfolio-v10 .hub-v3 .module-journey,
+  .portfolio-v10 .hub-v3 .module-certifications,
+  .portfolio-v10 .hub-v3 .module-lab,
+  .portfolio-v10 .hub-v3 .module-contact{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    min-height:180px;
+    padding:21px;
+  }
+  .portfolio-v10 .hub-v3 .module-projects{min-height:220px}
+  .portfolio-v10 .hub-v3 .service-module h3{margin:40px 0 8px}
+  .portfolio-v10 .hub-v3 .service-module em{margin-top:auto;padding-top:18px}
+  .portfolio-v10 .service-grid:hover .service-module:not(:hover){opacity:1}
+  .portfolio-v10 .hub-v3 .service-module:hover{transform:none;box-shadow:none}
+  html[data-page=landing] body.portfolio-v10 .hub-v3 .service-module:hover,
+  html[data-page=cloud] body.portfolio-v10 .hub-v3 .service-module:hover{
+    color:var(--ink);
+    background:var(--white)!important;
+    border-color:var(--line);
+  }
+  html[data-page=landing] body.portfolio-v10 .hub-v3 .module-projects:hover,
+  html[data-page=cloud] body.portfolio-v10 .hub-v3 .module-projects:hover{
+    color:#fff;
+    background:var(--navy)!important;
+    border-color:var(--navy);
+  }
+  .portfolio-v10 .projects-v3{
+    width:100%;
+    min-width:0;
+    grid-template-columns:minmax(0,1fr);
+  }
+  .portfolio-v10 .project-featured,
+  .portfolio-v10 .project-priority-grid,
+  .portfolio-v10 .project-secondary-grid,
+  .portfolio-v10 .project-copy,
+  .portfolio-v10 .threat-map,
+  .portfolio-v10 .project-card,
+  .portfolio-v10 .project-small{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+  .portfolio-v10 .project-card *,
+  .portfolio-v10 .project-small *,
+  .portfolio-v10 .project-copy *{overflow-wrap:anywhere}
+}
+
+@media(hover:none){
+  .portfolio-v10 .service-grid:hover .service-module:not(:hover){opacity:1}
+  .portfolio-v10 .hub-v3 .service-module:hover{transform:none;box-shadow:none}
+}
