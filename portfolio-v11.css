@@ -374,3 +374,15 @@ body.portfolio-v10{width:100%;max-width:100%;overflow-x:clip}
   .portfolio-v10 .entry-arrival{display:none!important}
   .portfolio-v10 .entry-cloud{animation:none!important}
 }
+
+/* Keep the operating-system cursor available when the decorative cursor is disabled. */
+@media (hover:hover) and (pointer:fine){
+  body.portfolio-v10{cursor:default!important}
+  body.portfolio-v10 a,
+  body.portfolio-v10 button,
+  body.portfolio-v10 summary,
+  body.portfolio-v10 label,
+  body.portfolio-v10 [role="button"]{cursor:pointer!important}
+  body.portfolio-v10 input,
+  body.portfolio-v10 textarea{cursor:text!important}
+}
