@@ -348,34 +348,79 @@
     if (active) { $("#regionReadout").textContent = `PAGE / ${active.dataset.region}`; nav?.classList.toggle("over-dark", !["OPEN SKY", "ENTER CLOUD", "IRFAN CLOUD HUB", "CONTACT"].includes(active.dataset.region)); }
     const entry = $("#cloud-entry");
     if (entry && root.dataset.page === "landing") {
+      const rect = entry.getBoundingClientRect();
+      const travel = Math.max(1, rect.height - innerHeight);
+      const progress = Math.max(0, Math.min(1, -rect.top / travel));
+      const smooth = (start, end, value) => {
+        const amount = Math.max(0, Math.min(1, (value - start) / Math.max(.001, end - start)));
+        return amount * amount * (3 - 2 * amount);
+      };
+      const approach = smooth(.02, .58, progress);
+      const penetration = smooth(.18, .62, progress);
+      const exit = smooth(.66, 1, progress);
+      const whiteoutAmount = smooth(.28, .5, progress) * (1 - smooth(.56, .78, progress));
+      const cloudFade = 1 - smooth(.74, .98, progress);
+      const bootIn = smooth(.025, .15, progress);
+      const bootOut = smooth(.56, .72, progress);
+      const bootOpacity = bootIn * (1 - bootOut);
+      const arrivalIn = smooth(.76, .94, progress);
+      const heroProgress = Math.max(0, Math.min(1, scroll / Math.max(1, innerHeight)));
+      const farCloud = $(".cloud-far");
+      const midCloud = $(".cloud-mid");
+      const nearCloud = $(".cloud-near");
+      const entryA = $(".entry-cloud-a");
+      const entryB = $(".entry-cloud-b");
+      const whiteout = $(".entry-whiteout");
+      const depth = $(".entry-depth");
+      const boot = $("#entryBoot");
+      const arrival = $("#entryArrival");
+      const sticky = $(".cloud-entry-sticky");
+      const percent = $("#entryPercent");
+      const state = $("#entryState");
       if (touchMode.matches) {
-        const heroProgress = Math.max(0, Math.min(1, scroll / Math.max(1, innerHeight)));
-        $("#entryBoot").classList.add("visible");
-        if (!reducedMotion.matches) {
-          const rect = entry.getBoundingClientRect(), travel = Math.max(1, rect.height - innerHeight), progress = Math.max(0, Math.min(1, -rect.top / travel));
-          const smooth = (start, end, value) => { const amount = Math.max(0, Math.min(1, (value - start) / Math.max(.001, end - start))); return amount * amount * (3 - 2 * amount); };
-          const approach = smooth(.02, .6, progress), penetration = smooth(.2, .62, progress), exit = smooth(.62, 1, progress);
-          const whiteoutAmount = smooth(.24, .5, progress) * (1 - smooth(.58, .84, progress));
-          const cloudFade = 1 - smooth(.67, .94, progress), bootFade = 1 - smooth(.16, .42, progress);
-          const farCloud = $(".cloud-far"), midCloud = $(".cloud-mid"), nearCloud = $(".cloud-near"), entryA = $(".entry-cloud-a"), entryB = $(".entry-cloud-b"), whiteout = $(".entry-whiteout"), depth = $(".entry-depth"), boot = $("#entryBoot"), sticky = $(".cloud-entry-sticky");
-          if ($("#heroSky")) $("#heroSky").style.setProperty("--parallax-y", `${heroProgress * -18}px`);
-          if (farCloud) farCloud.style.setProperty("--parallax-x", `${heroProgress * 10}px`);
-          if (midCloud) midCloud.style.setProperty("--parallax-x", `${heroProgress * -18}px`);
-          if (nearCloud) nearCloud.style.setProperty("--parallax-y", `${heroProgress * -24}px`);
-          if (sticky) { sticky.style.setProperty("--entry-progress", progress.toFixed(4)); sticky.style.setProperty("--entry-bg-scale", String(1.04 + approach * 1.42)); sticky.style.setProperty("--entry-bg-opacity", String(Math.max(0, .58 * (1 - exit)))); sticky.style.setProperty("--entry-bg-brightness", String(1.2 + whiteoutAmount * .72)); sticky.style.setProperty("--entry-bg-blur", `${penetration * 5}px`); }
-          if (entryA) { entryA.style.transform = `translate3d(${-18 + approach * 27}%,${8 - approach * 24}%,0) scale(${1.16 + approach * 4.45})`; entryA.style.opacity = String(Math.max(0, (.28 + penetration * .7) * cloudFade)); }
-          if (entryB) { entryB.style.transform = `translate3d(${16 - approach * 34}%,${-4 + approach * 22}%,0) scale(${1.42 + approach * 5.35}) rotate(180deg)`; entryB.style.opacity = String(Math.max(0, (.18 + penetration * .68) * cloudFade)); }
-          if (whiteout) { whiteout.style.transform = `scale(${.86 + penetration * .5})`; whiteout.style.opacity = String(whiteoutAmount * .78); }
-          if (depth) { depth.style.transform = `scale(${1.14 - exit * .14})`; depth.style.opacity = String(exit); }
-          if (boot) { boot.style.transform = `translate3d(0,${progress * -34}px,0) scale(${1 + penetration * .075})`; boot.style.opacity = String(bootFade); boot.style.filter = `blur(${penetration * 5}px)`; }
-          nav?.classList.remove("over-dark");
-        }
-      } else {
-        const rect = entry.getBoundingClientRect(), progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
-        $(".entry-cloud-a").style.transform = `scale(${1.18 + progress * .52}) translate3d(${progress * 5}%,0,0)`;
-        $(".entry-cloud-b").style.transform = `scale(${1.65 + progress * .58}) rotate(180deg) translate3d(${-progress * 4}%,0,0)`;
-        $("#entryBoot").classList.toggle("visible", progress > .34);
+        if ($("#heroSky")) $("#heroSky").style.setProperty("--parallax-y", `${heroProgress * -18}px`);
+        if (farCloud) farCloud.style.setProperty("--parallax-x", `${heroProgress * 10}px`);
+        if (midCloud) midCloud.style.setProperty("--parallax-x", `${heroProgress * -18}px`);
+        if (nearCloud) nearCloud.style.setProperty("--parallax-y", `${heroProgress * -24}px`);
       }
+      if (percent) percent.textContent = `${String(Math.round(progress * 100)).padStart(2, "0")}%`;
+      if (state) state.textContent = progress < .2 ? "APPROACH" : progress < .55 ? "CLOUD LAYER" : progress < .82 ? "CLEARING" : "ENVIRONMENT READY";
+      if (boot) boot.classList.add("visible");
+      if (!reducedMotion.matches) {
+        if (sticky) {
+          sticky.style.setProperty("--entry-progress", progress.toFixed(4));
+          sticky.style.setProperty("--entry-bg-scale", String(1.025 + approach * .72));
+          sticky.style.setProperty("--entry-bg-opacity", String(Math.max(0, .7 * (1 - exit))));
+          sticky.style.setProperty("--entry-bg-brightness", String(1.02 + whiteoutAmount * .2));
+          sticky.style.setProperty("--entry-bg-blur", `${penetration * 1.8}px`);
+        }
+        if (entryA) {
+          entryA.style.transform = `translate3d(${-10 + approach * 16}%,${7 - approach * 14}%,0) scale(${1.08 + approach * 1.62})`;
+          entryA.style.opacity = String(Math.max(0, (.24 + penetration * .36) * cloudFade));
+        }
+        if (entryB) {
+          entryB.style.transform = `translate3d(${12 - approach * 21}%,${-6 + approach * 14}%,0) scale(${1.24 + approach * 2.08}) rotate(180deg)`;
+          entryB.style.opacity = String(Math.max(0, (.14 + penetration * .3) * cloudFade));
+        }
+        if (whiteout) {
+          whiteout.style.transform = `scale(${.9 + penetration * .26})`;
+          whiteout.style.opacity = String(whiteoutAmount * .24);
+        }
+        if (depth) {
+          depth.style.transform = `scale(${1.08 - exit * .08})`;
+          depth.style.opacity = String(exit);
+        }
+        if (boot) {
+          boot.style.transform = `translate3d(0,${20 - bootIn * 20 - bootOut * 22}px,0) scale(${.975 + bootIn * .025})`;
+          boot.style.opacity = String(bootOpacity);
+          boot.style.filter = `blur(${bootOut * 1.5}px)`;
+        }
+        if (arrival) {
+          arrival.style.transform = `translate3d(-50%,${18 - arrivalIn * 18}px,0)`;
+          arrival.style.opacity = String(arrivalIn);
+        }
+      }
+      nav?.classList.remove("over-dark");
     }
     scrollTick = false;
   }

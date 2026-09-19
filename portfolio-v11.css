@@ -147,3 +147,230 @@ body.portfolio-v10{width:100%;max-width:100%;overflow-x:clip}
   .portfolio-v10 .service-grid:hover .service-module:not(:hover){opacity:1}
   .portfolio-v10 .hub-v3 .service-module:hover{transform:none;box-shadow:none}
 }
+
+/* Cloud passage v2: layered, scroll-linked depth with a restrained system readout. */
+.portfolio-v10 .cloud-entry{
+  height:175svh;
+  min-height:0;
+  color:#fff;
+  background:#dcecf4;
+}
+.portfolio-v10 .cloud-entry-sticky{
+  --entry-progress:0;
+  --entry-bg-scale:1.025;
+  --entry-bg-opacity:.7;
+  --entry-bg-brightness:1.02;
+  --entry-bg-blur:0px;
+  position:sticky;
+  top:0;
+  height:100svh;
+  min-height:0;
+  display:grid;
+  place-items:center;
+  padding:78px 0 42px;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 51% 39%,rgba(255,255,255,.88) 0 8%,rgba(214,235,246,.34) 34%,transparent 58%),
+    linear-gradient(180deg,#82b7d3 0%,#bddbea 42%,#e5f0f5 76%,#f4f7fb 100%);
+}
+.portfolio-v10 .cloud-entry-sticky::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:-8%;
+  background:url("asset/cloudspace-hero-v1.webp") center 60%/cover no-repeat;
+  filter:brightness(var(--entry-bg-brightness)) saturate(.76) contrast(.9) blur(var(--entry-bg-blur));
+  opacity:var(--entry-bg-opacity);
+  transform:scale(var(--entry-bg-scale));
+  transform-origin:50% 56%;
+  will-change:transform,filter,opacity;
+}
+.portfolio-v10 .cloud-entry-sticky::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:auto 0 0;
+  width:auto;
+  height:34%;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(224,238,245,.45) 58%,rgba(244,247,251,.94));
+  transform:none;
+}
+.portfolio-v10 .entry-cloud{
+  z-index:1;
+  inset:-26%;
+  display:block!important;
+  pointer-events:none;
+  background-image:url("asset/cloudspace-hero-v1.webp");
+  background-repeat:no-repeat;
+  background-size:cover;
+  filter:brightness(1.08) saturate(.72) contrast(.84) blur(.6px);
+  animation:cloud-pass-drift 11s ease-in-out infinite alternate;
+  transform-origin:50% 54%;
+  will-change:transform,opacity;
+}
+.portfolio-v10 .entry-cloud-a{
+  background-position:18% 72%;
+  mix-blend-mode:screen;
+}
+.portfolio-v10 .entry-cloud-b{
+  background-position:82% 36%;
+  mix-blend-mode:soft-light;
+  animation-direction:alternate-reverse;
+}
+.portfolio-v10 .entry-depth,
+.portfolio-v10 .entry-whiteout{
+  position:absolute;
+  inset:-6%;
+  display:block!important;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+.portfolio-v10 .entry-depth{
+  z-index:3;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(255,255,255,.98) 0 18%,rgba(225,239,246,.96) 53%,rgba(244,247,251,.98) 82%),
+    var(--paper);
+  opacity:0;
+}
+.portfolio-v10 .entry-arrival{
+  position:absolute;
+  z-index:5;
+  top:50%;
+  left:50%;
+  width:min(360px,calc(100% - 48px));
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  gap:11px;
+  color:var(--ink);
+  text-align:center;
+  opacity:0;
+  transform:translate3d(-50%,18px,0);
+  will-change:transform,opacity;
+}
+.portfolio-v10 .entry-arrival span{
+  color:var(--blue);
+  font:550 9px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.12em;
+}
+.portfolio-v10 .entry-arrival strong{
+  font:650 clamp(1.35rem,2.4vw,1.9rem)/1.1 "Manrope",sans-serif;
+  letter-spacing:-.04em;
+}
+.portfolio-v10 .entry-arrival i{width:42px;height:2px;background:var(--blue)}
+.portfolio-v10 .entry-whiteout{
+  z-index:4;
+  background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.98) 0 28%,rgba(239,249,253,.76) 56%,rgba(218,237,247,.08) 82%);
+  filter:blur(8px);
+  opacity:0;
+}
+.portfolio-v10 .entry-interface{
+  position:relative;
+  z-index:6;
+  width:min(520px,calc(100% - 40px));
+  min-height:342px;
+  display:flex!important;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:28px;
+  overflow:hidden;
+  color:#f8fbff;
+  background:rgba(8,24,42,.78);
+  border:1px solid rgba(224,240,250,.28);
+  border-radius:14px;
+  box-shadow:0 28px 80px rgba(12,38,59,.22);
+  backdrop-filter:blur(18px) saturate(1.08);
+  opacity:0;
+  will-change:transform,opacity,filter;
+}
+.portfolio-v10 .entry-interface::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,#5a96ff calc(var(--entry-progress)*100%),rgba(255,255,255,.14) 0);
+}
+.portfolio-v10 .entry-interface-meta{
+  position:absolute;
+  top:24px;
+  left:28px;
+  right:28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:rgba(236,246,253,.72);
+  font:500 9px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.08em;
+}
+.portfolio-v10 .entry-interface-meta b{
+  color:#fff;
+  font-weight:600;
+}
+.portfolio-v10 .entry-interface>p{
+  margin:0 0 12px;
+  color:#8db5f7;
+  font:550 9px/1.4 "IBM Plex Mono",monospace;
+  letter-spacing:.09em;
+}
+.portfolio-v10 .entry-interface h2{
+  margin:0;
+  color:#fff;
+  font:620 clamp(3rem,5.2vw,4.6rem)/.88 "Manrope",sans-serif;
+  letter-spacing:-.07em;
+  word-spacing:.05em;
+  text-wrap:balance;
+}
+.portfolio-v10 .entry-progress{
+  height:1px;
+  margin:28px 0 17px;
+  overflow:hidden;
+  background:rgba(255,255,255,.18);
+}
+.portfolio-v10 .entry-progress i{
+  display:block;
+  width:100%;
+  height:100%;
+  background:#7ca8ff;
+  transform:scaleX(var(--entry-progress));
+  transform-origin:left;
+}
+.portfolio-v10 .entry-interface-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.portfolio-v10 .entry-interface-footer strong,
+.portfolio-v10 .entry-interface-footer small{
+  font:500 9px/1.4 "IBM Plex Mono",monospace;
+}
+.portfolio-v10 .entry-interface-footer strong{color:#fff;letter-spacing:.08em}
+.portfolio-v10 .entry-interface-footer small{color:rgba(236,246,253,.58);text-align:right}
+@keyframes cloud-pass-drift{from{translate:-.7% .3%}to{translate:.7% -.4%}}
+
+@media(max-width:760px){
+  .portfolio-v10 .cloud-entry{height:172svh;min-height:0}
+  .portfolio-v10 .cloud-entry-sticky{padding:72px 0 30px}
+  .portfolio-v10 .entry-cloud{inset:-30%}
+  .portfolio-v10 .entry-interface{
+    width:calc(100% - 32px);
+    min-height:318px;
+    padding:23px 21px;
+    border-radius:12px;
+  }
+  .portfolio-v10 .entry-interface-meta{top:21px;left:21px;right:21px}
+  .portfolio-v10 .entry-interface h2{font-size:clamp(2.9rem,13vw,4rem)}
+  .portfolio-v10 .entry-progress{margin:24px 0 15px}
+  .portfolio-v10 .entry-interface-footer{align-items:flex-start;flex-direction:column;gap:6px}
+  .portfolio-v10 .entry-interface-footer small{text-align:left}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .portfolio-v10 .entry-interface{opacity:1!important;transform:none!important;filter:none!important}
+  .portfolio-v10 .entry-arrival{display:none!important}
+  .portfolio-v10 .entry-cloud{animation:none!important}
+}
