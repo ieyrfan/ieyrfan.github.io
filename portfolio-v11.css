@@ -386,3 +386,49 @@ body.portfolio-v10{width:100%;max-width:100%;overflow-x:clip}
   body.portfolio-v10 input,
   body.portfolio-v10 textarea{cursor:text!important}
 }
+
+/* Light-surface contract: override legacy dark panels without weakening text contrast. */
+body.portfolio-v10 .experience-secondary article{
+  color:var(--ink);
+  background:var(--white);
+  border-color:var(--line);
+}
+body.portfolio-v10 .projects-v3 article{
+  color:var(--ink);
+  background:var(--white);
+  border-color:var(--line);
+}
+body.portfolio-v10 .projects-v3 article.project-featured{
+  color:#fff;
+  border-color:var(--navy);
+}
+body.portfolio-v10 .project-card h3 br{display:block}
+body.portfolio-v10 .project-small small,
+body.portfolio-v10 .measured span{color:var(--muted)}
+body.portfolio-v10 dialog.case-study{
+  color:var(--ink);
+  background:var(--white);
+  border-color:var(--line);
+  font-family:"Manrope",sans-serif;
+}
+body.portfolio-v10 dialog.case-study .case-architecture,
+body.portfolio-v10 dialog.case-study .incident-replay{
+  color:var(--ink);
+  background:#f8fafc;
+  border-color:var(--line);
+}
+body.portfolio-v10 dialog.case-study .case-architecture h3,
+body.portfolio-v10 dialog.case-study .incident-heading h3,
+body.portfolio-v10 dialog.case-study .case-grid h3{
+  font-family:"Manrope",sans-serif;
+}
+body.portfolio-v10 dialog.case-study .incident-heading button{
+  color:var(--ink);
+  background:var(--white);
+  border-color:var(--line2);
+}
+body.portfolio-v10 dialog.case-study .incident-heading button:first-child{
+  color:#fff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
