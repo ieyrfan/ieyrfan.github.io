@@ -432,3 +432,335 @@ body.portfolio-v10 dialog.case-study .incident-heading button:first-child{
   background:var(--blue);
   border-color:var(--blue);
 }
+
+/* Professional polish v12: tighter hierarchy, calmer surfaces and stronger reading rhythm. */
+body.portfolio-v10{
+  --radius:6px;
+  --shadow:0 10px 32px rgba(15,23,42,.055);
+  --shadow2:0 18px 44px rgba(15,23,42,.085);
+}
+
+html:not([data-page="landing"]) body.portfolio-v10 .section-shell{
+  padding-top:clamp(54px,5.5vw,76px);
+  padding-bottom:clamp(74px,7vw,104px);
+}
+
+body.portfolio-v10 .page-heading{
+  grid-template-columns:minmax(0,1fr) minmax(250px,330px);
+  gap:22px clamp(34px,5vw,72px);
+  padding:6px 0 38px;
+}
+
+body.portfolio-v10 .page-heading h2{
+  max-width:12ch;
+  font-size:clamp(3rem,4.8vw,4.7rem);
+  line-height:.98;
+  letter-spacing:-.06em;
+}
+
+body.portfolio-v10 .page-heading>span{
+  max-width:31ch;
+  font-size:15px;
+  line-height:1.62;
+}
+
+/* Cloud hub: compact introduction followed by an editorial service index. */
+html[data-page="cloud"] body.portfolio-v10 .cloud-hub,
+html[data-page="landing"] body.portfolio-v10 .cloud-hub{
+  padding-top:clamp(64px,6vw,88px);
+}
+
+body.portfolio-v10 .hub-person{
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.62fr);
+  gap:clamp(44px,6vw,88px);
+  padding-bottom:40px;
+}
+
+body.portfolio-v10 .hub-person h2{
+  max-width:9ch;
+  font-size:clamp(3.8rem,6vw,5.9rem);
+  line-height:.91;
+}
+
+body.portfolio-v10 .service-grid.hub-v3{
+  gap:10px;
+  margin-top:18px;
+}
+
+body.portfolio-v10 .hub-v3 .service-module{
+  min-height:190px;
+  padding:24px;
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .hub-v3 .module-projects{
+  min-height:266px;
+}
+
+body.portfolio-v10 .hub-v3 .service-module h3{
+  font-size:clamp(1.65rem,2.35vw,2.35rem);
+}
+
+body.portfolio-v10 .hub-v3 .service-module p{
+  font-size:14px;
+  line-height:1.58;
+}
+
+/* About: a restrained identity dossier with readable supporting evidence. */
+body.portfolio-v10 .identity-layout.about-v3{
+  grid-template-columns:minmax(250px,292px) minmax(0,1fr);
+  gap:clamp(44px,6vw,82px);
+  margin-top:40px;
+}
+
+body.portfolio-v10 .identity-card{
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .identity-card-no-photo .identity-name{
+  min-height:190px;
+  padding:24px;
+}
+
+body.portfolio-v10 .identity-name strong{
+  font-size:48px;
+}
+
+body.portfolio-v10 .identity-copy section{
+  grid-template-columns:118px minmax(0,1fr);
+  gap:24px;
+  padding:22px 0;
+}
+
+body.portfolio-v10 .identity-copy p{
+  max-width:62ch;
+  font-size:15px;
+  line-height:1.72;
+}
+
+body.portfolio-v10 .identity-copy .large-copy{
+  max-width:30ch;
+  font-size:clamp(1.55rem,2.3vw,2.3rem);
+  line-height:1.24;
+}
+
+body.portfolio-v10 .identity-copy>.button{
+  margin-left:142px;
+}
+
+/* Experience: clearer timeline, denser evidence and fewer dashboard-like boxes. */
+body.portfolio-v10 .experience-timeline,
+body.portfolio-v10 .projects-v3,
+body.portfolio-v10 .credential-groups,
+body.portfolio-v10 .stack-console,
+body.portfolio-v10 .security-clarity,
+body.portfolio-v10 .journey-v3{
+  margin-top:38px;
+}
+
+body.portfolio-v10 .role{
+  grid-template-columns:150px minmax(0,1fr);
+}
+
+body.portfolio-v10 .role-main{
+  padding:28px 0 32px 36px;
+}
+
+body.portfolio-v10 .role-main>p:not(:first-child){
+  font-size:15px;
+  line-height:1.7;
+}
+
+body.portfolio-v10 .impact-grid div,
+body.portfolio-v10 .achievement,
+body.portfolio-v10 .leadership{
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .leadership li,
+body.portfolio-v10 .achievement p{
+  font-size:13px;
+  line-height:1.55;
+}
+
+/* Projects: one cinematic feature, supporting work presented as an ordered archive. */
+body.portfolio-v10 .project-featured{
+  border-radius:6px;
+  box-shadow:0 18px 48px rgba(12,23,40,.14);
+}
+
+body.portfolio-v10 .project-copy{
+  padding:clamp(34px,4.2vw,52px);
+}
+
+body.portfolio-v10 .project-copy>p:first-child{
+  margin-bottom:32px;
+}
+
+body.portfolio-v10 .project-copy h3{
+  font-size:clamp(2.8rem,4.5vw,4.45rem);
+  line-height:.95;
+}
+
+body.portfolio-v10 .project-copy>p:not(:first-child){
+  font-size:15px;
+  line-height:1.68;
+}
+
+body.portfolio-v10 .project-priority-grid,
+body.portfolio-v10 .project-secondary-grid{
+  gap:10px;
+  margin-top:10px;
+}
+
+body.portfolio-v10 .project-card{
+  min-height:328px;
+  padding:26px;
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .project-card h3{
+  margin-top:38px;
+  font-size:clamp(1.8rem,2.5vw,2.45rem);
+}
+
+body.portfolio-v10 .project-card>p:not(:first-child){
+  font-size:14px;
+  line-height:1.65;
+}
+
+body.portfolio-v10 .project-small{
+  min-height:210px;
+  padding:22px;
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .project-small p{
+  font-size:13px;
+}
+
+body.portfolio-v10 .project-small small{
+  font-size:10px;
+  line-height:1.5;
+}
+
+/* Shared tool surfaces use the same quiet geometry. */
+body.portfolio-v10 .stack-console,
+body.portfolio-v10 .security-clarity,
+body.portfolio-v10 .credential-group,
+body.portfolio-v10 .lab-grid article,
+body.portfolio-v10 .resume-card{
+  border-radius:6px;
+  box-shadow:none;
+}
+
+body.portfolio-v10 .stack-tech{
+  border-radius:4px;
+}
+
+body.portfolio-v10 .lab-grid p,
+body.portfolio-v10 .journey-v3 p,
+body.portfolio-v10 .resume-card p{
+  font-size:13px;
+}
+
+body.portfolio-v10 .credential-group li b{
+  font-size:13px;
+}
+
+/* Privacy prompt remains clear without taking over the page. */
+body.portfolio-v10 .analytics-consent{
+  width:min(410px,calc(100vw - 32px));
+  gap:18px;
+  padding:18px;
+  border-radius:6px;
+  font-family:"Manrope",sans-serif;
+}
+
+body.portfolio-v10 .analytics-consent strong{
+  font-family:"Manrope",sans-serif;
+}
+
+body.portfolio-v10 .analytics-consent span,
+body.portfolio-v10 .analytics-consent button{
+  font-family:"IBM Plex Mono",monospace;
+}
+
+@media(max-width:760px){
+  body.portfolio-v10{--radius:6px}
+  html:not([data-page="landing"]) body.portfolio-v10 .section-shell{
+    padding-top:44px;
+    padding-bottom:68px;
+  }
+  body.portfolio-v10 .page-heading{
+    padding-bottom:28px;
+  }
+  body.portfolio-v10 .page-heading h2{
+    max-width:10ch;
+    margin-top:26px;
+    font-size:clamp(2.55rem,11vw,3.45rem);
+    line-height:1;
+  }
+  body.portfolio-v10 .page-heading>span{
+    max-width:34ch;
+    margin-top:14px;
+    font-size:14px;
+  }
+  html[data-page="cloud"] body.portfolio-v10 .cloud-hub,
+  html[data-page="landing"] body.portfolio-v10 .cloud-hub{
+    padding-top:48px;
+  }
+  body.portfolio-v10 .hub-person h2{
+    max-width:8ch;
+    font-size:clamp(3.15rem,14vw,4.2rem);
+  }
+  body.portfolio-v10 .hub-v3 .service-module,
+  body.portfolio-v10 .hub-v3 .module-projects{
+    min-height:176px;
+    padding:21px;
+  }
+  body.portfolio-v10 .hub-v3 .module-projects{min-height:210px}
+  body.portfolio-v10 .identity-layout.about-v3{margin-top:28px}
+  body.portfolio-v10 .identity-card-no-photo .identity-name{min-height:170px}
+  body.portfolio-v10 .identity-copy{margin-top:30px}
+  body.portfolio-v10 .identity-copy section{padding:20px 0}
+  body.portfolio-v10 .identity-copy .large-copy{
+    font-size:clamp(1.35rem,6vw,1.75rem);
+    line-height:1.3;
+  }
+  body.portfolio-v10 .identity-copy p{font-size:14px}
+  body.portfolio-v10 .project-copy h3{font-size:38px}
+  body.portfolio-v10 .project-copy>p:not(:first-child){font-size:14px}
+  body.portfolio-v10 .threat-map{min-height:410px}
+  body.portfolio-v10 .project-card{
+    min-height:292px;
+    padding:22px;
+  }
+  body.portfolio-v10 .project-card h3{
+    margin-top:32px;
+    font-size:31px;
+  }
+  body.portfolio-v10 .project-small{min-height:184px}
+  body.portfolio-v10 .credential-group li b{font-size:12px}
+  body.portfolio-v10 .analytics-consent{
+    right:12px;
+    bottom:12px;
+    width:calc(100vw - 24px);
+    gap:13px;
+    padding:15px;
+  }
+  body.portfolio-v10 .analytics-consent>div:last-child{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:390px){
+  body.portfolio-v10 .page-heading h2{font-size:40px}
+  body.portfolio-v10 .identity-card dl{grid-template-columns:1fr}
+  body.portfolio-v10 .identity-card dl div:nth-child(odd){border-right:0}
+  body.portfolio-v10 .project-copy h3{font-size:35px}
+  body.portfolio-v10 .analytics-consent>div:last-child{grid-template-columns:1fr}
+}
