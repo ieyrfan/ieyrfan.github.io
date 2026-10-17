@@ -27,7 +27,16 @@ $routes = @(
 foreach ($route in $routes) {
   $routeDirectory = Join-Path $siteRoot $route
   New-Item -ItemType Directory -Path $routeDirectory -Force | Out-Null
-  Copy-Item -LiteralPath $sourceIndex -Destination (Join-Path $routeDirectory 'index.html') -Force
+  $routeUrl = "https://irfanrizal.my/$route/"
+  $routeDocument = (Get-Content -Raw -LiteralPath $sourceIndex).
+    Replace('<link rel="canonical" href="https://irfanrizal.my/">', "<link rel=`"canonical`" href=`"$routeUrl`">").
+    Replace('<meta property="og:url" content="https://irfanrizal.my/">', "<meta property=`"og:url`" content=`"$routeUrl`">")
+  $routeDocument = $routeDocument.TrimEnd("`r", "`n") + "`n"
+  [System.IO.File]::WriteAllText(
+    (Join-Path $routeDirectory 'index.html'),
+    $routeDocument,
+    [System.Text.UTF8Encoding]::new($false)
+  )
 }
 
 Write-Output "Generated $($routes.Count) GitHub Pages routes from index.html."

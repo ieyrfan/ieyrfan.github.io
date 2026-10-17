@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ieyrfan.github.io/sitemap.xml
+Sitemap: https://irfanrizal.my/sitemap.xml

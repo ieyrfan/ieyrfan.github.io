@@ -1,6 +1,6 @@
 # Custom domain rollout: irfanrizal.my
 
-The portfolio remains published at `https://ieyrfan.github.io` until the DNS records below resolve. Do not add the repository `CNAME` file before that point; GitHub Pages may redirect visitors to a domain that is not ready.
+DNS was verified against all four GitHub Pages IPv4 addresses on 18 October 2026. The repository now includes a `CNAME` file for `irfanrizal.my`; GitHub Pages certificate provisioning and HTTPS enforcement are the remaining platform steps.
 
 ## 1. Verify the domain in GitHub
 
@@ -24,11 +24,11 @@ Create these records for the apex domain:
 
 Remove conflicting parking, forwarding, `A`, `AAAA`, `ALIAS`, or `ANAME` records for `@` and conflicting `CNAME` records for `www`. Do not create a wildcard `*` record.
 
-## 3. Activate the custom domain
+## 3. Activated repository configuration
 
 After `Resolve-DnsName irfanrizal.my` returns the GitHub Pages addresses above:
 
-1. Add a root file named `CNAME` containing only `irfanrizal.my`.
+1. Add a root file named `CNAME` containing only `irfanrizal.my`. **Completed.**
 2. In repository **Settings → Pages**, save `irfanrizal.my` as the custom domain.
 3. Wait for GitHub to issue the TLS certificate, then enable **Enforce HTTPS**.
 4. Verify all three entry points:
