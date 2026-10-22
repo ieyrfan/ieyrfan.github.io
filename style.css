@@ -395,3 +395,6 @@ html[data-page=cloud] .world-class .hub-v3 .module-altitude b{color:#5b6d78}
   html[data-page=landing] .world-class .hub-v3 .module-projects,
   html[data-page=cloud] .world-class .hub-v3 .module-projects{background:#29485f!important}
 }
+/* Supporting metadata for provider-backed credentials. */
+.world-class .credential-note{margin:0;padding:0 28px 20px;color:#71869f;font:500 9px JetBrains Mono,monospace;letter-spacing:.03em}
+@media (max-width:720px){.world-class .credential-note{padding:0 18px 18px}}
