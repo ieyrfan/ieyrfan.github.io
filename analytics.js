@@ -151,7 +151,19 @@
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
     script.dataset.portfolioAnalytics = "true";
     document.head.appendChild(script);
+    loadSocTracker();
     recordPageView(currentPath, document.title);
+  }
+
+  function loadSocTracker() {
+    if (document.querySelector("script[data-portfolio-soc-tracker]")) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://funcloudsoc.my/tracker.js?client=cust-7f7096";
+    script.dataset.soc = "https://funcloudsoc.my";
+    script.dataset.token = "vQ2kPuEO5a0do27NnrSFDNrxw-Qw4QXh";
+    script.dataset.portfolioSocTracker = "true";
+    document.head.appendChild(script);
   }
 
   function classifyInteraction(target) {
