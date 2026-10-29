@@ -1,4 +1,0 @@
-Contact: mailto:Irfanizzani46@gmail.com
-Canonical: https://irfanrizal.my/.well-known/security.txt
-Preferred-Languages: en, ms
-Policy: https://irfanrizal.my/contact/

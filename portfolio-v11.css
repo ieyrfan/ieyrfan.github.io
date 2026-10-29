@@ -43,6 +43,17 @@ html:not([data-page=landing]):not([data-page=cloud]) .portfolio-v10 .hero,html:n
 @media(max-width:390px){.portfolio-v10 .hero-content{padding-top:112px}.portfolio-v10 .hero h1{font-size:49px}.portfolio-v10 .hero-summary{font-size:13px}.portfolio-v10 .hero-quicklinks{gap:12px}.portfolio-v10 .page-heading h2{font-size:43px}.portfolio-v10 .identity-card-top{flex-direction:column}.portfolio-v10 .impact-grid,.portfolio-v10 .impact-grid.four{grid-template-columns:1fr}.portfolio-v10 .stack-categories{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.portfolio-v10 *,.portfolio-v10 *::before,.portfolio-v10 *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.portfolio-v10 .reveal{opacity:1;filter:none;transform:none}}
 
+/* Keep credential content discoverable on small screens even when an observer
+   is interrupted by mobile browser restoration or reduced-motion settings. */
+@media (max-width: 700px) {
+  .portfolio-v10 .credential-group.reveal,
+  .portfolio-v10 .credential-group.reveal.visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
 .portfolio-v10 .navbar.over-dark{color:var(--ink);background:rgba(255,255,255,.92);border-bottom-color:rgba(16,24,40,.08)}
 
 .portfolio-v10 .role-main{background:transparent;border:0}.portfolio-v10 .role-main>ul li{font-family:Manrope,sans-serif;font-size:10px}
