@@ -42,6 +42,8 @@ The mobile cloud sequence uses a sticky viewport and two cloud layers. The image
 
 Threat Nexus XDR is the flagship case study and includes an architecture flow plus a manual incident replay. Supporting projects use consistent project cards and direct case-study routes. The visual hierarchy gives priority to evidence, system purpose, technology and outcomes instead of decorative metrics.
 
+The cloud hub adds a compact proof rail for verified context such as project count, users supported, current CGPA and cloud environments. The flagship project also exposes three evidence points before the case-study CTA so the strongest claims are readable without turning the page into a metric dashboard.
+
 ## Interaction and accessibility
 
 - Semantic links and buttons remain keyboard accessible.

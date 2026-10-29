@@ -296,7 +296,7 @@
     $('meta[name="description"]')?.setAttribute("content", route[3]);
     $('meta[property="og:title"]')?.setAttribute("content", route[2]);
     $('meta[property="og:description"]')?.setAttribute("content", route[3]);
-    const url = `https://ieyrfan.github.io${path === "/" ? "/" : `${path}/`}`;
+    const url = `https://irfanrizal.my${path === "/" ? "/" : `${path}/`}`;
     $('link[rel="canonical"]')?.setAttribute("href", url);
     $('meta[property="og:url"]')?.setAttribute("content", url);
   }
@@ -435,6 +435,23 @@
     addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; root.style.setProperty("--pointer-x", `${targetX}px`); root.style.setProperty("--pointer-y", `${targetY}px`); cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); });
     const animateCursor = () => { ringX += (targetX - ringX) * .16; ringY += (targetY - ringY) * .16; ring.style.transform = `translate3d(${ringX}px,${ringY}px,0)`; requestAnimationFrame(animateCursor); }; animateCursor();
     document.addEventListener("pointerover", event => document.body.classList.toggle("cursor-link", Boolean(event.target.closest("a,button,[role=button]"))));
+
+    // Give content cards a restrained depth response on desktop. It is
+    // intentionally capped so the content remains easy to read and never
+    // turns the portfolio into a gimmicky 3D dashboard.
+    $$(".service-module, .project-featured, .project-card, .project-small, .credential-group, .lab-grid article").forEach(card => {
+      card.addEventListener("pointermove", event => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        card.style.setProperty("--card-tilt-x", `${(x * 2.2).toFixed(2)}deg`);
+        card.style.setProperty("--card-tilt-y", `${(-y * 2.2).toFixed(2)}deg`);
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--card-tilt-x", "0deg");
+        card.style.setProperty("--card-tilt-y", "0deg");
+      });
+    });
   }
 
   let stackCategory = "cloud";

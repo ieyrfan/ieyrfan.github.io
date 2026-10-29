@@ -1,0 +1,146 @@
+/* Local design trial: loaded only by the certifications page. */
+html[data-page="certifications"] body.portfolio-v10 {
+  --paper: #e9eef3;
+  --ink: #243247;
+  --muted: #526176;
+  --blue: #2458ae;
+  background: #e9eef3;
+}
+html[data-page="certifications"] .portfolio-v10 .infrastructure { background: #e9eef3; }
+html[data-page="certifications"] .portfolio-v10 .credential-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 36px;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group,
+html[data-page="certifications"] .portfolio-v10 .resume-card {
+  min-width: 0;
+  background: #e9eef3;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 22px;
+  box-shadow: 6px 6px 16px #d0d8e1, -6px -6px 16px #fff;
+  overflow: hidden;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition: box-shadow .25s ease, border-color .25s ease;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group header {
+  padding: 24px 26px;
+  background: transparent;
+  border-bottom: 1px solid #cdd6e0;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group header span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: #526176;
+  background: #e9eef3;
+  box-shadow: inset 3px 3px 6px #ced6df, inset -3px -3px 6px #fff;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group h3 {
+  color: #243247;
+  font-size: 18px;
+  letter-spacing: .01em;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group li {
+  padding: 19px 26px;
+  border-color: #cdd6e0;
+  align-items: start;
+  gap: 18px;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group li b {
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+  color: #243247;
+  overflow-wrap: anywhere;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group time {
+  color: #526176;
+  font-size: 11px;
+  line-height: 2;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-note {
+  padding: 0 26px 24px;
+  color: #526176;
+  font-size: 13px;
+  line-height: 1.7;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-group a {
+  color: #2458ae;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+html[data-page="certifications"] .portfolio-v10 .resume-card .button {
+  color: #2458ae;
+  background: #e9eef3;
+  border: 1px solid #d0d9e4;
+  border-radius: 12px;
+  box-shadow: 4px 4px 9px #cbd4df, -4px -4px 9px #fff;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+html[data-page="certifications"] .portfolio-v10 .resume-card .button:active {
+  transform: translateY(1px);
+  box-shadow: inset 3px 3px 6px #cbd4df, inset -3px -3px 6px #fff;
+}
+html[data-page="certifications"] .portfolio-v10 a:focus-visible {
+  outline: 3px solid #2458ae;
+  outline-offset: 5px;
+}
+@media (max-width: 700px) {
+  html[data-page="certifications"] .portfolio-v10 .credential-groups { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  html[data-page="certifications"] .portfolio-v10 .credential-group.wide { grid-column: auto; }
+  html[data-page="certifications"] .portfolio-v10 .credential-group li { display: flex; flex-direction: column; gap: 5px; padding: 18px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-page="certifications"] .portfolio-v10 .resume-card .button { transition: none; }
+}
+
+html[data-page="certifications"] .portfolio-v10 .page-heading h2 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -.045em;
+}
+html[data-page="certifications"] .portfolio-v10 .credential-groups { align-items: start; }
+html[data-page="certifications"] .portfolio-v10 .credential-group header { display: flex; align-items: center; gap: 14px; }
+html[data-page="certifications"] .portfolio-v10 .credential-group header span { flex: 0 0 36px; }
+html[data-page="certifications"] .portfolio-v10 .credential-group h3 { margin: 0; }
+html[data-page="certifications"] .portfolio-v10 .resume-card { margin-top: 36px; padding: 28px; gap: 24px; }
+html[data-page="certifications"] .portfolio-v10 .resume-card h3 { font-size: clamp(1.2rem, 3vw, 1.75rem); line-height: 1.3; }
+html[data-page="certifications"] .portfolio-v10 .navbar,
+html[data-page="certifications"] .portfolio-v10 .site-footer { background: #e9eef3; color: #243247; border-color: #cdd6e0; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(380px, calc(100vw - 32px));
+  max-height: calc(100svh - 100px);
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #c4cedb;
+  border-radius: 18px;
+  color: #243247;
+  background: #f4f7fa;
+  box-shadow: 0 8px 32px #24324726;
+}
+html[data-page="certifications"] .portfolio-v10 .analytics-consent strong { font-size: 17px; color: #243247; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent p { font-size: 13px; line-height: 1.55; color: #526176; margin: 8px 0 0; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent span { color: #526176; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent > div:last-child { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent button { min-height: 44px; padding: 10px; font: 600 11px/1.4 Manrope, sans-serif; white-space: normal; border: 1px solid #bbc7d7; border-radius: 9px; background: #f4f7fa; color: #243247; }
+html[data-page="certifications"] .portfolio-v10 .analytics-consent button[data-analytics-choice="granted"] { background: #2458ae; border-color: #2458ae; color: white; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  html[data-page="certifications"] .portfolio-v10 .credential-group:hover { border-color: #bacbdf; box-shadow: 8px 8px 20px #ccd5df, -8px -8px 20px #fff; }
+  html[data-page="certifications"] .portfolio-v10 .credential-group { animation: neu-arrive .45s ease-out both; }
+}
+@keyframes neu-arrive { from { transform: translateY(8px); } to { transform: translateY(0); } }
+@media (max-width: 700px) {
+  html[data-page="certifications"] .portfolio-v10 .credential-group header { padding: 20px 22px; }
+  html[data-page="certifications"] .portfolio-v10 .credential-note { padding: 0 22px 22px; }
+  html[data-page="certifications"] .portfolio-v10 .resume-card { padding: 22px; }
+}
