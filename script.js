@@ -10,7 +10,7 @@
   const projectData = {
     "threat-nexus": {
       order: "01 / FINAL YEAR PROJECT",
-      name: "Threat Nexus XDR",
+      name: "FunCloud",
       subtitle: "Cloud-Native Autonomous Security Response",
       tags: ["AWS EC2", "Lambda", "DynamoDB", "EventBridge", "Flask", "Chart.js"],
       source: "https://github.com/ieyrfan/Threat-Nexus-XDR-Enterprise-Cloud-Cybersecurity-Platform",
@@ -86,20 +86,20 @@
     },
     "data-governance": {
       order: "05 / ZERO TRUST",
-      name: "Cloud data governance",
+      name: "IFHX DataSentinel",
       subtitle: "Zero-Trust Engine for AWS S3 Data Lakes",
-      tags: ["Python", "Terraform", "AWS", "Next.js"],
+      tags: ["AWS Lambda", "API Gateway", "Amazon Textract", "DynamoDB", "CloudWatch", "SNS", "FastAPI"],
       source: "https://github.com/ieyrfan/cloud-data-governance",
       architecture: ["S3 DATA", "CLASSIFICATION", "PII DETECTION", "SECURITY TIER", "REDACTION", "QUARANTINE", "GOVERNANCE"],
       sections: [
-        ["OVERVIEW", "A data-governance engine for classifying and protecting information stored in AWS S3 data lakes."],
+        ["OVERVIEW", "IFHX DataSentinel is a serverless document-protection engine for classifying and protecting sensitive information in AWS S3 data lakes."],
         ["PROBLEM", "Data lakes can accumulate sensitive data without consistent classification, handling or compromised-account response."],
         ["OBJECTIVE", "Apply zero-trust decisions to data based on content, identity context and security tier."],
-        ["KEY FEATURES", "PII detection, classification, security tiers, redaction, honeytokens, quarantine and compromised-account response."],
+        ["KEY FEATURES", "Sensitive-field detection across 21 categories, configurable REDACT / KEEP policies, conditional OCR, protected-output verification, honeytokens, quarantine and compromised-account response."],
         ["SECURITY", "Every data action is treated as a policy decision rather than assuming storage location equals trust."],
-        ["IMPLEMENTATION", "Python handles classification logic, Terraform defines AWS resources and Next.js provides the operational interface."],
+        ["IMPLEMENTATION", "FastAPI exposes the service while API Gateway, AWS Lambda, Amazon Textract, DynamoDB, CloudWatch and SNS form the serverless document-protection path. Files are returned without application-side document storage."],
         ["CHALLENGES", "Controls must protect sensitive content while preserving useful, traceable data workflows."],
-        ["RESULT", "The project demonstrates policy-based governance from ingestion to redaction and quarantine."],
+        ["RESULT", "Selected to exhibit IFHX DataSentinel at AWS Cloud & AI Day Malaysia 2026, Developer Community Zone, KLCC, on 4 November 2026."],
         ["WHAT I LEARNED", "Data security requires classification and response paths before an incident occurs."]
       ]
     },
@@ -185,7 +185,7 @@
     "/": ["landing", "OPEN SKY", "Muhammad Irfan Bin Rizal | Cloud Computing & Cloud Security", "Portfolio of Muhammad Irfan bin Rizal, a Cloud Computing & Application student focused on AWS, cloud security, infrastructure, DevOps and automation."],
     "/cloud": ["cloud", "IRFAN CLOUD HUB", "Cloud Hub | Muhammad Irfan Bin Rizal", "Explore Muhammad Irfan's projects, experience, technology, certifications and cloud security focus."],
     "/about": ["about", "ABOUT", "About Muhammad Irfan Bin Rizal | Cloud Computing", "About Muhammad Irfan bin Rizal, a Cloud Computing & Application student at UTeM."],
-    "/experience": ["experience", "EXPERIENCE", "Professional Experience | Muhammad Irfan Bin Rizal", "Professional IT experience at FTMK UTeM and Port Klang Cruise Terminal."],
+    "/experience": ["experience", "EXPERIENCE", "Professional Experience | Muhammad Irfan Bin Rizal", "Freelance IT development, university technical operations and enterprise infrastructure experience by Muhammad Irfan."],
     "/projects": ["projects", "PROJECTS", "Engineering Projects | Muhammad Irfan Bin Rizal", "Cloud, security and application projects designed and built by Muhammad Irfan bin Rizal."],
     "/stack": ["stack", "STACK", "Technology Stack | Muhammad Irfan Bin Rizal", "Cloud, security, networking, programming and operations technologies used by Muhammad Irfan."],
     "/security": ["security", "CLOUD SECURITY", "Cloud Security | Muhammad Irfan Bin Rizal", "Cloud security focus across identity, visibility, detection, posture management and automated response."],
@@ -201,21 +201,21 @@
 
   const stackData = {
     cloud: [
-      ["AWS", "Cloud platform used to build infrastructure, security and serverless systems.", "EC2 · Lambda · S3 · EKS · EventBridge", "Threat Nexus · SmartChef · CSPM · Data Governance"],
-      ["AWS Lambda", "Serverless compute used to run code without managing servers.", "API Gateway · DynamoDB · EventBridge", "Threat Nexus · SmartChef"],
+      ["AWS", "Cloud platform used to build infrastructure, security and serverless systems.", "EC2 · Lambda · S3 · EKS · EventBridge", "FunCloud · SmartChef · CSPM · IFHX DataSentinel"],
+      ["AWS Lambda", "Serverless compute used to run code without managing servers.", "API Gateway · DynamoDB · EventBridge", "FunCloud · SmartChef"],
       ["Amazon EKS", "Managed Kubernetes used for container orchestration on AWS.", "Terraform · Docker · SNS", "Omniverse"],
       ["GCP GKE", "Managed Kubernetes target used in a multi-cloud recovery path.", "Terraform · Kubernetes · traffic routing", "Omniverse"],
       ["OpenStack", "Private cloud platform used to understand compute and tenant networking.", "Linux · Neutron · virtualization", "OpenStack Networking Lab"],
-      ["Terraform", "Infrastructure as Code used to review and repeat cloud deployments.", "AWS · GCP · EKS · VPC", "Omniverse · CSPM · Data Governance · FunTechPay"],
+      ["Terraform", "Infrastructure as Code used to review and repeat cloud deployments.", "AWS · GCP · EKS · VPC", "Omniverse · CSPM · IFHX DataSentinel · FunTechPay"],
       ["Docker", "Packages applications and dependencies into repeatable runtime boundaries.", "Linux · Kubernetes · application services", "Omniverse · Cloud Lab"]
     ],
     security: [
-      ["XDR", "Connects security telemetry, detection rules, response and alerting.", "Cowrie · Lambda · EventBridge", "Threat Nexus XDR"],
+      ["XDR", "Connects security telemetry, detection rules, response and alerting.", "Cowrie · Lambda · EventBridge", "FunCloud"],
       ["Prowler", "Scans cloud configuration against security and compliance checks.", "AWS · CIS Benchmarks · Python", "Cloud Security Posture Audit"],
       ["CIS Benchmarks", "Provides a recognised baseline for secure configuration checks.", "Prowler · Terraform · CI/CD", "Cloud Security Posture Audit"],
-      ["IAM", "Controls which identities can perform actions on cloud resources.", "AWS · least privilege · CloudTrail", "Threat Nexus · CSPM · Data Governance"],
+      ["IAM", "Controls which identities can perform actions on cloud resources.", "AWS · least privilege · CloudTrail", "FunCloud · CSPM · IFHX DataSentinel"],
       ["GuardDuty", "Managed threat-detection service used to understand cloud findings.", "CloudTrail · EventBridge · Security Hub", "Cloud Security practice"],
-      ["Zero Trust", "Treats access and data actions as explicit policy decisions.", "Identity · classification · quarantine", "Cloud Data Governance"],
+      ["Zero Trust", "Treats access and data actions as explicit policy decisions.", "Identity · classification · quarantine", "IFHX DataSentinel"],
       ["Network Defense", "Applies monitoring and protective controls to network paths.", "Firewall · VPN · intrusion prevention", "Cisco training · infrastructure work"]
     ],
     networking: [
@@ -227,11 +227,11 @@
       ["CCNA", "Networking foundation covering addressing, switching and routing.", "LAN · WAN · network services", "Cisco training"]
     ],
     programming: [
-      ["Python", "Builds automation, cloud integrations, APIs and detection logic.", "Flask · FastAPI · Boto3", "Threat Nexus · Omniverse · CSPM · SmartChef"],
+      ["Python", "Builds automation, cloud integrations, APIs and detection logic.", "Flask · FastAPI · Boto3", "FunCloud · Omniverse · CSPM · SmartChef"],
       ["React", "Builds interactive application interfaces from reusable components.", "JavaScript · TypeScript · Next.js", "PanTalk · AEGIS · Niyyah · FunTechPay"],
-      ["Next.js", "Provides application routing and full-stack React capabilities.", "React · APIs · Supabase", "Niyyah · SmartChef · Data Governance"],
+      ["Next.js", "Provides application routing and full-stack React capabilities.", "React · APIs · Supabase", "Niyyah · SmartChef · IFHX DataSentinel"],
       ["FastAPI", "Python framework used to expose typed application APIs.", "Python · JWT · DynamoDB", "FunTechPay"],
-      ["Flask", "Python web framework used for dashboards and orchestration interfaces.", "Python · Chart.js · AWS", "Threat Nexus"],
+      ["Flask", "Python web framework used for dashboards and orchestration interfaces.", "Python · Chart.js · AWS", "FunCloud"],
       ["SQL", "Queries and structures relational application data.", "PostgreSQL · MySQL", "PanTalk · application projects"],
       ["C++", "Builds foundational application logic and structured programs.", "Data structures · MySQL", "Programming foundations"]
     ],
@@ -493,7 +493,7 @@
   $("#incidentReset")?.addEventListener("click", resetIncident);
 
   const commands = [
-    ["Cloud Hub", "Portfolio directory", "/cloud/"], ["About", "About Muhammad Irfan", "/about/"], ["Experience", "Professional IT experience", "/experience/"], ["Projects", "Selected engineering projects", "/projects/"], ["Threat Nexus XDR", "Flagship cloud security project", "/projects/threat-nexus/"], ["PanTalk", "Privacy-first messaging", "/projects/pantalk/"], ["Stack", "Technology relationship explorer", "/stack/"], ["Security", "Cloud security specialization", "/security/"], ["Journey", "Education and progression", "/journey/"], ["Certifications", "Training and credentials", "/certifications/"], ["Lab", "Technical experiments", "/lab/"], ["Contact", "Connect with Muhammad Irfan", "/contact/"], ["Resume", "View PDF resume", "asset/Muhammad_Irfan_Resume.pdf?v=resume-20260910"], ["GitHub", "Open GitHub profile", "https://github.com/ieyrfan"], ["LinkedIn", "Open LinkedIn profile", "https://www.linkedin.com/in/irfanrizal2004"]
+    ["Cloud Hub", "Portfolio directory", "/cloud/"], ["About", "About Muhammad Irfan", "/about/"], ["Experience", "Professional IT experience", "/experience/"], ["Projects", "Selected engineering projects", "/projects/"], ["FunCloud", "Flagship cloud security project", "/projects/threat-nexus/"], ["PanTalk", "Privacy-first messaging", "/projects/pantalk/"], ["IFHX DataSentinel", "Zero-trust data governance project", "/projects/data-governance/"], ["Stack", "Technology relationship explorer", "/stack/"], ["Security", "Cloud security specialization", "/security/"], ["Journey", "Education and progression", "/journey/"], ["Certifications", "Training and credentials", "/certifications/"], ["Lab", "Technical experiments", "/lab/"], ["Contact", "Connect with Muhammad Irfan", "/contact/"], ["Resume", "View PDF resume", "asset/Muhammad_Irfan_Resume.pdf?v=resume-20260910"], ["GitHub", "Open GitHub profile", "https://github.com/ieyrfan"], ["LinkedIn", "Open LinkedIn profile", "https://www.linkedin.com/in/irfanrizal2004"]
   ];
   const palette = $("#commandPalette"), search = $("#commandSearch"), commandList = $("#commandList");
   let filteredCommands = commands, selectedCommand = 0;

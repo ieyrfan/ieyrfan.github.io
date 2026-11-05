@@ -404,6 +404,14 @@ html body.portfolio-v10 .project-proof b {
   font:700 14px/1.1 "IBM Plex Mono",monospace;
   letter-spacing:-.03em;
 }
+html body.portfolio-v10 .project-event {
+  margin:14px 0 0;
+  color:#2e6b72;
+  font:600 9px/1.55 "IBM Plex Mono",monospace;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+html body.portfolio-v10 .project-event strong { color:#167f88; }
 @media(max-width:560px) {
   html body.portfolio-v10 .project-proof { gap:14px 0; }
   html body.portfolio-v10 .project-proof span { flex:1 1 33%; padding:0 12px; }

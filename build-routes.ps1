@@ -27,13 +27,13 @@ $routes = @(
 $metadata = @{
   'cloud' = @{ Title = 'Cloud Hub | Muhammad Irfan Bin Rizal'; Description = "Explore Muhammad Irfan's projects, experience, technology, certifications and cloud security focus." }
   'about' = @{ Title = 'About Muhammad Irfan Bin Rizal | Cloud Computing'; Description = 'About Muhammad Irfan bin Rizal, a Cloud Computing & Application student at UTeM.' }
-  'experience' = @{ Title = 'Professional Experience | Muhammad Irfan Bin Rizal'; Description = 'Professional IT experience at FTMK UTeM and Port Klang Cruise Terminal.' }
+  'experience' = @{ Title = 'Professional Experience | Muhammad Irfan Bin Rizal'; Description = 'Freelance IT development, university technical operations and enterprise infrastructure experience by Muhammad Irfan.' }
   'projects' = @{ Title = 'Engineering Projects | Muhammad Irfan Bin Rizal'; Description = 'Cloud, security and application projects designed and built by Muhammad Irfan bin Rizal.' }
   'projects/pantalk' = @{ Title = 'PanTalk | Muhammad Irfan Bin Rizal'; Description = 'Privacy-first messaging platform engineering project by Muhammad Irfan bin Rizal.' }
-  'projects/threat-nexus' = @{ Title = 'Threat Nexus XDR | Muhammad Irfan Bin Rizal'; Description = 'Cloud-native autonomous security response engineering project by Muhammad Irfan bin Rizal.' }
+  'projects/threat-nexus' = @{ Title = 'FunCloud | Muhammad Irfan Bin Rizal'; Description = 'Cloud-native autonomous security response engineering project by Muhammad Irfan bin Rizal.' }
   'projects/omniverse' = @{ Title = 'Omniverse | Muhammad Irfan Bin Rizal'; Description = 'Multi-cloud disaster recovery and SRE engineering project by Muhammad Irfan bin Rizal.' }
   'projects/cspm' = @{ Title = 'Cloud Security Posture Audit | Muhammad Irfan Bin Rizal'; Description = 'Production-grade CSPM framework engineering project by Muhammad Irfan bin Rizal.' }
-  'projects/data-governance' = @{ Title = 'Cloud Data Governance | Muhammad Irfan Bin Rizal'; Description = 'Zero-trust AWS S3 data governance engineering project by Muhammad Irfan bin Rizal.' }
+  'projects/data-governance' = @{ Title = 'IFHX DataSentinel | Muhammad Irfan Bin Rizal'; Description = 'Serverless AWS document-protection and zero-trust data governance project selected for AWS Cloud & AI Day Malaysia 2026.' }
   'projects/aegis' = @{ Title = 'Aegis | Muhammad Irfan Bin Rizal'; Description = 'Cloud-native SOC dashboard engineering project by Muhammad Irfan bin Rizal.' }
   'projects/niyyah' = @{ Title = 'Niyyah | Muhammad Irfan Bin Rizal'; Description = 'Islamic super app engineering project by Muhammad Irfan bin Rizal.' }
   'projects/smartchef' = @{ Title = 'SmartChef | Muhammad Irfan Bin Rizal'; Description = 'Serverless recipe recommendation engine by Muhammad Irfan bin Rizal.' }
