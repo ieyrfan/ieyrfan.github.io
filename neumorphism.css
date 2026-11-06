@@ -412,6 +412,53 @@ html body.portfolio-v10 .project-event {
   text-transform:uppercase;
 }
 html body.portfolio-v10 .project-event strong { color:#167f88; }
+
+/* Evidence-led community showcase and human context panels. */
+html body.portfolio-v10 .community-strip,
+html body.portfolio-v10 .beyond-grid article {
+  border:1px solid #ffffffb3;
+  border-radius:14px;
+  background:#e9eef3;
+  box-shadow:var(--neu-raised);
+  color:#243247;
+}
+html body.portfolio-v10 .community-strip {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.9fr);
+  gap:28px;
+  align-items:center;
+  margin-top:18px;
+  padding:28px clamp(22px,3vw,38px);
+}
+html body.portfolio-v10 .community-strip > div > span,
+html body.portfolio-v10 .community-strip dt,
+html body.portfolio-v10 .beyond-grid article > span {
+  color:#167f88;
+  font:600 9px/1.4 "IBM Plex Mono",monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+html body.portfolio-v10 .community-strip h3,
+html body.portfolio-v10 .beyond-grid h3 {
+  margin:12px 0 8px;
+  color:#243247;
+  font:700 clamp(1.35rem,2.8vw,2.2rem)/1.08 "Manrope",sans-serif;
+  letter-spacing:-.04em;
+}
+html body.portfolio-v10 .community-strip p,
+html body.portfolio-v10 .beyond-grid p { margin:0; color:#526176; line-height:1.6; }
+html body.portfolio-v10 .community-strip dl { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:0; }
+html body.portfolio-v10 .community-strip dl > div { padding:14px; border-left:1px solid #c7d2de; }
+html body.portfolio-v10 .community-strip dd { margin:7px 0 0; color:#526176; font-size:11px; line-height:1.4; }
+html body.portfolio-v10 .beyond-stack { padding-top:72px; }
+html body.portfolio-v10 .beyond-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+html body.portfolio-v10 .beyond-grid article { min-height:180px; padding:26px; }
+@media(max-width:720px) {
+  html body.portfolio-v10 .community-strip { grid-template-columns:1fr; gap:22px; }
+  html body.portfolio-v10 .community-strip dl { grid-template-columns:1fr; }
+  html body.portfolio-v10 .community-strip dl > div { border-left:0; border-top:1px solid #c7d2de; }
+  html body.portfolio-v10 .beyond-grid { grid-template-columns:1fr; }
+}
 @media(max-width:560px) {
   html body.portfolio-v10 .project-proof { gap:14px 0; }
   html body.portfolio-v10 .project-proof span { flex:1 1 33%; padding:0 12px; }

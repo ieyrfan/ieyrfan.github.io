@@ -203,8 +203,11 @@
     cloud: [
       ["AWS", "Cloud platform used to build infrastructure, security and serverless systems.", "EC2 · Lambda · S3 · EKS · EventBridge", "FunCloud · SmartChef · CSPM · IFHX DataSentinel"],
       ["AWS Lambda", "Serverless compute used to run code without managing servers.", "API Gateway · DynamoDB · EventBridge", "FunCloud · SmartChef"],
+      ["AWS Security Hub", "Aggregates cloud security findings into a prioritised view for investigation.", "GuardDuty · CloudTrail · EventBridge", "FunCloud · cloud security practice"],
       ["Amazon EKS", "Managed Kubernetes used for container orchestration on AWS.", "Terraform · Docker · SNS", "Omniverse"],
       ["GCP GKE", "Managed Kubernetes target used in a multi-cloud recovery path.", "Terraform · Kubernetes · traffic routing", "Omniverse"],
+      ["Google Cloud", "Foundational GCP services used to understand compute, storage and identity.", "Compute Engine · Cloud Storage · IAM", "Omniverse · Google Cloud training"],
+      ["Microsoft Azure", "Foundational Azure concepts and services from Microsoft cloud training.", "Cloud services · storage · virtual networking", "Azure Cloud Services certificate"],
       ["OpenStack", "Private cloud platform used to understand compute and tenant networking.", "Linux · Neutron · virtualization", "OpenStack Networking Lab"],
       ["Terraform", "Infrastructure as Code used to review and repeat cloud deployments.", "AWS · GCP · EKS · VPC", "Omniverse · CSPM · IFHX DataSentinel · FunTechPay"],
       ["Docker", "Packages applications and dependencies into repeatable runtime boundaries.", "Linux · Kubernetes · application services", "Omniverse · Cloud Lab"]
@@ -216,6 +219,9 @@
       ["IAM", "Controls which identities can perform actions on cloud resources.", "AWS · least privilege · CloudTrail", "FunCloud · CSPM · IFHX DataSentinel"],
       ["GuardDuty", "Managed threat-detection service used to understand cloud findings.", "CloudTrail · EventBridge · Security Hub", "Cloud Security practice"],
       ["Zero Trust", "Treats access and data actions as explicit policy decisions.", "Identity · classification · quarantine", "IFHX DataSentinel"],
+      ["SIEM / SOAR", "Foundational security operations concepts for collecting signals and coordinating response.", "Logs · alerts · playbooks", "Security training · FunCloud practice"],
+      ["Document Redaction", "Protects sensitive fields while preserving verified, useful output.", "PII detection · OCR · REDACT / KEEP", "IFHX DataSentinel"],
+      ["Phishing Detection", "Recognises suspicious messages and threat indicators before they become incidents.", "Threat analysis · user awareness", "Cybersecurity training"],
       ["Network Defense", "Applies monitoring and protective controls to network paths.", "Firewall · VPN · intrusion prevention", "Cisco training · infrastructure work"]
     ],
     networking: [
@@ -229,9 +235,12 @@
     programming: [
       ["Python", "Builds automation, cloud integrations, APIs and detection logic.", "Flask · FastAPI · Boto3", "FunCloud · Omniverse · CSPM · SmartChef"],
       ["React", "Builds interactive application interfaces from reusable components.", "JavaScript · TypeScript · Next.js", "PanTalk · AEGIS · Niyyah · FunTechPay"],
+      ["TypeScript", "Adds typed application structure to JavaScript and React systems.", "React · Next.js · APIs", "PanTalk · Niyyah · application work"],
       ["Next.js", "Provides application routing and full-stack React capabilities.", "React · APIs · Supabase", "Niyyah · SmartChef · IFHX DataSentinel"],
       ["FastAPI", "Python framework used to expose typed application APIs.", "Python · JWT · DynamoDB", "FunTechPay"],
       ["Flask", "Python web framework used for dashboards and orchestration interfaces.", "Python · Chart.js · AWS", "FunCloud"],
+      ["PHP / MySQL", "Application and relational database foundations used across web development practice.", "HTML · CSS · SQL", "Freelance systems · programming foundations"],
+      ["Solidity", "Smart-contract language explored through blockchain and fintech practice.", "Web3 · transaction logic", "FunTechPay · independent study"],
       ["SQL", "Queries and structures relational application data.", "PostgreSQL · MySQL", "PanTalk · application projects"],
       ["C++", "Builds foundational application logic and structured programs.", "Data structures · MySQL", "Programming foundations"]
     ],
@@ -239,8 +248,11 @@
       ["Linux", "Operating environment for servers, cloud workloads and technical troubleshooting.", "Docker · networking · CLI", "Cloud Lab · OpenStack · project infrastructure"],
       ["Windows", "Supports enterprise desktops, labs and Windows-based operations.", "Hardware · software · network services", "FTMK UTeM · Port Klang Cruise Terminal"],
       ["GitHub Actions", "Automates checks and delivery workflows inside a repository.", "Git · Terraform · security checks", "Cloud Security Posture Audit"],
+      ["Git", "Tracks source changes and keeps project work reviewable.", "GitHub · branches · commits", "All portfolio and application work"],
       ["CCTV Systems", "Combines networked cameras, PoE infrastructure and maintenance.", "PoE switches · LAN · asset records", "Port Klang Cruise Terminal"],
       ["AV Systems", "Supports projectors, sound, streaming and hybrid events.", "Live streaming · media production", "FTMK UTeM"],
+      ["RunCloud / Workspace", "Supports hosted deployments, collaboration and practical client operations.", "Cloud hosting · Google Workspace · DNS", "Freelance IT development"],
+      ["Photography &amp; Video", "Produces event documentation and digital content alongside technical operations.", "Cameras · editing · live events", "FTMK UTeM · community events"],
       ["IT Asset Auditing", "Records and verifies technology assets for operational control.", "Workstations · CCTV · documentation", "Port Klang Cruise Terminal"],
       ["Supabase", "Managed backend used for database, authentication and application services.", "Next.js · React", "Niyyah"]
     ]
@@ -439,7 +451,7 @@
     // Give content cards a restrained depth response on desktop. It is
     // intentionally capped so the content remains easy to read and never
     // turns the portfolio into a gimmicky 3D dashboard.
-    $$(".service-module, .project-featured, .project-card, .project-small, .credential-group, .lab-grid article").forEach(card => {
+    $$(".service-module, .project-featured, .project-card, .project-small, .credential-group, .lab-grid article, .community-strip, .beyond-grid article").forEach(card => {
       card.addEventListener("pointermove", event => {
         const rect = card.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width - .5;
