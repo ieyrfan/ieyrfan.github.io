@@ -6,6 +6,10 @@
   const root = document.documentElement;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const touchMode = window.matchMedia("(hover: none), (pointer: coarse)");
+  let storedMotion = "full";
+  try { storedMotion = localStorage.getItem("irfan-motion") === "quiet" ? "quiet" : "full"; } catch (_) {}
+  root.dataset.motion = storedMotion;
+  const motionAllowed = () => !reducedMotion.matches && root.dataset.motion !== "quiet";
 
   const projectData = {
     "threat-nexus": {
@@ -284,6 +288,24 @@
   }
   setPortfolioTheme();
 
+  function setMotionMode(mode) {
+    const next = mode === "quiet" ? "quiet" : "full";
+    root.dataset.motion = next;
+    try { localStorage.setItem("irfan-motion", next); } catch (_) {}
+    $$('[data-motion-mode]').forEach(button => {
+      const active = button.dataset.motionMode === next;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    if (next === "quiet") $$(".reveal").forEach(item => item.classList.add("visible"));
+  }
+  $$('[data-motion-mode]').forEach(button => button.addEventListener("click", () => setMotionMode(button.dataset.motionMode)));
+  $$('[data-motion-mode]').forEach(button => {
+    const active = button.dataset.motionMode === storedMotion;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
   const stars = $("#stars");
   if (stars) for (let index = 0; index < 22; index += 1) { const star = document.createElement("i"); star.style.left = `${4 + Math.random() * 92}%`; star.style.top = `${3 + Math.random() * 68}%`; star.style.setProperty("--twinkle", `${16 + Math.random() * 28}s`); star.style.setProperty("--delay", `${-Math.random() * 20}s`); star.style.opacity = String(.14 + Math.random() * .4); stars.appendChild(star); }
   requestAnimationFrame(() => document.body.classList.add("scene-ready"));
@@ -331,12 +353,12 @@
     transition.classList.toggle("signature", signature);
     $("#routeTransitionLabel").textContent = customLabel || (signature ? "ENTERING IRFAN CLOUD" : `OPENING ${route[1]}`);
     document.body.classList.add("route-leaving"); transition.classList.remove("reveal"); transition.classList.add("active");
-    const coverDelay = reducedMotion.matches ? 20 : signature ? 720 : 260;
+    const coverDelay = !motionAllowed() ? 20 : signature ? 720 : 260;
     routeTimer = window.setTimeout(() => {
       history.pushState({}, "", normalized === "/" ? "/" : `${normalized}/`);
       applyRoute(normalized);
       transition.classList.add("reveal"); document.body.classList.remove("route-leaving");
-      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), reducedMotion.matches ? 20 : 280);
+      routeTimer = window.setTimeout(() => transition.classList.remove("active", "reveal", "signature"), !motionAllowed() ? 20 : 280);
     }, coverDelay);
   }
   document.addEventListener("click", event => { const link = event.target.closest("a[data-route]"); if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return; event.preventDefault(); toggleMenu(false); routeTo(link.pathname); });
@@ -345,16 +367,42 @@
 
   const revealItems = $$(".reveal");
   revealItems.forEach((item, index) => item.style.setProperty("--reveal-order", String(index % 5)));
-  if (reducedMotion.matches || !("IntersectionObserver" in window)) revealItems.forEach(item => item.classList.add("visible"));
+  if (!motionAllowed() || !("IntersectionObserver" in window)) revealItems.forEach(item => item.classList.add("visible"));
   else { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .08, rootMargin: "0px 0px -5%" }); revealItems.forEach(item => observer.observe(item)); }
 
   const regionSections = $$('[data-region]');
+  function updateArchitectureStories() {
+    $$('[data-architecture-story]').forEach(story => {
+      const steps = $$('[data-step]', story);
+      if (!steps.length) return;
+      const rect = story.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (innerHeight * .74 - rect.top) / Math.max(1, rect.height + innerHeight * .18)));
+      const activeIndex = Math.min(steps.length - 1, Math.floor(progress * steps.length * 1.18));
+      steps.forEach((step, index) => {
+        step.classList.toggle("is-active", index === activeIndex && progress > .05);
+        step.classList.toggle("is-complete", index < activeIndex && progress > .05);
+      });
+    });
+  }
   let scrollTick = false;
   function updateScroll() {
     const scroll = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
     root.style.setProperty("--site-scroll", String(max > 0 ? scroll / max : 0));
     if ($("#scrollMeter")) $("#scrollMeter").style.width = `${max > 0 ? scroll / max * 100 : 0}%`;
     nav?.classList.toggle("scrolled", scroll > 36);
+    updateArchitectureStories();
+    const timeline = $(".experience-timeline");
+    if (timeline) {
+      const timelineRect = timeline.getBoundingClientRect();
+      const timelineProgress = Math.max(0, Math.min(1, (innerHeight * .34 - timelineRect.top) / Math.max(1, timelineRect.height)));
+      timeline.style.setProperty("--timeline-progress", `${timelineProgress * 100}%`);
+      let activeRole = -1;
+      $$(".role", timeline).forEach((role, index) => {
+        const roleRect = role.getBoundingClientRect();
+        if (roleRect.top <= innerHeight * .42) activeRole = index;
+      });
+      $$(".role", timeline).forEach((role, index) => role.classList.toggle("role-active", index === activeRole));
+    }
     const marker = innerHeight * .32;
     const active = regionSections.filter(section => { const rect = section.getBoundingClientRect(); return rect.top <= marker && rect.bottom > marker && getComputedStyle(section).display !== "none"; }).pop();
     if (active) { $("#regionReadout").textContent = `PAGE / ${active.dataset.region}`; nav?.classList.toggle("over-dark", !["OPEN SKY", "ENTER CLOUD", "IRFAN CLOUD HUB", "CONTACT"].includes(active.dataset.region)); }
@@ -377,6 +425,13 @@
       const bootOpacity = bootIn * (1 - bootOut);
       const arrivalIn = smooth(.76, .94, progress);
       const heroProgress = Math.max(0, Math.min(1, scroll / Math.max(1, innerHeight)));
+      const hero = $(".hero");
+      if (hero) {
+        const heroExit = smooth(.08, .62, progress);
+        hero.style.setProperty("--hero-camera-y", `${heroExit * -42}px`);
+        hero.style.setProperty("--hero-camera-scale", `${1 - heroExit * .08}`);
+        hero.style.setProperty("--hero-camera-opacity", `${1 - heroExit * .72}`);
+      }
       const farCloud = $(".cloud-far");
       const midCloud = $(".cloud-mid");
       const nearCloud = $(".cloud-near");
@@ -398,7 +453,7 @@
       if (percent) percent.textContent = `${String(Math.round(progress * 100)).padStart(2, "0")}%`;
       if (state) state.textContent = progress < .2 ? "APPROACH" : progress < .55 ? "CLOUD LAYER" : progress < .82 ? "CLEARING" : "ENVIRONMENT READY";
       if (boot) boot.classList.add("visible");
-      if (!reducedMotion.matches) {
+      if (motionAllowed()) {
         if (sticky) {
           sticky.style.setProperty("--entry-progress", progress.toFixed(4));
           sticky.style.setProperty("--entry-bg-scale", String(1.025 + approach * .72));
@@ -439,13 +494,18 @@
   addEventListener("scroll", () => { if (!scrollTick) { requestAnimationFrame(updateScroll); scrollTick = true; } }, { passive: true });
   updateScroll();
 
-  if (!touchMode.matches && !reducedMotion.matches) {
+  if (!touchMode.matches && motionAllowed()) {
     const hero = $(".hero"), layers = [$("#heroSky"), $(".cloud-far"), $(".cloud-mid"), $(".cloud-near"), $("#heroContent")], strengths = [2, 5, 10, 16, 2];
     hero?.addEventListener("pointermove", event => { const x = event.clientX / innerWidth - .5, y = event.clientY / innerHeight - .5; layers.forEach((layer, index) => { if (layer) { layer.style.setProperty("--parallax-x", `${x * strengths[index]}px`); layer.style.setProperty("--parallax-y", `${y * strengths[index] * .6}px`); } }); });
     hero?.addEventListener("pointerleave", () => layers.forEach(layer => { if (layer) { layer.style.setProperty("--parallax-x", "0px"); layer.style.setProperty("--parallax-y", "0px"); } }));
-    const cursor = $("#cursor"), ring = $("#cursorRing"); let targetX = -100, targetY = -100, ringX = -100, ringY = -100;
-    addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; root.style.setProperty("--pointer-x", `${targetX}px`); root.style.setProperty("--pointer-y", `${targetY}px`); cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); });
-    const animateCursor = () => { ringX += (targetX - ringX) * .16; ringY += (targetY - ringY) * .16; ring.style.transform = `translate3d(${ringX}px,${ringY}px,0)`; requestAnimationFrame(animateCursor); }; animateCursor();
+    const cursor = $("#cursor"), ring = $("#cursorRing"); let targetX = -100, targetY = -100, ringX = -100, ringY = -100, cursorRunning = false;
+    const animateCursor = () => {
+      if (!motionAllowed() || document.hidden) { cursorRunning = false; return; }
+      ringX += (targetX - ringX) * .16; ringY += (targetY - ringY) * .16;
+      ring.style.transform = `translate3d(${ringX}px,${ringY}px,0)`;
+      requestAnimationFrame(animateCursor);
+    };
+    addEventListener("pointermove", event => { targetX = event.clientX; targetY = event.clientY; root.style.setProperty("--pointer-x", `${targetX}px`); root.style.setProperty("--pointer-y", `${targetY}px`); cursor.style.transform = `translate3d(${targetX}px,${targetY}px,0)`; document.body.classList.add("cursor-active"); if (!cursorRunning) { cursorRunning = true; requestAnimationFrame(animateCursor); } });
     document.addEventListener("pointerover", event => document.body.classList.toggle("cursor-link", Boolean(event.target.closest("a,button,[role=button]"))));
 
     // Give content cards a restrained depth response on desktop. It is
@@ -474,7 +534,7 @@
     $("#stackNodes").innerHTML = items.map((item, index) => `<button type="button" class="stack-tech ${index === 0 ? "active" : ""}" data-tech-index="${index}"><b>${item[0]}</b><span>${item[1]}</span></button>`).join("");
     showTechnology(items[0]);
   }
-  function showTechnology(item) { const panel = $("#stackContext"); panel.innerHTML = `<span>TECHNOLOGY / RELATIONSHIP</span><h3>${item[0]}</h3><p>${item[1]}</p><dl class="tech-detail"><div><dt>USED WITH</dt><dd>${item[2]}</dd></div><div><dt>PROJECTS / EXPERIENCE</dt><dd>${item[3]}</dd></div></dl>`; panel.classList.remove("updated"); requestAnimationFrame(() => panel.classList.add("updated")); }
+  function showTechnology(item) { const panel = $("#stackContext"); const projects = item[3].split(" · ").filter(Boolean); panel.innerHTML = `<span>TECHNOLOGY / RELATIONSHIP</span><h3>${item[0]}</h3><p>${item[1]}</p><dl class="tech-detail"><div><dt>USED WITH</dt><dd>${item[2]}</dd></div><div><dt>PROJECTS / EXPERIENCE</dt><dd>${item[3]}</dd></div></dl><div class="tech-relationship" aria-label="Mapped projects">${projects.map(project => `<span>${project}</span>`).join("")}</div>`; panel.classList.remove("updated"); requestAnimationFrame(() => panel.classList.add("updated")); }
   $$('[data-stack]').forEach(button => button.addEventListener("click", () => renderStack(button.dataset.stack)));
   $("#stackNodes")?.addEventListener("click", event => { const button = event.target.closest("button[data-tech-index]"); if (!button) return; $$(".stack-tech", $("#stackNodes")).forEach(node => node.classList.toggle("active", node === button)); showTechnology(stackData[stackCategory][Number(button.dataset.techIndex)]); });
   renderStack("cloud");
@@ -494,8 +554,8 @@
   let currentProject = "threat-nexus", incidentIndex = 0, incidentTimer = 0, incidentPaused = false;
   const incidentEvents = ["00:00  Suspicious login attempt", "00:01  Honeypot records activity", "00:02  Detection rule triggers", "00:03  Incident classified", "00:04  Response automation starts", "00:05  Source IP blocked", "00:06  Notification delivered", "[SUCCESS] THREAT CONTAINED"];
   function resetIncident() { clearTimeout(incidentTimer); incidentIndex = 0; incidentPaused = false; if ($("#incidentPause")) $("#incidentPause").textContent = "PAUSE"; $$("#incidentNodes li").forEach(node => node.className = ""); if ($("#incidentLog")) $("#incidentLog").textContent = "[READY] Waiting for manual replay."; }
-  function advanceIncident() { if (incidentPaused) return; const nodes = $$("#incidentNodes li"); if (incidentIndex >= nodes.length) { $("#incidentLog").textContent = incidentEvents.join("\n"); return; } nodes.forEach((node, index) => { node.classList.toggle("done", index < incidentIndex); node.classList.toggle("active", index === incidentIndex); }); $("#incidentLog").textContent = incidentEvents.slice(0, incidentIndex + 1).join("\n"); incidentIndex += 1; incidentTimer = setTimeout(advanceIncident, reducedMotion.matches ? 80 : 720); }
-  function openProject(slug, updateRoute = true) { const data = projectData[slug]; if (!data) return; currentProject = slug; $("#caseEyebrow").textContent = data.order; $("#caseTitle").textContent = data.name; $("#caseSubtitle").textContent = data.subtitle; $("#caseTags").innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join(""); $("#architectureSteps").innerHTML = data.architecture.map(step => `<li>${step}</li>`).join(""); $("#caseGrid").innerHTML = data.sections.map((section, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${section[0]}</h3><p>${section[1]}</p></article>`).join(""); $("#caseSource").href = data.source; $("#incidentReplay").hidden = slug !== "threat-nexus"; resetIncident(); if (!caseStudy.open) caseStudy.showModal(); caseStudy.scrollTop = 0; document.body.classList.add("modal-open"); if (updateRoute && normalizePath(location.pathname) !== `/projects/${slug}`) { history.pushState({}, "", `/projects/${slug}/`); applyRoute(`/projects/${slug}`, false); } }
+  function advanceIncident() { if (incidentPaused) return; const nodes = $$("#incidentNodes li"); if (incidentIndex >= nodes.length) { $("#incidentLog").textContent = incidentEvents.join("\n"); return; } nodes.forEach((node, index) => { node.classList.toggle("done", index < incidentIndex); node.classList.toggle("active", index === incidentIndex); }); $("#incidentLog").textContent = incidentEvents.slice(0, incidentIndex + 1).join("\n"); incidentIndex += 1; incidentTimer = setTimeout(advanceIncident, motionAllowed() ? 720 : 80); }
+  function openProject(slug, updateRoute = true) { const data = projectData[slug]; if (!data) return; currentProject = slug; $("#caseEyebrow").textContent = data.order; $("#caseTitle").textContent = data.name; $("#caseSubtitle").textContent = data.subtitle; $("#caseTags").innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join(""); const architecture = $("#caseArchitecture"); architecture.dataset.architectureStory = slug; $("#architectureSteps").innerHTML = data.architecture.map((step, index) => `<li data-step="${index}">${step}</li>`).join(""); $("#caseGrid").innerHTML = data.sections.map((section, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${section[0]}</h3><p>${section[1]}</p></article>`).join(""); $("#caseSource").href = data.source; $("#incidentReplay").hidden = slug !== "threat-nexus"; resetIncident(); if (!caseStudy.open) caseStudy.showModal(); caseStudy.scrollTop = 0; document.body.classList.add("modal-open"); updateArchitectureStories(); if (updateRoute && normalizePath(location.pathname) !== `/projects/${slug}`) { history.pushState({}, "", `/projects/${slug}/`); applyRoute(`/projects/${slug}`, false); } }
   function closeProject(updateRoute = true) { resetIncident(); if (caseStudy.open) caseStudy.close(); document.body.classList.remove("modal-open"); if (updateRoute && root.dataset.page.startsWith("project-")) { history.pushState({}, "", "/projects/"); applyRoute("/projects"); } }
   $("#caseClose")?.addEventListener("click", () => closeProject());
   caseStudy?.addEventListener("click", event => { if (event.target === caseStudy) closeProject(); });
@@ -503,6 +563,7 @@
   $("#incidentRun")?.addEventListener("click", () => { resetIncident(); advanceIncident(); });
   $("#incidentPause")?.addEventListener("click", () => { incidentPaused = !incidentPaused; $("#incidentPause").textContent = incidentPaused ? "RESUME" : "PAUSE"; if (!incidentPaused) advanceIncident(); });
   $("#incidentReset")?.addEventListener("click", resetIncident);
+  caseStudy?.addEventListener("scroll", updateArchitectureStories, { passive: true });
 
   const commands = [
     ["Cloud Hub", "Portfolio directory", "/cloud/"], ["About", "About Muhammad Irfan", "/about/"], ["Experience", "Professional IT experience", "/experience/"], ["Projects", "Selected engineering projects", "/projects/"], ["FunCloud", "Flagship cloud security project", "/projects/threat-nexus/"], ["PanTalk", "Privacy-first messaging", "/projects/pantalk/"], ["IFHX DataSentinel", "Zero-trust data governance project", "/projects/data-governance/"], ["Stack", "Technology relationship explorer", "/stack/"], ["Security", "Cloud security specialization", "/security/"], ["Journey", "Education and progression", "/journey/"], ["Certifications", "Training and credentials", "/certifications/"], ["Lab", "Technical experiments", "/lab/"], ["Contact", "Connect with Muhammad Irfan", "/contact/"], ["Resume", "View PDF resume", "asset/Muhammad_Irfan_Resume.pdf?v=resume-20261106"], ["GitHub", "Open GitHub profile", "https://github.com/ieyrfan"], ["LinkedIn", "Open LinkedIn profile", "https://www.linkedin.com/in/irfanrizal2004"]

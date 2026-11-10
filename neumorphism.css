@@ -180,12 +180,12 @@ body.portfolio-v10 .page-heading.reveal { opacity:1; filter:none; transform:none
   body.portfolio-v10 .reveal { filter:blur(1px); transform:translateY(16px); transition-duration:.55s; }
   body.portfolio-v10 .reveal.visible { filter:none; transform:none; }
 }
-body.portfolio-v10 .analytics-consent { display:flex; flex-direction:column; width:min(380px,calc(100vw - 32px)); max-height:calc(100svh - 100px); overflow:auto; gap:14px; padding:20px; background:#f4f7fa; color:#243247; border:1px solid #c4cedb; border-radius:18px; box-shadow:0 8px 32px #24324726; }
+body.portfolio-v10 .analytics-consent { display:flex; flex-direction:column; box-sizing:border-box; right:16px; bottom:16px; width:min(380px,calc(100vw - 32px)); max-width:calc(100vw - 32px); max-height:calc(100svh - 100px); overflow:auto; gap:14px; padding:20px; background:#f4f7fa; color:#243247; border:1px solid #c4cedb; border-radius:18px; box-shadow:0 8px 32px #24324726; }
 body.portfolio-v10 .analytics-consent strong { color:#243247; font-size:17px; }
 body.portfolio-v10 .analytics-consent :is(p,span) { color:#526176; }
 body.portfolio-v10 .analytics-consent p { font-size:13px; line-height:1.55; }
 body.portfolio-v10 .analytics-consent>div:last-child { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-body.portfolio-v10 .analytics-consent button { min-height:44px; padding:10px; font:600 11px/1.4 Manrope,sans-serif; white-space:normal; border:1px solid #bbc7d7; border-radius:9px; background:#f4f7fa; color:#243247; }
+body.portfolio-v10 .analytics-consent button { min-width:0; width:100%; min-height:44px; padding:10px; font:600 11px/1.4 Manrope,sans-serif; white-space:normal; border:1px solid #bbc7d7; border-radius:9px; background:#f4f7fa; color:#243247; }
 body.portfolio-v10 .analytics-consent button[data-analytics-choice="granted"] { background:#2458ae; color:#fff; }
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
   body.portfolio-v10 :is(.hub-card,.project-card,.project-small,.lab-grid article):hover { border-color:#aebfd4; box-shadow:9px 9px 20px #ccd5df,-9px -9px 20px #fff; }
@@ -463,6 +463,12 @@ html body.portfolio-v10 .beyond-grid article { min-height:180px; padding:26px; }
   html body.portfolio-v10 .project-proof { gap:14px 0; }
   html body.portfolio-v10 .project-proof span { flex:1 1 33%; padding:0 12px; }
   html body.portfolio-v10 .project-proof span:nth-child(3) { padding-right:0; border-right:0; }
+}
+
+@media(max-width:620px) {
+  body.portfolio-v10 .analytics-consent{left:12px!important;right:auto!important;bottom:12px;width:calc(100% - 24px)!important;max-width:none!important;box-sizing:border-box}
+  body.portfolio-v10 .analytics-consent>div:last-child{grid-template-columns:1fr;min-width:0;width:100%}
+  body.portfolio-v10 .analytics-consent button{min-width:0;width:100%;font-size:10px;overflow-wrap:anywhere}
 }
 
 /* Proof rail: a quiet evidence line gives recruiters useful context without
